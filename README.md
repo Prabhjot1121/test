@@ -43,7 +43,7 @@ We welcome contributions from the community to improve Utsav and make it even mo
 
 ## Contact
 
-For any questions, feedback, or support, feel free to reach out to us at [email@example.com](mailto:email@example.com). We'd love to hear from you!
+For any questions, feedback, or support, feel free to reach out to us at [nimble2905@gmail.com](mailto:nimble2905@gmail.com). We'd love to hear from you!
 
 ---
 
