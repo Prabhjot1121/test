@@ -1,5 +1,6 @@
 const mongoose = require("mongoose")
-const mongoURI = 'mongodb+srv://nimble2905:' + encodeURIComponent('utsav@2905') + '@cluster0.wi8ghgi.mongodb.net/utsav?retryWrites=true&w=majority&ssl=true'
+require('dotenv').config()
+const mongoURI = process.env.MONGO_URI
 
 const connectToMongo = async () => {
     try {
