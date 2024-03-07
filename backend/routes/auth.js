@@ -41,7 +41,6 @@ router.post("/createUser", [
                 name: user.name,
             }
         }
-
         // create authentication token
         const authToken = jwt.sign(data, JWT_SECRET)
         res.json({ authToken })
@@ -68,7 +67,6 @@ router.post("/login", fetchUser, [
         if (!user) {
             return res.status(404).json('User does not exist with this email address')
         }
-
         const passwordCompare = await bcrypt.compare(password, user.password)
         if (!passwordCompare) {
             return res.status(401).json("Use correct credentials")
@@ -79,11 +77,10 @@ router.post("/login", fetchUser, [
                 id: user.id,
                 name: user.name,
             }
-        
         }
 
         const authToken = jwt.sign(data, JWT_SECRET)
-        res.json("User logged in successfully")
+        res.json({ authToken, message: "User logged in successfully" })
         console.log("User logged in succssfully");
     } catch (error) {
         console.error(error.message);
@@ -91,4 +88,52 @@ router.post("/login", fetchUser, [
     }
 })
 
+// route 3: get user data
+router.get("/getUserData", fetchUser, async (req, res) => {
+    const errors = validationResult(req)
+    if (!errors.isEmpty()) {
+        return res.status(401).json({ errors: errors.array() })
+    }
+    try {
+        const userId = await req.user.id
+        const user = await User.findById(userId).select("+password")
+        res.send({ user })
+        console.log("Fetched user details");
+    } catch (error) {
+        console.error(error.message);
+        res.send(500).json("Internal server error")
+    }
+})
+
+// route 4: get all users data
+router.get("/getAllUsersData", fetchUser, async (req, res) => {
+    const errors = validationResult(req)
+    if (!errors.isEmpty()) {
+        return res.status(401).json({ errors: errors.array() })
+    }
+
+    try {
+        const allUsers = await User.find()
+        res.json({ allUsers })
+    } catch (error) {
+        console.error(error.message);
+        res.json("Internal server error")
+    }
+})
+
+// route 5: to delete user
+router.delete("/deleteUser/:id", fetchUser, async (req, res) => {
+    const userId = req.user.id
+    const user = await User.findById(userId)
+    try {
+        if (!user) {
+            return res.status(404).json("User not found")
+        }
+        await User.findByIdAndDelete(userId)
+        res.json("Account deleted successfully")
+    } catch (error) {
+        console.error(error.message);
+        res.status(501).json("Internal server error")
+    }
+})
 module.exports = router
