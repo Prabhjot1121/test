@@ -54,10 +54,10 @@ router.post("/createUser", [
 // route 2: login using authentication 
 router.post("/login", fetchUser, [
     body("email", "Enter the email address you want to login with").isEmail(),
-    body("password", "Enter the password").exists()
+    body("password", "Enter the password").isLength({ min: 8 })
 ], async (req, res) => {
     const error = validationResult(req)
-    if (!error.isEmpty) {
+    if (!error.isEmpty()) {
         return res.status(401).json({ error: error.array() })
     }
 
@@ -80,7 +80,7 @@ router.post("/login", fetchUser, [
         }
 
         const authToken = jwt.sign(data, JWT_SECRET)
-        res.json({ authToken, message: "User logged in successfully" })
+        res.json({ authToken, message: "User logged in successfully", user })
         console.log("User logged in succssfully");
     } catch (error) {
         console.error(error.message);
