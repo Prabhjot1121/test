@@ -6,13 +6,17 @@ import Services from './Components/Services';
 import Wedding from "./Components/Wedding";
 import About from './pages/About';
 import Contact from './pages/Contacts/Contact';
-import SignIn from './Components/Authentication/Login';
-import SignUp from './Components/Authentication/SignUp';
+import SignIn from './Authentication/Login';
+import SignUp from './Authentication/SignUp';
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import Footer from "./Components/Footer";
 import { Toaster } from "react-hot-toast";
-import UserProfile from "./Components/Authentication/UserProfile";
+import UserProfile from "./Authentication/UserProfile";
 import Dashboard from "./Components/Dashboard";
+import UserDetails from "./Components/UserDetails";
+import Settings from "./Components/Settings";
+import Support from "./Components/Support";
+import Premium from "./Components/Premium";
 
 function App() {
   return (
@@ -31,8 +35,12 @@ function App() {
           <Route exact path="/contact" element={<Contact />} />
           <Route exact path="/signIn" element={<SignIn />} />
           <Route exact path="/signUp" element={<SignUp />} />
-          <Route exact path="/userProfile/dashboard" element={<UserProfile />}>
-            <Route exact path="/userProfile/dashboard" element={<Dashboard></Dashboard>}></Route>
+          <Route exact path="/userProfile/" element={<UserProfile />}>
+            <Route exact path="/userProfile/dashboard" element={<Dashboard />} />
+            <Route exact path="/userProfile/personal-Info" element={<UserDetails />} />
+            <Route exact path="/userProfile/settings" element={<Settings />} />
+            <Route exact path="/userProfile/support" element={<Support />} />
+            <Route exact path="/userProfile/premium" element={<Premium />} />
           </Route>
         </Routes>
         <Footer />
