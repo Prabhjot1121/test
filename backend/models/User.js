@@ -21,6 +21,8 @@ const userSchema = new Schema({
     },
     mobileNumber: {
         type: String,
+        minLength: [10],
+        maxLength: [10],
         required: true
     },
     address: {
