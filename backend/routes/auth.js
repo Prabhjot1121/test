@@ -13,10 +13,13 @@ router.post("/createUser", [
     body("name", "Write your name").isLength({ min: 3 }, { max: 20 }),
     body("email", "email address should be unique").isEmail(),
     body("password", "password must be atleast 8 characters").isLength({ min: 8 }),
-    body("mobile number", "mobile number must be of 10 character").isLength({ min: 10 }, { max: 10 }),
+    body("mobile number", "mobile number must be of 10 character"),
     body("address", "write your unique address in it")
 ], async (req, res) => {
-    const error = validationResult(req)
+    const errors = validationResult(req)
+    if (!errors.isEmpty()) {
+        return res.status(401).json({ errors: errors.array() })
+    }
     try {
         // first check whether use exists or not with the provided email
         let user = await User.findOne({ email: req.body.email })
@@ -52,39 +55,38 @@ router.post("/createUser", [
 })
 
 // route 2: login using authentication 
-router.post("/login", fetchUser, [
-    body("email", "Enter the email address you want to login with").isEmail(),
-    body("password", "Enter the password").isLength({ min: 8 })
+router.post("/login", [
+    body("email", "Enter your email you want to login with").isEmail(),
+    body("password", "Enter password").isLength({ min: 8 })
 ], async (req, res) => {
-    const error = validationResult(req)
-    if (!error.isEmpty()) {
-        return res.status(401).json({ error: error.array() })
+    const errors = validationResult(req)
+    if (!errors.isEmpty()) {
+        return res.status(401).json({ errors: errors.array() })
     }
-
     const { email, password } = req.body
     try {
         const user = await User.findOne({ email })
         if (!user) {
-            return res.status(404).json('User does not exist with this email address')
+            return res.status(404).json("User not found with this email")
         }
         const passwordCompare = await bcrypt.compare(password, user.password)
         if (!passwordCompare) {
-            return res.status(401).json("Use correct credentials")
+            return res.status(400).json("Use correct credentials")
         }
-
         const data = {
             user: {
                 id: user.id,
-                name: user.name,
+                name: user.name
             }
         }
-
+        // create auth token
         const authToken = jwt.sign(data, JWT_SECRET)
-        res.json({ authToken, message: "User logged in successfully", user })
-        console.log("User logged in succssfully");
+        const success = true
+        res.json({ success, authToken })
+        console.log("User logged in successfully");
     } catch (error) {
         console.error(error.message);
-        res.status(500).json("Internal server error")
+        return res.status(500).json("Internal server error")
     }
 })
 
