@@ -1,5 +1,5 @@
 import React from "react";
-import img from "./images/about.avif";
+import img from "../Components/images/about.avif";
 
 const About = () => {
   return (
@@ -20,7 +20,7 @@ const About = () => {
                 alt=""
               />
             </div>
-            <div className="w-full tracking-wide text-xl font-sans">
+            <div className="w-full tracking-wide text-base lg:text-xl font-sans">
               We're your trusted partner in creating extraordinary moments. Our
               passion lies in delivering top-notch event management services
               that turn your dreams into unforgettable realities. With a deep

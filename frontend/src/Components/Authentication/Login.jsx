@@ -1,35 +1,114 @@
-import React from 'react';
-import email from '../images/mail.png';
-import password from '../images/password-lock.png'
+import React, { useState } from "react";
+import email from "../images/mail.png";
+import password from "../images/password-lock.png";
+import { FaArrowRight, FaEye } from "react-icons/fa";
+import { useNavigate } from "react-router-dom";
+import toast from "react-hot-toast";
 
 const Login = () => {
-    return (
-        <>
-            <div className='border-2 flex justify-center w-[80vw] md:w-[70vw] lg:w-[100%] border-black bg-gradient-to-bl from-blue-100 items-center to-red-100 h-[70vh] md:px-20 py-10 rounded-xl'>
-                <div className='flex flex-col space-y-6 lg:w-[25vw]'>
-                    <span className='text-center mb-10 font-semibold text-3xl' style={{ fontFamily: 'sans-serif' }}>Sign In</span>
+  const [passwordType, setPasswordType] = useState("password");
+  const host = "http://localhost:8000";
+  const token = localStorage.getItem("token");
+  const [credentials, setCredentials] = useState({ email: "", password: "" });
+  const navigate = useNavigate();
 
-                    <form className='h-fit flex w-[100%] flex-col'>
-                        <div className='flex  w-[100%] space-x-5 mb-3 border-2 py-2 border-b-black'>
-                            <img className='w-6 h-6' src={email} alt="" />
-                            <input className='w-full placeholder:text-xl outline-none bg-inherit border-0' id='email' type="text" placeholder='Email address' />
-                        </div>
-                        <div className='flex  w-[100%] space-x-5 mb-3 border-2 py-2 border-b-black'>
-                            <img className='w-6 h-6' src={password} alt="" />
-                            <input className='w-full placeholder:text-xl outline-none bg-inherit border-0' id='password' type="password" placeholder='Password' />
-                        </div>
+  const onChange = (e) => {
+    setCredentials({ ...credentials, [e.target.name]: e.target.value });
+  };
 
-                        <button className='text-white bg-red-600 mt-6 rounded-md py-2 px-6'>Sign In</button>
-                    </form>
-
-                    <span className='w-full text-center font-medium text-xl cursor-pointer hover:text-red-700'>Forgot Password?</span>
-                    <hr className='border-[.5px] border-black' />
-
-                    <div className='text-center font-medium' style={{ fontFamily: 'sans-serif' }}>Don't have an account? <span className='text-red-600 font-medium text-lg'>Create one</span></div>
+  const handlePasswordType = () => {
+    if (passwordType === "text") {
+      setPasswordType("password");
+    } else {
+      setPasswordType("text");
+    }
+  };
+  const handleLogIn = async (e) => {
+    e.preventDefault();
+    try {
+      const response = await fetch(`${host}/api/auth/login`, {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+          "auth-token": token,
+        },
+        body: JSON.stringify({
+          email: credentials.email,
+          password: credentials.password,
+        }),
+      });
+      if (response.ok) {
+        const data = await response.json();
+        console.log(data);
+        localStorage.setItem("token", data.authToken);
+        navigate("/home");
+        toast.success("User logged in successfully!");
+      } else {
+        throw new Error("Failed to login");
+      }
+    } catch (error) {
+      console.error(error.message);
+    }
+  };
+  return (
+    <>
+      <div
+        style={{ fontFamily: "sans-serif" }}
+        className="flex justify-center items-center mx-auto w-full  bg-gradient-to-tr from-red-100 to-blue-100 h-[90vh]"
+      >
+        <div className="flex items-center flex-col h-fit w-1/2">
+          <span className="font-semibold text-3xl">LogIn to Continue</span>
+          <form
+            onSubmit={handleLogIn}
+            className="flex items-center justify-center my-10 w-full"
+            method="post"
+          >
+            <div className="flex flex-col space-y-6 items-center justify-start h-[40vh] w-5/6">
+              <div className="flex flex-col items-start justify-center w-[60%]">
+                <label htmlFor="email">Email Address:</label>
+                <input
+                  type="email"
+                  value={credentials.email}
+                  onChange={onChange}
+                  name="email"
+                  id="email"
+                  required
+                  placeholder="Enter your email address"
+                  className="w-full p-2 rounded-md focus:outline-none bg-transparent border-2 border-slate-600 shadow-md shadow-blue-200"
+                />
+              </div>
+              <div className="flex flex-col items-start justify-start w-[60%]">
+                <label htmlFor="password">Password:</label>
+                <div className="relative flex items-center justify-between w-full">
+                  <input
+                    type={passwordType}
+                    value={credentials.password}
+                    onChange={onChange}
+                    name="password"
+                    id="password"
+                    required
+                    placeholder="Enter password"
+                    className="w-full p-2 rounded-md focus:outline-none bg-transparent border-2 border-slate-600 shadow-md shadow-blue-200"
+                  />
+                  <FaEye
+                    onClick={handlePasswordType}
+                    className="cursor-pointer absolute right-2"
+                  ></FaEye>
                 </div>
+              </div>
+              <button
+                type="submit"
+                className="flex items-center justify-center space-x-12 py-2 rounded-md shadow-sm shadow-red-900 bg-red-700 text-white w-[60%] cursor-pointer"
+              >
+                Log In
+                <FaArrowRight size={25} className="animate-pulse" />
+              </button>
             </div>
-        </>
-    )
-}
+          </form>
+        </div>
+      </div>
+    </>
+  );
+};
 
-export default Login
+export default Login;
