@@ -1,8 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { Link, useLocation, useNavigate } from "react-router-dom";
 import ham from "./images/hamburger.png";
-import "./styles/Navbar.css";
-import { FaPersonBooth } from "react-icons/fa";
+import "../styles/Navbar.css";
 import { RxPerson } from "react-icons/rx";
 
 const Navbar = () => {
@@ -126,7 +125,7 @@ const Navbar = () => {
           {!token ? (
             <div className="hidden lg:flex">
               <Link
-                to="/signIn"
+                to="/logIn"
                 style={{ fontFamily: "sans-serif" }}
                 className="bg-red-700 shadow-sm shadow-red-900 hover:bg-transparent hover:text-red-600 duration-300 ease-in-out font-medium text-white mx-2 px-4 py-2 rounded-md"
               >

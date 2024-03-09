@@ -18,21 +18,21 @@ const UserProfile = () => {
                 location.pathname === "/userProfile/dashboard"
                   ? "text-red-600"
                   : "text-white"
-              } hover:text-red-600 hover:bg-transparent duration-300 cursor-pointer text-lg font-sans flex items-center mx-2 px-2 my-2 w-full justify-start h-12 shadow-sm shadow-red-900 rounded-md`}
+              } hover:text-red-600 hover:bg-transparent duration-300 cursor-pointer text-sm xl:text-lg font-sans flex items-center mx-2 px-2 my-2 w-full justify-start h-12 shadow-sm shadow-red-900 rounded-md`}
             >
               Dashboard
             </Link>
             <Link
               to="/userProfile/personal-Info"
               className={`font-medium bg-red-700 ${
-                location.pathname === "/userProfile/personalInfo"
+                location.pathname === "/userProfile/personal-Info"
                   ? "bg-white"
                   : "bg-red-700"
               } ${
-                location.pathname === "/userProfile/personalInfo"
+                location.pathname === "/userProfile/personal-Info"
                   ? "text-red-600"
                   : "text-white"
-              } hover:text-red-600 hover:bg-transparent duration-300 cursor-pointer text-lg font-sans flex items-center mx-2 px-2 my-2 w-full justify-start h-12 shadow-sm shadow-red-900 rounded-md`}
+              } hover:text-red-600 hover:bg-transparent duration-300 cursor-pointer text-sm xl:text-lg font-sans flex items-center mx-2 px-2 my-2 w-full justify-start h-12 shadow-sm shadow-red-900 rounded-md`}
             >
               Personal Information
             </Link>
@@ -46,7 +46,7 @@ const UserProfile = () => {
                 location.pathname === "/userProfile/settings"
                   ? "text-red-600"
                   : "text-white"
-              } hover:text-red-600 hover:bg-transparent duration-300 cursor-pointer text-lg font-sans flex items-center mx-2 px-2 my-2 w-full justify-start h-12 shadow-sm shadow-red-900 rounded-md`}
+              } hover:text-red-600 hover:bg-transparent duration-300 cursor-pointer text-sm xl:text-lg font-sans flex items-center mx-2 px-2 my-2 w-full justify-start h-12 shadow-sm shadow-red-900 rounded-md`}
             >
               Account Settings
             </Link>
@@ -60,7 +60,7 @@ const UserProfile = () => {
                 location.pathname === "/userProfile/support"
                   ? "text-red-600"
                   : "text-white"
-              } hover:text-red-600 hover:bg-transparent duration-300 cursor-pointer text-lg font-sans flex items-center mx-2 px-2 my-2 w-full justify-start h-12 shadow-sm shadow-red-900 rounded-md`}
+              } hover:text-red-600 hover:bg-transparent duration-300 cursor-pointer text-sm xl:text-lg font-sans flex items-center mx-2 px-2 my-2 w-full justify-start h-12 shadow-sm shadow-red-900 rounded-md`}
             >
               Support
             </Link>
@@ -74,7 +74,7 @@ const UserProfile = () => {
                 location.pathname === "/userProfile/premium"
                   ? "text-red-600"
                   : "text-white"
-              } hover:text-red-600 hover:bg-transparent duration-300 cursor-pointer text-lg font-sans flex items-center mx-2 px-2 my-2 w-full justify-start h-12 shadow-sm shadow-red-900 rounded-md`}
+              } hover:text-red-600 hover:bg-transparent duration-300 cursor-pointer text-sm xl:text-lg font-sans flex items-center mx-2 px-2 my-2 w-full justify-start h-12 shadow-sm shadow-red-900 rounded-md`}
             >
               Check Out Premium Plans
             </Link>

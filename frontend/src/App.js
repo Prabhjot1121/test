@@ -6,7 +6,7 @@ import Services from './Components/Services';
 import Wedding from "./Components/Wedding";
 import About from './pages/About';
 import Contact from './pages/Contacts/Contact';
-import SignIn from './Authentication/Login';
+import LogIn from './Authentication/Login';
 import SignUp from './Authentication/SignUp';
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import Footer from "./Components/Footer";
@@ -33,7 +33,7 @@ function App() {
           <Route exact path="/features" element={<Features />} />
           <Route exact path="/about" element={<About />} />
           <Route exact path="/contact" element={<Contact />} />
-          <Route exact path="/signIn" element={<SignIn />} />
+          <Route exact path="/logIn" element={<LogIn />} />
           <Route exact path="/signUp" element={<SignUp />} />
           <Route exact path="/userProfile/" element={<UserProfile />}>
             <Route exact path="/userProfile/dashboard" element={<Dashboard />} />

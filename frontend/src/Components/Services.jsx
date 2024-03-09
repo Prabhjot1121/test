@@ -1,5 +1,5 @@
 import React, { useRef } from "react";
-import "../Components/styles/services.css";
+import "../styles/services.css";
 // import wedding from "../images/wedding2.jpg";
 // import wedding2 from "../images/wedding.jpg";
 import { Link } from "react-router-dom";
