@@ -107,7 +107,46 @@ router.get("/getUserData", fetchUser, async (req, res) => {
     }
 })
 
-// route 4: get all users data
+// route 4: update user information, will need token
+router.put("/updateUserData", [
+    body("name", "Enter your name").isLength({ min: 3 }),
+    body("email", "enter your new email").isEmail(),
+    body("password", "set new password").isLength({ min: 8 }),
+    body("mobileNumber", "Enter your mobile number").exists(),
+    body("address", "enter your address")
+], fetchUser, async (req, res) => {
+    const errors = validationResult(req)
+    if (!errors.isEmpty()) {
+        return res.status(401).json({ errors: errors.array() })
+    }
+
+    const { name, mobileNumber, address, email, password } = req.body
+    const userID = req.user.id
+    const user = await User.findById(userID)
+    if (!user) {
+        return res.status(404).json("User not found")
+    }
+    try {
+
+        if (name) user.name = name;
+        if (mobileNumber) user.mobileNumber = mobileNumber;
+        if (address) user.address = address
+        if (email) user.email = email;
+        const salt = await bcrypt.genSalt(10)
+        const secPass = await bcrypt.hash(req.body.password, salt)
+        if (password) user.password = secPass;
+        // save the updated user
+        await user.save()
+
+        res.json({ message: "User data updated successfully", user })
+    } catch (error) {
+        console.error(error.message);
+        res.status(500).json("Internal server error")
+    }
+
+})
+
+// route 5: get all users data
 router.get("/getAllUsersData", fetchUser, async (req, res) => {
     const errors = validationResult(req)
     if (!errors.isEmpty()) {
@@ -123,7 +162,7 @@ router.get("/getAllUsersData", fetchUser, async (req, res) => {
     }
 })
 
-// route 5: to delete user
+// route 6: to delete user
 router.delete("/deleteUser/:id", fetchUser, async (req, res) => {
     const userId = req.user.id
     const user = await User.findById(userId)
