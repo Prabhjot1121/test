@@ -42,6 +42,7 @@ const Login = () => {
         navigate("/home");
         toast.success("User logged in successfully!");
       } else {
+        toast.error("use correct credentials");
         throw new Error("Failed to login");
       }
     } catch (error) {
