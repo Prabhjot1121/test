@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { Link, useLocation, useNavigate } from "react-router-dom";
-import ham from "./images/hamburger.png";
+import ham from "../images/hamburger.png";
 import "../styles/Navbar.css";
 import { RxPerson } from "react-icons/rx";
 

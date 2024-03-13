@@ -1,11 +1,11 @@
 import React from "react";
 import { Link } from "react-router-dom";
-import address from "./images/address-icon.png";
-import contact from "./images/contact.png";
-import mail from "./images/mail.png";
-import facebook from "./images/facebook.png";
-import github from "./images/github.png";
-import instgram from "./images/instagram.png";
+import address from "../images/address-icon.png";
+import contact from "../images/contact.png";
+import mail from "../images/mail.png";
+import facebook from "../images/facebook.png";
+import github from "../images/github.png";
+import instagram from "../images/instagram.png";
 
 const Footer = () => {
   return (
@@ -133,7 +133,7 @@ const Footer = () => {
                     <span>
                       <img
                         className="invert w-4 h-4 cursor-pointer hover:scale-150 duration-300 ease-in-out"
-                        src={instgram}
+                        src={instagram}
                         alt=""
                       />
                     </span>
