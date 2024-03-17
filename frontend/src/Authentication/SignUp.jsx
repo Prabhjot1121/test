@@ -1,73 +1,26 @@
-import React, { useState } from "react";
-import toast from "react-hot-toast";
+import React, { useContext, useState } from "react";
 import { FaEye, FaArrowRight } from "react-icons/fa";
-import { useNavigate } from "react-router-dom";
+import { AuthContext } from "../Context/Authentication_context/AuthContext";
 
 const SignUp = () => {
-  const [passwordType, setPasswordType] = useState("password");
-  const navigate = useNavigate();
-  const [credentials, setcredentials] = useState({
-    firstName: "",
-    lastName: "",
-    mobileNumber: "",
-    email: "",
-    password: "",
-    confirmPassword: "",
-    address: "",
-  });
-  const host = "http://localhost:8000";
+  const {
+    createUserCredentials,
+    setCreateUserCredentials,
+    createUser,
+    passwordType,
+    handlePasswordType,
+  } = useContext(AuthContext);
+
   const onChange = (e) => {
-    setcredentials({ ...credentials, [e.target.name]: e.target.value });
-  };
-  const handlePasswordType = () => {
-    if (passwordType === "text") {
-      setPasswordType("password");
-    } else {
-      setPasswordType("text");
-    }
+    setCreateUserCredentials({
+      ...createUserCredentials,
+      [e.target.name]: e.target.value,
+    });
   };
 
   const handleSignUp = async (e) => {
-    const {
-      firstName,
-      lastName,
-      mobileNumber,
-      email,
-      password,
-      confirmPassword,
-      address,
-    } = credentials;
     e.preventDefault();
-
-    if (password === confirmPassword) {
-      try {
-        const response = await fetch(`${host}/api/auth/createUser`, {
-          method: "POST",
-          headers: {
-            "Content-Type": "application/json",
-          },
-          body: JSON.stringify({
-            name: firstName + " " + lastName,
-            mobileNumber,
-            email,
-            password,
-            address,
-          }),
-        });
-        if (!response.ok) {
-          throw new Error("failed to create user");
-        }
-        const data = await response.json();
-        console.log(data);
-        navigate("/home");
-        localStorage.setItem("token", data.authToken);
-        toast.success("Account Created Successfully!");
-      } catch (error) {
-        console.error(error.message);
-      }
-    } else {
-      toast.error("Both password must be same");
-    }
+    createUser();
   };
 
   return (
@@ -92,7 +45,7 @@ const SignUp = () => {
                   <input
                     className="w-full text-lg focus:outline-none placeholder:text-sm bg-transparent py-1 px-2"
                     type="name"
-                    value={credentials.firstName}
+                    value={createUserCredentials.firstName}
                     onChange={onChange}
                     name="firstName"
                     id="first name"
@@ -109,7 +62,7 @@ const SignUp = () => {
                   <input
                     className="w-full text-lg focus:outline-none placeholder:text-sm bg-transparent py-1 px-2"
                     type="name"
-                    value={credentials.lastName}
+                    value={createUserCredentials.lastName}
                     onChange={onChange}
                     name="lastName"
                     id="last name"
@@ -128,7 +81,7 @@ const SignUp = () => {
                   <input
                     className="w-full text-lg focus:outline-none placeholder:text-sm bg-transparent py-1 px-2"
                     type="phone"
-                    value={credentials.mobileNumber}
+                    value={createUserCredentials.mobileNumber}
                     onChange={onChange}
                     name="mobileNumber"
                     id="mobile number"
@@ -147,7 +100,7 @@ const SignUp = () => {
                   <input
                     className="w-full text-lg focus:outline-none placeholder:text-sm bg-transparent py-1 px-2"
                     type="email"
-                    value={credentials.email}
+                    value={createUserCredentials.email}
                     onChange={onChange}
                     name="email"
                     required
@@ -166,7 +119,7 @@ const SignUp = () => {
                   <input
                     className="w-full text-lg focus:outline-none placeholder:text-sm  bg-transparent py-1 px-2"
                     type={passwordType}
-                    value={credentials.password}
+                    value={createUserCredentials.password}
                     onChange={onChange}
                     name="password"
                     id="setPassword"
@@ -192,7 +145,7 @@ const SignUp = () => {
                   <input
                     className="w-full text-lg focus:outline-none placeholder:text-sm  bg-transparent py-1 px-2"
                     type="password"
-                    value={credentials.confirmPassword}
+                    value={createUserCredentials.confirmPassword}
                     onChange={onChange}
                     name="confirmPassword"
                     id="confirmPassword"
@@ -208,7 +161,7 @@ const SignUp = () => {
               </label>
               <input
                 type="text"
-                value={credentials.address}
+                value={createUserCredentials.address}
                 onChange={onChange}
                 name="address"
                 id="address"

@@ -1,10 +1,10 @@
 import React, { useRef } from "react";
 import "../styles/services.css";
-// import wedding from "../images/wedding2.jpg";
-// import wedding2 from "../images/wedding.jpg";
+import wedding from "../images/wedding2.jpg";
+import wedding2 from "../images/wedding.jpg";
 import { Link } from "react-router-dom";
-// import left from "../images/left.png";
-// import right from "../images/right.png";
+import left from "../images/left.png";
+import right from "../images/right.png";
 
 const Services = () => {
   const containerRef = useRef(null);
@@ -55,13 +55,13 @@ const Services = () => {
             onClick={scrollLeft}
             className="absolute top-[50%] cursor-pointer z-10 left-10 h-20 w-20 "
           >
-            {/* <img className="h-10 w-10" src={left} alt="" /> */}
+            <img className="h-10 w-10" src={left} alt="" />
           </span>
           <span
             onClick={scrollRight}
             className="absolute top-[50%] cursor-pointer z-10 right-0 h-20 w-20 "
           >
-            {/* <img className="h-10 w-10" src={right} alt="" /> */}
+            <img className="h-10 w-10" src={right} alt="" />
           </span>
           <div
             ref={containerRef}
@@ -72,7 +72,7 @@ const Services = () => {
               style={{ flex: "0 0 auto" }}
             >
               <div className="cat-main h-fit relative ">
-                {/* <img className="h-[22rem] rounded-md" src={wedding} alt="" /> */}
+                <img className="h-[22rem] rounded-md" src={wedding} alt="" />
                 <div className="cat-box space-y-1 flex flex-col justify-end pb-6 items-start px-2 absolute top-0 rounded-md bg-opacity-50 bg-slate-600 h-full w-full text-white">
                   <div className="font-bold text-xl underline underline-offset-2">
                     Wedding
@@ -92,7 +92,7 @@ const Services = () => {
               style={{ flex: "0 0 auto" }}
             >
               <div className="cat-main h-fit relative ">
-                {/* <img className="h-[22rem] rounded-md" src={wedding2} alt="" /> */}
+                <img className="h-[22rem] rounded-md" src={wedding2} alt="" />
                 <div className="cat-box space-y-1 flex flex-col justify-end pb-6 items-start px-2 absolute top-0 rounded-md bg-opacity-50 bg-slate-600 h-full w-full text-white">
                   <div className="font-bold text-xl underline underline-offset-2">
                     Private Celebaration
@@ -109,7 +109,7 @@ const Services = () => {
               style={{ flex: "0 0 auto" }}
             >
               <div className="cat-main h-fit relative ">
-                {/* <img className="h-[22rem] rounded-md" src={wedding} alt="" /> */}
+                <img className="h-[22rem] rounded-md" src={wedding} alt="" />
                 <div className="cat-box space-y-1 flex flex-col justify-end pb-6 items-start px-2 absolute top-0 rounded-md bg-opacity-50 bg-slate-600 h-full w-full text-white">
                   <div className="font-bold text-xl underline underline-offset-2">
                     Corporate Event
@@ -126,7 +126,7 @@ const Services = () => {
               style={{ flex: "0 0 auto" }}
             >
               <div className="cat-main h-fit relative ">
-                {/* <img className="h-[22rem] rounded-md" src={wedding2} alt="" /> */}
+                <img className="h-[22rem] rounded-md" src={wedding2} alt="" />
                 <div className="cat-box space-y-1 flex flex-col justify-end pb-6 items-start px-2 absolute top-0 rounded-md bg-opacity-50 bg-slate-600 h-full w-full text-white">
                   <div className="font-bold text-xl underline underline-offset-2">
                     Social Gatherings
@@ -143,7 +143,7 @@ const Services = () => {
               style={{ flex: "0 0 auto" }}
             >
               <div className="cat-main h-fit relative ">
-                {/* <img className="h-[22rem] rounded-md" src={wedding} alt="" /> */}
+                <img className="h-[22rem] rounded-md" src={wedding} alt="" />
                 <div className="cat-box space-y-1 flex flex-col justify-end pb-6 items-start px-2 absolute top-0 rounded-md bg-opacity-50 bg-slate-600 h-full w-full text-white">
                   <div className="font-bold text-xl underline underline-offset-2">
                     Outdoor Events
@@ -160,7 +160,7 @@ const Services = () => {
               style={{ flex: "0 0 auto" }}
             >
               <div className="cat-main h-fit relative ">
-                {/* <img className="h-[22rem] rounded-md" src={wedding2} alt="" /> */}
+                <img className="h-[22rem] rounded-md" src={wedding2} alt="" />
                 <div className="cat-box space-y-1 flex flex-col justify-end pb-6 items-start px-2 absolute top-0 rounded-md bg-opacity-50 bg-slate-600 h-full w-full text-white">
                   <div className="font-bold text-xl underline underline-offset-2">
                     Themed Events
@@ -177,7 +177,7 @@ const Services = () => {
               style={{ flex: "0 0 auto" }}
             >
               <div className="cat-main h-fit relative ">
-                {/* <img className="h-[22rem] rounded-md" src={wedding} alt="" /> */}
+                <img className="h-[22rem] rounded-md" src={wedding} alt="" />
                 <div className="cat-box space-y-1 flex flex-col justify-end pb-6 items-start px-2 absolute top-0 rounded-md bg-opacity-50 bg-slate-600 h-full w-full text-white">
                   <div className="font-bold text-xl underline underline-offset-2">
                     Ceromonies
@@ -194,7 +194,7 @@ const Services = () => {
               style={{ flex: "0 0 auto" }}
             >
               <div className="cat-main h-fit relative ">
-                {/* <img className="h-[22rem] rounded-md" src={wedding} alt="" /> */}
+                <img className="h-[22rem] rounded-md" src={wedding} alt="" />
                 <div className="cat-box space-y-1 flex flex-col justify-end pb-6 items-start px-2 absolute top-0 rounded-md bg-opacity-50 bg-slate-600 h-full w-full text-white">
                   <div className="font-bold text-xl underline underline-offset-2">
                     Ceromonies
