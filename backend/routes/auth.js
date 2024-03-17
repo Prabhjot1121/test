@@ -111,7 +111,7 @@ router.get("/getUserData", fetchUser, async (req, res) => {
 router.put("/updateUserData", [
     body("name", "Enter your name").isLength({ min: 3 }),
     body("email", "enter your new email").isEmail(),
-    body("password", "set new password").isLength({ min: 8 }),
+    // body("password", "set new password").isLength({ min: 8 }),
     body("mobileNumber", "Enter your mobile number").exists(),
     body("address", "enter your address")
 ], fetchUser, async (req, res) => {
@@ -130,11 +130,11 @@ router.put("/updateUserData", [
 
         if (name) user.name = name;
         if (mobileNumber) user.mobileNumber = mobileNumber;
-        if (address) user.address = address
         if (email) user.email = email;
-        const salt = await bcrypt.genSalt(10)
-        const secPass = await bcrypt.hash(req.body.password, salt)
-        if (password) user.password = secPass;
+        if (address) user.address = address
+        // const salt = await bcrypt.genSalt(10)
+        // const secPass = await bcrypt.hash(req.body.password, salt)
+        // if (password) user.password = secPass;
         // save the updated user
         await user.save()
 

@@ -76,7 +76,7 @@ const UserProfile = () => {
                   : "text-white"
               } hover:text-red-600 hover:bg-transparent duration-300 cursor-pointer text-sm xl:text-lg font-sans flex items-center mx-2 px-2 my-2 w-full justify-start h-12 shadow-sm shadow-red-900 rounded-md`}
             >
-              Check Out Premium Plans
+              Premium
             </Link>
           </div>
           <div className="flex items-center justify-between w-full h-full p-4">

@@ -1,53 +1,23 @@
-import React, { useState } from "react";
+import React, { useContext } from "react";
 import { FaArrowRight, FaEye } from "react-icons/fa";
-import { useNavigate } from "react-router-dom";
-import toast from "react-hot-toast";
+import { AuthContext } from "../Context/Authentication_context/AuthContext";
 
 const Login = () => {
-  const [passwordType, setPasswordType] = useState("password");
-  const host = "http://localhost:8000";
-  const token = localStorage.getItem("token");
-  const [credentials, setCredentials] = useState({ email: "", password: "" });
-  const navigate = useNavigate();
+  const {
+    login,
+    credentials,
+    setCredentials,
+    passwordType,
+    handlePasswordType,
+  } = useContext(AuthContext);
 
   const onChange = (e) => {
     setCredentials({ ...credentials, [e.target.name]: e.target.value });
   };
 
-  const handlePasswordType = () => {
-    if (passwordType === "text") {
-      setPasswordType("password");
-    } else {
-      setPasswordType("text");
-    }
-  };
   const handleLogIn = async (e) => {
     e.preventDefault();
-    try {
-      const response = await fetch(`${host}/api/auth/login`, {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-          "auth-token": token,
-        },
-        body: JSON.stringify({
-          email: credentials.email,
-          password: credentials.password,
-        }),
-      });
-      if (response.ok) {
-        const data = await response.json();
-        console.log(data);
-        localStorage.setItem("token", data.authToken);
-        navigate("/home");
-        toast.success("User logged in successfully!");
-      } else {
-        toast.error("use correct credentials");
-        throw new Error("Failed to login");
-      }
-    } catch (error) {
-      console.error(error.message);
-    }
+    login();
   };
   return (
     <>
