@@ -83,12 +83,14 @@ const UserDetails = () => {
             <div className="flex flex-col justify-start w-full">
               <label
                 htmlFor="name"
-                className="text-lg font-medium cursor-pointer"
+                className={`w-fit text-lg font-medium ${
+                  !editUserData ? "cursor-pointer" : "cursor-default"
+                }`}
               >
                 Name:
               </label>{" "}
               {editUserData ? (
-                <span className="border-[1px] border-black bg-transparent font-medium text-black px-4 text-base rounded-md py-2">
+                <span className="border-[1px] border-black bg-transparent font-sans text-black px-4 text-base rounded-md py-2">
                   {user.name}
                 </span>
               ) : (
@@ -106,12 +108,14 @@ const UserDetails = () => {
             <div className="flex flex-col justify-start w-full">
               <label
                 htmlFor="email"
-                className="text-lg font-medium cursor-pointer"
+                className={`w-fit text-lg font-medium ${
+                  !editUserData ? "cursor-pointer" : "cursor-default"
+                }`}
               >
                 Email:{" "}
               </label>
               {editUserData ? (
-                <span className="border-[1px] border-black bg-transparent font-medium text-black px-4 text-base rounded-md py-2">
+                <span className="border-[1px] border-black bg-transparent font-sans text-black px-4 text-base rounded-md py-2">
                   {user.email}
                 </span>
               ) : (
@@ -129,12 +133,14 @@ const UserDetails = () => {
             <div className="flex flex-col justify-start w-full">
               <label
                 htmlFor="mobileNumber"
-                className="text-lg font-medium cursor-pointer"
+                className={`w-fit text-lg font-medium ${
+                  !editUserData ? "cursor-pointer" : "cursor-default"
+                }`}
               >
                 Mobile Number:{" "}
               </label>
               {editUserData ? (
-                <span className="border-[1px] border-black bg-transparent font-medium text-black px-4 text-base rounded-md py-2">
+                <span className="border-[1px] border-black bg-transparent font-sans text-black px-4 text-base rounded-md py-2">
                   {user.mobileNumber}
                 </span>
               ) : (
@@ -152,12 +158,14 @@ const UserDetails = () => {
             <div className="flex flex-col justify-start w-full">
               <label
                 htmlFor="address"
-                className="text-lg font-medium cursor-pointer"
+                className={`w-fit text-lg font-medium ${
+                  !editUserData ? "cursor-pointer" : "cursor-default"
+                }`}
               >
                 Address:{" "}
               </label>
               {editUserData ? (
-                <span className="border-[1px] border-black bg-transparent font-medium text-black px-4 text-base rounded-md py-2">
+                <span className="border-[1px] border-black bg-transparent font-sans text-black px-4 text-base rounded-md py-2">
                   {user.address}
                 </span>
               ) : (
