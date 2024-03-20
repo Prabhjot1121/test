@@ -8,7 +8,12 @@ const UserDetails = () => {
   const host = "http://localhost:8000";
   const { userData, getUserData } = useContext(AuthContext);
   const [editUserData, setEditUserData] = useState(true);
-  const [updatedUserData, setUpdatedUserData] = useState({});
+  const [updatedUserData, setUpdatedUserData] = useState({
+    name: "",
+    email: "",
+    mobileNumber: "",
+    address: "",
+  });
 
   const handleEditUserData = (e) => {
     e.preventDefault();

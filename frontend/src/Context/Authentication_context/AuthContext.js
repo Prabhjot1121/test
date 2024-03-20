@@ -90,6 +90,7 @@ export const AuthProvider = ({ children }) => {
         localStorage.setItem("token", data.authToken);
         navigate("/home");
         toast.success("User logged in successfully!");
+        setCredentials({ email: "", password: "" });
       } else {
         toast.error("use correct credentials");
         throw new Error("Failed to login");
