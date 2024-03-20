@@ -3,6 +3,7 @@ import { Link, useLocation, useNavigate } from "react-router-dom";
 import ham from "../images/hamburger.png";
 import "../styles/Navbar.css";
 import { RxPerson } from "react-icons/rx";
+import toast from "react-hot-toast";
 
 const Navbar = () => {
   const location = useLocation();
@@ -29,6 +30,7 @@ const Navbar = () => {
   const handleSignOut = () => {
     localStorage.removeItem("token");
     navigate("/");
+    toast("User logged out!");
   };
 
   const textColorClass = scrolling ? "text-white" : "text-black";
