@@ -76,9 +76,9 @@ const Navbar = () => {
                   ? "text-red-600"
                   : textColorClass
               }`}
-              to="/products"
+              to="/venues"
             >
-              Product
+              Venues
             </Link>
             <Link
               style={{ fontFamily: "sans-serif" }}
@@ -87,9 +87,9 @@ const Navbar = () => {
                   ? "text-red-600"
                   : textColorClass
               }`}
-              to="/services"
+              to="/vendors"
             >
-              Services
+              Vendors
             </Link>
             <Link
               style={{ fontFamily: "sans-serif" }}
@@ -98,9 +98,20 @@ const Navbar = () => {
                   ? "text-red-600"
                   : textColorClass
               }`}
-              to="/features"
+              to="/photos"
             >
-              Features
+              Photos
+            </Link>
+            <Link
+              style={{ fontFamily: "sans-serif" }}
+              className={`font-medium text-xl hover:text-red-600 ${
+                location.pathname === "/contact"
+                  ? "text-red-600"
+                  : textColorClass
+              }`}
+              to="/hire-event-organizer"
+            >
+              Hire Event Organizer
             </Link>
             <Link
               style={{ fontFamily: "sans-serif" }}
@@ -110,17 +121,6 @@ const Navbar = () => {
               to="/about"
             >
               About Us
-            </Link>
-            <Link
-              style={{ fontFamily: "sans-serif" }}
-              className={`font-medium text-xl hover:text-red-600 ${
-                location.pathname === "/contact"
-                  ? "text-red-600"
-                  : textColorClass
-              }`}
-              to="/contact"
-            >
-              Contact Us
             </Link>
           </div>
           {/* buttons */}
