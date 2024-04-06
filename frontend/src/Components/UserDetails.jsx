@@ -4,9 +4,7 @@ import { FaUserEdit } from "react-icons/fa";
 import { AuthContext } from "../Context/Authentication_context/AuthContext";
 
 const UserDetails = () => {
-  const token = localStorage.getItem("token");
-  const host = "http://localhost:8000";
-  const { userData, getUserData } = useContext(AuthContext);
+  const { userData, getUserData, token, host } = useContext(AuthContext);
   const [editUserData, setEditUserData] = useState(true);
   const [updatedUserData, setUpdatedUserData] = useState({
     name: "",
