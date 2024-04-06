@@ -1,5 +1,5 @@
 import React from "react";
-import search from "../images/search.png";
+import { FaSearch } from "react-icons/fa";
 
 const Hero = () => {
   return (
@@ -32,7 +32,7 @@ const Hero = () => {
                 id=""
               />
               <span className="animate-bounce">
-                <img className="h-8 w-8 " src={search} alt="" />
+                <FaSearch size={20} />
               </span>
             </div>
           </div>
