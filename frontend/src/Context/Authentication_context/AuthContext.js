@@ -137,6 +137,8 @@ export const AuthProvider = ({ children }) => {
           setCredentials,
           passwordType,
           handlePasswordType,
+          token,
+          host,
         }}
       >
         {children}
