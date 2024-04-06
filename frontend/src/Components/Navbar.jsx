@@ -66,41 +66,52 @@ const Navbar = () => {
                 location.pathname === "/" ? "text-red-600" : textColorClass
               }`}
               to="/"
+              onClick={() => {
+                window.scrollTo(0, 0);
+              }}
             >
               Home
             </Link>
             <Link
               style={{ fontFamily: "sans-serif" }}
               className={`font-medium text-xl hover:text-red-600 ${
-                location.pathname === "/products"
-                  ? "text-red-600"
-                  : textColorClass
-              }`}
-              to="/venues"
-            >
-              Venues
-            </Link>
-            <Link
-              style={{ fontFamily: "sans-serif" }}
-              className={`font-medium text-xl hover:text-red-600 ${
-                location.pathname === "/services"
+                location.pathname === "/vendors"
                   ? "text-red-600"
                   : textColorClass
               }`}
               to="/vendors"
+              onClick={() => {
+                window.scrollTo(0, 0);
+              }}
             >
               Vendors
             </Link>
             <Link
               style={{ fontFamily: "sans-serif" }}
               className={`font-medium text-xl hover:text-red-600 ${
-                location.pathname === "/features"
+                location.pathname === "/photos"
                   ? "text-red-600"
                   : textColorClass
               }`}
               to="/photos"
+              onClick={() => {
+                window.scrollTo(0, 0);
+              }}
             >
               Photos
+            </Link>
+
+            <Link
+              style={{ fontFamily: "sans-serif" }}
+              className={`font-medium text-xl hover:text-red-600 ${
+                location.pathname === "/about" ? "text-red-600" : textColorClass
+              }`}
+              to="/about"
+              onClick={() => {
+                window.scrollTo(0, 0);
+              }}
+            >
+              About Us
             </Link>
             <Link
               style={{ fontFamily: "sans-serif" }}
@@ -109,18 +120,12 @@ const Navbar = () => {
                   ? "text-red-600"
                   : textColorClass
               }`}
-              to="/hire-event-organizer"
+              to="/contact"
+              onClick={() => {
+                window.scrollTo(0, 0);
+              }}
             >
-              Hire Event Organizer
-            </Link>
-            <Link
-              style={{ fontFamily: "sans-serif" }}
-              className={`font-medium text-xl hover:text-red-600 ${
-                location.pathname === "/about" ? "text-red-600" : textColorClass
-              }`}
-              to="/about"
-            >
-              About Us
+              Contact Us
             </Link>
           </div>
           {/* buttons */}
@@ -128,6 +133,9 @@ const Navbar = () => {
             <div className="hidden lg:flex">
               <Link
                 to="/logIn"
+                onClick={() => {
+                  window.scrollTo(0, 0);
+                }}
                 style={{ fontFamily: "sans-serif" }}
                 className="bg-red-700 shadow-sm shadow-red-900 hover:bg-transparent hover:text-red-600 duration-300 ease-in-out font-medium text-white mx-2 px-4 py-2 rounded-md"
               >
@@ -135,6 +143,9 @@ const Navbar = () => {
               </Link>
               <Link
                 to="/signUp"
+                onClick={() => {
+                  window.scrollTo(0, 0);
+                }}
                 style={{ fontFamily: "sans-serif" }}
                 className="bg-red-700 shadow-sm shadow-red-900 hover:bg-transparent hover:text-red-600 duration-300 ease-in-out font-medium text-white mx-2 px-4 py-2 rounded-md"
               >
