@@ -26,7 +26,7 @@ const DisplayVendorsData = () => {
 
   return (
     <>
-      <div className="shadow-inner shadow-slate-600 bg-gradient-to-tr from-red-100 to-blue-100 flex flex-col items-center justify-start h-full w-full">
+      <div className="shadow-inner shadow-slate-400 bg-gradient-to-tr from-red-100 to-blue-100 flex flex-col items-center justify-start h-full w-full">
         <div className="w-[85%] mt-20">another exta data</div>
         <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-6  my-10 h-full w-[85%]">
           {vendorData === undefined ? (
