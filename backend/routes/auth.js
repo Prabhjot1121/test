@@ -1,180 +1,190 @@
-const express = require('express')
-const router = express.Router()
-const { body, validationResult } = require("express-validator")
-const User = require('../models/User')
-const fetchUser = require("../middleware/fetchUser")
-const bcrypt = require("bcryptjs")
-const jwt = require("jsonwebtoken")
+const express = require("express");
+const router = express.Router();
+const { body, validationResult } = require("express-validator");
+const User = require("../models/User");
+const fetchUser = require("../middleware/fetchUser");
+const bcrypt = require("bcryptjs");
+const jwt = require("jsonwebtoken");
 
-const JWT_SECRET = 'utsav-application@2905'
+const JWT_SECRET = "utsav-application@2905";
 
 // Create user route
-router.post("/createUser", [
+router.post(
+  "/createUser",
+  [
     body("name", "Write your name").isLength({ min: 3 }, { max: 20 }),
     body("email", "email address should be unique").isEmail(),
-    body("password", "password must be atleast 8 characters").isLength({ min: 8 }),
+    body("password", "password must be atleast 8 characters").isLength({
+      min: 8,
+    }),
     body("mobile number", "mobile number must be of 10 character"),
-    body("address", "write your unique address in it")
-], async (req, res) => {
-    const errors = validationResult(req)
+    body("address", "write your unique address in it"),
+  ],
+  async (req, res) => {
+    const errors = validationResult(req);
     if (!errors.isEmpty()) {
-        return res.status(401).json({ errors: errors.array() })
+      return res.status(401).json({ errors: errors.array() });
     }
     try {
-        // first check whether use exists or not with the provided email
-        let user = await User.findOne({ email: req.body.email })
-        if (user) {
-            return res.status(404).json({ error: "user already exists with this email" })
-        }
+      // first check whether use exists or not with the provided email
+      let user = await User.findOne({ email: req.body.email });
+      if (user) {
+        return res
+          .status(404)
+          .json({ error: "user already exists with this email" });
+      }
 
-        const salt = await bcrypt.genSalt(10)
-        const secPass = await bcrypt.hash(req.body.password, salt)
-        // create User
-        user = await User.create({
-            name: req.body.name,
-            email: req.body.email,
-            password: secPass,
-            mobileNumber: req.body.mobileNumber,
-            address: req.body.address
-        })
+      const salt = await bcrypt.genSalt(10);
+      const secPass = await bcrypt.hash(req.body.password, salt);
+      // create User
+      user = await User.create({
+        name: req.body.name,
+        email: req.body.email,
+        password: secPass,
+        mobileNumber: req.body.mobileNumber,
+        address: req.body.address,
+      });
 
-        const data = {
-            user: {
-                id: user.id,
-                name: user.name,
-            }
-        }
-        // create authentication token
-        const authToken = jwt.sign(data, JWT_SECRET)
-        res.json({ authToken })
-        console.log("Account created successfully");
-
+      const data = {
+        user: {
+          id: user.id,
+          name: user.name,
+        },
+      };
+      // create authentication token
+      const authToken = jwt.sign(data, JWT_SECRET);
+      res.json({ authToken });
+      console.log("Account created successfully");
     } catch (error) {
-        console.error(error.message);
+      console.error(error.message);
     }
-})
+  }
+);
 
-// route 2: login using authentication 
-router.post("/login", [
+// route 2: login using authentication
+router.post(
+  "/login",
+  [
     body("email", "Enter your email you want to login with").isEmail(),
-    body("password", "Enter password").isLength({ min: 8 })
-], async (req, res) => {
-    const errors = validationResult(req)
+    body("password", "Enter password").isLength({ min: 8 }),
+  ],
+  async (req, res) => {
+    const errors = validationResult(req);
     if (!errors.isEmpty()) {
-        return res.status(401).json({ errors: errors.array() })
+      return res.status(401).json({ errors: errors.array() });
     }
-    const { email, password } = req.body
+    const { email, password } = req.body;
     try {
-        const user = await User.findOne({ email })
-        if (!user) {
-            return res.status(404).json("User not found with this email")
-        }
-        const passwordCompare = await bcrypt.compare(password, user.password)
-        if (!passwordCompare) {
-            return res.status(400).json("Use correct credentials")
-        }
-        const data = {
-            user: {
-                id: user.id,
-                name: user.name
-            }
-        }
-        // create auth token
-        const authToken = jwt.sign(data, JWT_SECRET)
-        const success = true
-        res.json({ success, authToken })
-        console.log("User logged in successfully");
+      const user = await User.findOne({ email });
+      if (!user) {
+        return res.status(404).json("User not found with this email");
+      }
+      const passwordCompare = await bcrypt.compare(password, user.password);
+      if (!passwordCompare) {
+        return res.status(400).json("Use correct credentials");
+      }
+      const data = {
+        user: {
+          id: user.id,
+          name: user.name,
+        },
+      };
+      // create auth token
+      const authToken = jwt.sign(data, JWT_SECRET);
+      const success = true;
+      res.json({ success, authToken });
+      console.log("User logged in successfully");
     } catch (error) {
-        console.error(error.message);
-        return res.status(500).json("Internal server error")
+      console.error(error.message);
+      return res.status(500).json("Internal server error");
     }
-})
+  }
+);
 
 // route 3: get user data
 router.get("/getUserData", fetchUser, async (req, res) => {
-    const errors = validationResult(req)
-    if (!errors.isEmpty()) {
-        return res.status(401).json({ errors: errors.array() })
-    }
-    try {
-        const userId = await req.user.id
-        const user = await User.findById(userId).select("+password")
-        res.send({ user })
-        console.log("Fetched user details");
-    } catch (error) {
-        console.error(error.message);
-        res.send(500).json("Internal server error")
-    }
-})
+  const errors = validationResult(req);
+  if (!errors.isEmpty()) {
+    return res.status(401).json({ errors: errors.array() });
+  }
+  try {
+    const userId = await req.user.id;
+    const user = await User.findById(userId).select("+password");
+    res.send({ user });
+    console.log("Fetched user details");
+  } catch (error) {
+    console.error(error.message);
+    res.send(500).json("Internal server error");
+  }
+});
 
 // route 4: update user information, will need token
-router.put("/updateUserData", [
+router.put(
+  "/updateUserData",
+  [
     body("name", "Enter your name").isLength({ min: 3 }),
-    body("email", "enter your new email").isEmail(),
-    // body("password", "set new password").isLength({ min: 8 }),
+    body("email", "Enter your new email").isEmail(),
     body("mobileNumber", "Enter your mobile number").exists(),
-    body("address", "enter your address")
-], fetchUser, async (req, res) => {
-    const errors = validationResult(req)
+    body("address", "Enter your address").exists(),
+  ],
+  fetchUser,
+  async (req, res) => {
+    const errors = validationResult(req);
     if (!errors.isEmpty()) {
-        return res.status(401).json({ errors: errors.array() })
+      return res.status(400).json({ errors: errors.array() });
     }
 
-    const { name, mobileNumber, address, email, password } = req.body
-    const userID = req.user.id
-    const user = await User.findById(userID)
-    if (!user) {
-        return res.status(404).json("User not found")
-    }
+    const { name, mobileNumber, address, email } = req.body;
+    const userID = req.user.id;
     try {
+      const user = await User.findById(userID);
+      if (!user) {
+        return res.status(404).json({ message: "User not found" });
+      }
 
-        if (name) user.name = name;
-        if (mobileNumber) user.mobileNumber = mobileNumber;
-        if (email) user.email = email;
-        if (address) user.address = address
-        // const salt = await bcrypt.genSalt(10)
-        // const secPass = await bcrypt.hash(req.body.password, salt)
-        // if (password) user.password = secPass;
-        // save the updated user
-        await user.save()
+      user.name = name || user.name;
+      user.mobileNumber = mobileNumber || user.mobileNumber;
+      user.email = email || user.email;
+      user.address = address || user.address;
 
-        res.json({ message: "User data updated successfully", user })
+      await user.save();
+      return res.json({ user });
     } catch (error) {
-        console.error(error.message);
-        res.status(500).json("Internal server error")
+      console.error(error.message);
+      return res.status(500).json({ message: "Internal server error" });
     }
-
-})
+  }
+);
 
 // route 5: get all users data
 router.get("/getAllUsersData", fetchUser, async (req, res) => {
-    const errors = validationResult(req)
-    if (!errors.isEmpty()) {
-        return res.status(401).json({ errors: errors.array() })
-    }
+  const errors = validationResult(req);
+  if (!errors.isEmpty()) {
+    return res.status(401).json({ errors: errors.array() });
+  }
 
-    try {
-        const allUsers = await User.find()
-        res.json({ allUsers })
-    } catch (error) {
-        console.error(error.message);
-        res.json("Internal server error")
-    }
-})
+  try {
+    const allUsers = await User.find();
+    res.json({ allUsers });
+  } catch (error) {
+    console.error(error.message);
+    res.json("Internal server error");
+  }
+});
 
 // route 6: to delete user
 router.delete("/deleteUser/:id", fetchUser, async (req, res) => {
-    const userId = req.user.id
-    const user = await User.findById(userId)
-    try {
-        if (!user) {
-            return res.status(404).json("User not found")
-        }
-        await User.findByIdAndDelete(userId)
-        res.json("Account deleted successfully")
-    } catch (error) {
-        console.error(error.message);
-        res.status(501).json("Internal server error")
+  const userId = req.user.id;
+  const user = await User.findById(userId);
+  try {
+    if (!user) {
+      return res.status(404).json("User not found");
     }
-})
-module.exports = router
+    await User.findByIdAndDelete(userId);
+    res.json("Account deleted successfully");
+  } catch (error) {
+    console.error(error.message);
+    res.status(501).json("Internal server error");
+  }
+});
+module.exports = router;
