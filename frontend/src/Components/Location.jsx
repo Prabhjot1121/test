@@ -24,7 +24,7 @@ const Location = () => {
             onChange={onChange}
             className="w-60 appearance-none px-4 py-2 rounded-sm mx-2 focus:outline-none focus:border-blue-500"
           >
-            <option value="all-cities">All Cities</option>
+            <option value="all">All Cities</option>
             <option value="delhi">Delhi</option>
             <option value="jaipur">Jaipur</option>
             <option value="udaipur">Udaipur</option>

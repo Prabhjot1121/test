@@ -1,6 +1,6 @@
 import React, { useContext, useEffect, useState } from "react";
 import { IoIosArrowDown } from "react-icons/io";
-import { Link } from "react-router-dom";
+import { Link, useParams } from "react-router-dom";
 import groomWear from "../images/groom-wear.webp";
 import venues from "../images/venues.webp";
 import photographer from "../images/photographers.webp";
@@ -14,8 +14,9 @@ import food from "../images/food.webp";
 import bridalGrooming from "../images/Spa & Wellness - Bridal Category.webp";
 import Location from "../Components/Location";
 import { LocationContext } from "../Context/Location_context/LocationContext";
+import { vendorsData } from "../vendorsData";
 
-const Vendors = () => {
+const Vendors = (props) => {
   const [isVisibleMap, setIsVisibleMap] = useState({});
   const { location } = useContext(LocationContext);
 
@@ -28,7 +29,7 @@ const Vendors = () => {
   return (
     <>
       <div className="shadow-inner shadow-slate-400 flex flex-col items-center justify-start bg-gradient-to-tr from-red-100 to-blue-100 w-full">
-        <div className="flex items-center justify-between  mt-16 w-[80%] h-12">
+        <div className="flex items-center justify-between  mt-16 w-[85%] h-12">
           <div className="flex flex-row text-3xl justify-start h-fit items-center w-fit">
             <span className="text-2xl underline underline-offset-8 decoration-red-600 font-semibold">
               Wedding Categories
@@ -38,7 +39,7 @@ const Vendors = () => {
           <Location />
         </div>
         {/* <Location/> */}
-        <div className="grid grid-cols-1 sm:grid-cols-2 gap-6 pb-10 grid-flow-row row-auto w-[80%] mt-4">
+        <div className="grid grid-cols-1 sm:grid-cols-2 gap-6 pb-10 grid-flow-row row-auto w-[85%] mt-4">
           <div className="w-full">
             <div
               onClick={() => handleDropdown("venue1")}
@@ -61,7 +62,7 @@ const Vendors = () => {
                 <span>
                   <Link
                     className="font-medium"
-                    to={`/vendors/${location}/wedding-venues`}
+                    to={`/vendors/${location}/venues/all/wedding-venues`}
                     onClick={() => console.log(location)}
                   >
                     View All Venues
@@ -70,7 +71,7 @@ const Vendors = () => {
                 <span>
                   <Link
                     className="font-normal hover:text-red-600"
-                    to={`/vendors/${location}/wedding-venues/all/banquet-halls`}
+                    to={`/vendors/${location}/venues/all/banquet-halls`}
                   >
                     Banquet Halls
                   </Link>
@@ -78,7 +79,8 @@ const Vendors = () => {
                 <span>
                   <Link
                     className="font-normal hover:text-red-600"
-                    to={`/vendors/${location}/wedding-venues/all/farmhouses`}
+                    to={`/vendors/${location}/venues/all/farmhouses`}
+                    onClick={() => console.log(vendorsData.length)}
                   >
                     Lawns / Farmhouses
                   </Link>
@@ -86,7 +88,7 @@ const Vendors = () => {
                 <span>
                   <Link
                     className="font-normal hover:text-red-600"
-                    to={`/vendors/${location}/wedding-venues/all/wedding-resorts`}
+                    to={`/vendors/${location}/venues/all/wedding-resorts`}
                   >
                     Wedding Resorts
                   </Link>
@@ -94,7 +96,7 @@ const Vendors = () => {
                 <span>
                   <Link
                     className="font-normal hover:text-red-600"
-                    to={`/vendors/${location}/wedding-venues/all/party-halls`}
+                    to={`/vendors/${location}/venues/all/party-halls`}
                   >
                     Party Halls
                   </Link>
@@ -102,7 +104,7 @@ const Vendors = () => {
                 <span>
                   <Link
                     className="font-normal hover:text-red-600"
-                    to={`/vendors/${location}/wedding-venues/all/destination-wedding`}
+                    to={`/vendors/${location}/venues/all/destination-wedding`}
                   >
                     Destination Wedding
                   </Link>
@@ -132,37 +134,15 @@ const Vendors = () => {
                 <span>
                   <Link
                     className="font-normal hover:text-red-600"
-                    to={`/vendors/${location}/wedding-photographers`}
+                    to={`/vendors/${location}/photographers/all/wedding-photographers`}
                   >
                     Photographers
                   </Link>
                 </span>
-              </div>
-            )}{" "}
-          </div>
-          <div className="w-full">
-            <div
-              onClick={() => handleDropdown("venue3")}
-              className="flex justify-between cursor-pointer h-28 w-full bg-violet-200"
-            >
-              <div className="flex items-center space-x-1 w-fit">
-                <span className="font-semibold p-2">Pre Wedding Shoot</span>
-                <IoIosArrowDown size={20} />
-              </div>
-              <div className="h-full">
-                <img
-                  src={venues}
-                  className="rounded-tl-[4rem] h-full w-full"
-                  alt=""
-                />
-              </div>
-            </div>
-            {isVisibleMap["venue3"] && (
-              <div className="grid grid-cols-2 gap-2 w-full my-6 p-2">
                 <span>
                   <Link
                     className="font-normal hover:text-red-600"
-                    to={`/vendors/${location}/pre-wedding-photographers`}
+                    to={`/vendors/${location}/photographers/all/pre-wedding-shoot`}
                   >
                     Pre Wedding Photographers
                   </Link>
@@ -170,6 +150,7 @@ const Vendors = () => {
               </div>
             )}{" "}
           </div>
+
           <div className="w-full">
             <div
               onClick={() => handleDropdown("venue4")}

@@ -59,7 +59,7 @@ export const AuthProvider = ({ children }) => {
         }
         const data = await response.json();
         console.log(data);
-        navigate("/home");
+        navigate("/");
         localStorage.setItem("token", data.authToken);
         toast.success("Account Created Successfully!");
       } catch (error) {
@@ -88,7 +88,7 @@ export const AuthProvider = ({ children }) => {
         const data = await response.json();
         console.log(data);
         localStorage.setItem("token", data.authToken);
-        navigate("/home");
+        navigate("/");
         toast.success("User logged in successfully!");
         setCredentials({ email: "", password: "" });
       } else {
