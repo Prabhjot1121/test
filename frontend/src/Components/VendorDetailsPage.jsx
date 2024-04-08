@@ -72,7 +72,7 @@ const VendorDetailsPage = () => {
       <>
         <div
           style={{ fontFamily: "sans-serif" }}
-          className="h-[160vh] py-12 w-full bg-gradient-to-tr from-red-100 to-blue-100 shadow-inner shadow-slate-600"
+          className="h-[160vh] py-12 w-full bg-gradient-to-tr from-red-100 to-blue-100 shadow-inner shadow-slate-400"
         >
           <div className="flex justify-between h-full w-[85%] rounded-sm mx-auto">
             {venue && (
@@ -203,12 +203,12 @@ const VendorDetailsPage = () => {
                   </div>
                   <div className="h-[60vh] bg-transparent w-full shadow-sm shadow-slate-600">
                     <div className="flex text-lg items-center justify-around h-fit border-b-black border-[1px]">
-                      <button onClick={()=>toggleComponent(1)} className={`flex items-center space-x-1 px-4 py-2 hover:text-red-500 w-full h-16 bg-white shadow-sm shadow-red-900 ${!isVisible?"text-red-500":"text-gray-500"} `}>
+                      <button onClick={()=>toggleComponent(1)} className={`flex items-center space-x-1 px-4 py-2 hover:text-red-500 w-full h-16 bg-white shadow-sm shadow-red-900 ${!isVisible?"text-red-500":"text-gray-500"} ${!isVisible?"cursor-default":"cursor-pointer"} `}>
                         <MdEmail />
                         <span>Send Message</span>
                       </button>
                       <hr />
-                      <button onClick={()=>toggleComponent(2)} className={`flex items-center space-x-1 px-4 py-2 hover:text-red-500 w-full h-16 bg-white shadow-sm shadow-red-900 ${!isVisible?"text-gray-500":"text-red-500"}`}>
+                      <button onClick={()=>toggleComponent(2)} className={`flex items-center space-x-1 px-4 py-2 hover:text-red-500 w-full h-16 bg-white shadow-sm shadow-red-900 ${!isVisible?"text-gray-500":"text-red-500"} ${!isVisible?"cursor-pointer":"cursor-default"}`}>
                         <MdPhone />
                         <span>View Contact</span>
                       </button>
