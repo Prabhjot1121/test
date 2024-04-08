@@ -37,14 +37,9 @@ const UserDetails = () => {
     getUserData();
   };
 
-  useEffect(() => {
-    handleGetUserData();
-    // eslint-disable-next-line
-  }, [token]);
-
   const handleUpdateUserData = async () => {
     try {
-      const response = await fetch(`${host}/api/auth/updateUserData`, {
+      const response = await fetch(`${host}/updateUserData`, {
         method: "PUT",
         headers: {
           "Content-Type": "application/json",
@@ -61,9 +56,14 @@ const UserDetails = () => {
       setEditUserData(true);
     } catch (error) {
       toast.error("Failed to update user data");
-      console.error(error.message);
+      // console.error(error.message);
     }
   };
+
+  useEffect(() => {
+    handleGetUserData();
+    // eslint-disable-next-line
+  }, [token]);
 
   return (
     <div className="h-full w-full">
