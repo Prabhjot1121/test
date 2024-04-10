@@ -113,7 +113,7 @@ const Navbar = () => {
             >
               About Us
             </Link>
-            <Link
+            {/* <Link
               style={{ fontFamily: "sans-serif" }}
               className={`font-medium text-xl hover:text-red-600 ${
                 location.pathname === "/contact"
@@ -126,7 +126,7 @@ const Navbar = () => {
               }}
             >
               Contact Us
-            </Link>
+            </Link> */}
           </div>
           {/* buttons */}
           {!token ? (
