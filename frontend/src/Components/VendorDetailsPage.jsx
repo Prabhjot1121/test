@@ -1,17 +1,12 @@
 import React, { useEffect, useState } from "react";
-import { useParams, useLocation } from "react-router-dom";
+import { useParams } from "react-router-dom";
 import { vendorsData } from "../vendorsData";
 import {
-  MdArrowDownward,
   MdArrowDropDown,
   MdArrowDropUp,
-  MdContactPhone,
   MdEmail,
   MdLocationOn,
-  MdMessage,
-  MdOutlineMessage,
   MdPhone,
-  MdPhotoAlbum,
   MdPhotoLibrary,
 } from "react-icons/md";
 import { FaPen, FaRupeeSign, FaShare } from "react-icons/fa";
@@ -25,7 +20,7 @@ const VendorDetailsPage = () => {
   const [venue, setVenue] = useState(null);
 
   const toggleComponent = (id) => {
-    if (id===2) {
+    if (id === 2) {
       setIsVisible(true);
     } else {
       setIsVisible(false);
@@ -201,20 +196,125 @@ const VendorDetailsPage = () => {
                       </span>
                     </div>
                   </div>
-                  <div className="h-[60vh] bg-transparent w-full shadow-sm shadow-slate-600">
+                  <div className="h-fit bg-transparent w-full shadow-sm shadow-slate-600">
                     <div className="flex text-lg items-center justify-around h-fit border-b-black border-[1px]">
-                      <button onClick={()=>toggleComponent(1)} className={`flex items-center space-x-1 px-4 py-2 hover:text-red-500 w-full h-16 bg-white shadow-sm shadow-red-900 ${!isVisible?"text-red-500":"text-gray-500"} ${!isVisible?"cursor-default":"cursor-pointer"} `}>
+                      <button
+                        onClick={() => toggleComponent(1)}
+                        className={`flex items-center space-x-1 px-4 py-2 hover:text-red-500 w-full h-16 bg-white shadow-sm shadow-red-900 ${
+                          !isVisible ? "text-red-500" : "text-gray-500"
+                        } ${!isVisible ? "cursor-default" : "cursor-pointer"} `}
+                      >
                         <MdEmail />
                         <span>Send Message</span>
                       </button>
                       <hr />
-                      <button onClick={()=>toggleComponent(2)} className={`flex items-center space-x-1 px-4 py-2 hover:text-red-500 w-full h-16 bg-white shadow-sm shadow-red-900 ${!isVisible?"text-gray-500":"text-red-500"} ${!isVisible?"cursor-pointer":"cursor-default"}`}>
+                      <button
+                        onClick={() => toggleComponent(2)}
+                        className={`flex items-center space-x-1 px-4 py-2 hover:text-red-500 w-full h-16 bg-white shadow-sm shadow-red-900 ${
+                          !isVisible ? "text-gray-500" : "text-red-500"
+                        } ${!isVisible ? "cursor-pointer" : "cursor-default"}`}
+                      >
                         <MdPhone />
                         <span>View Contact</span>
                       </button>
                     </div>
-                    <div className="h-[51vh] bg-white">
-                      {!isVisible?<div>message</div>:<div>contact</div>}
+                    <div className="h-[60vh] bg-white">
+                      {!isVisible ? (
+                        <div className="h-full w-full space-y-4 flex flex-col p-4">
+                          <span>Hi {venue.name},</span>
+                          <form method="post" className="flex w-full">
+                            <div className="grid grid-cols-2 w-full gap-4">
+                              <div className="w-full mx-auto text-center my-4">
+                                <input
+                                  type="text"
+                                  className="py-2 focus:outline-none cursor-pointer focus:cursor-default focus:border-b-2 hover:border-black border-b-[1px] border-gray-500 focus:border-red-600"
+                                  required
+                                  placeholder="Full name"
+                                />
+                              </div>
+                              <div className="w-full mx-auto text-center my-4">
+                                <input
+                                  type="phone"
+                                  className="py-2 focus:outline-none cursor-pointer focus:cursor-default focus:border-b-2 hover:border-black border-b-[1px] border-gray-500 focus:border-red-600"
+                                  required
+                                  minLength={10}
+                                  maxLength={10}
+                                  placeholder="Contact number"
+                                />
+                              </div>
+                              <div className="w-full mx-auto text-center my-4">
+                                <input
+                                  type="email"
+                                  className="py-2 focus:outline-none cursor-pointer focus:cursor-default focus:border-b-2 hover:border-black border-b-[1px] border-gray-500 focus:border-red-600"
+                                  required
+                                  placeholder="Email"
+                                />
+                              </div>
+                              <div className="w-full mx-auto text-center my-4">
+                                <input
+                                  type="date"
+                                  className="w-full py-2 focus:outline-none cursor-pointer focus:cursor-default focus:border-b-2 hover:border-black border-b-[1px] border-gray-500 focus:border-red-600 appearance-none"
+                                  placeholder="Function date"
+                                />
+                              </div>
+                              <div className="w-full mx-auto text-center my-4">
+                                <input
+                                  type="number"
+                                  className="py-2 focus:outline-none cursor-pointer focus:cursor-default focus:border-b-2 hover:border-black border-b-[1px] border-gray-500 focus:border-red-600"
+                                  placeholder="No of guests(min: 50)"
+                                />
+                              </div>
+                              <div className="w-full mx-auto text-center my-4">
+                                <input
+                                  type="number"
+                                  className="py-2 focus:outline-none cursor-pointer focus:cursor-default focus:border-b-2 hover:border-black border-b-[1px] border-gray-500 focus:border-red-600"
+                                  placeholder="No of rooms"
+                                />
+                              </div>
+                              <div className="flex flex-col text-sm space-y-2">
+                                <span className="text-lg font-medium">
+                                  Function Type
+                                </span>
+                                <div className="flex justify-between">
+                                  <div className="space-x-1">
+                                    <input
+                                      type="radio"
+                                      name="wedding"
+                                      id="wedding"
+                                    />
+                                    <label htmlFor="wedding">Pre Wedding</label>
+                                  </div>
+                                  <div className="space-x-1">
+                                    <input
+                                      type="radio"
+                                      name="wedding"
+                                      id="wedding"
+                                    />
+                                    <label htmlFor="wedding">Wedding</label>
+                                  </div>
+                                </div>
+                              </div>
+                              <div className="flex flex-col text-sm space-y-2">
+                                <span className="text-lg font-medium">
+                                  Function Time
+                                </span>
+                                <div className="flex justify-between">
+                                  <div className="space-x-1">
+                                    <input type="radio" name="day" id="day" />
+                                    <label htmlFor="preWedding">Evening</label>
+                                  </div>
+                                  <div className="space-x-1">
+                                    <input type="radio" name="day" id="day" />
+                                    <label htmlFor="day">Day</label>
+                                  </div>
+                                </div>
+                              </div>
+                            </div>
+                          </form>
+                        </div>
+                      ) : (
+                        <div>contact</div>
+                      )}
                     </div>
                   </div>
                   <div></div>
