@@ -21,7 +21,6 @@ import { LocationProvider } from "./Context/Location_context/LocationContext";
 import VendorDetailsPage from "./Components/VendorDetailsPage";
 
 function App() {
-  const name = "aman"
   return (
     <>
       <Router>
@@ -36,7 +35,7 @@ function App() {
             <Routes>
               <Route exact index element={<Home />} />
               <Route exact path="/" element={<Home />} />
-              <Route exact path="/vendors" name={name} element={<Vendors />} />
+              <Route exact path="/vendors" element={<Vendors />} />
               <Route
                 exact
                 path="/vendors/:location/:category?/:all?/:subCategory?"
