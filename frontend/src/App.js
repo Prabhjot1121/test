@@ -13,7 +13,7 @@ import UserProfile from "./pages/UserProfile";
 import Dashboard from "./Components/Dashboard";
 import UserDetails from "./Components/UserDetails";
 import Settings from "./Components/Settings";
-import Support from "./Components/Support";
+import Activity from "./Components/Activity";
 import Premium from "./Components/Premium";
 import { AuthProvider } from "./Context/Authentication_context/AuthContext";
 import DisplayVendorsData from "./pages/DisplayVendorsData";
@@ -69,8 +69,8 @@ function App() {
                 />
                 <Route
                   exact
-                  path="/userProfile/support"
-                  element={<Support />}
+                  path="/userProfile/activity"
+                  element={<Activity />}
                 />
                 <Route
                   exact
