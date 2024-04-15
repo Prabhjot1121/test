@@ -1,5 +1,6 @@
-import React, { useEffect, useState } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
+import toast from "react-hot-toast";
 import { vendorsData } from "../vendorsData";
 import {
   MdArrowDropDown,
@@ -9,13 +10,27 @@ import {
   MdPhone,
   MdPhotoLibrary,
 } from "react-icons/md";
-import { FaPen, FaRupeeSign, FaShare } from "react-icons/fa";
+import { FaPen, FaRupeeSign, FaShare, FaWhatsapp } from "react-icons/fa";
 import { IoMdHeart } from "react-icons/io";
+import { AuthContext } from "../Context/Authentication_context/AuthContext";
 
 const VendorDetailsPage = () => {
+  const { token } = useContext(AuthContext);
+  const host = "http://localhost:8000";
   const [priceInfo, setPriceInfo] = useState("hidden");
+  const [messageSent, setMessageSent] = useState(false);
   const [isVisible, setIsVisible] = useState(false);
-  const { category, name } = useParams();
+  const [enquiryFormData, setEnquiryFormData] = useState({
+    fullName: "",
+    contactNumber: "",
+    emailAddress: "",
+    functionDate: "",
+    totalGuests: "",
+    totalRooms: "",
+    functionType: "",
+    functionTime: "",
+  });
+  const { category, name, subCategory } = useParams();
   const venueName = name.replace(/-/g, " ");
   const [venue, setVenue] = useState(null);
 
@@ -47,8 +62,6 @@ const VendorDetailsPage = () => {
         );
         if (foundVenue) {
           setVenue(foundVenue);
-          console.log(foundVenue);
-          console.log(venue); // Log the found venue
           return;
         }
       }
@@ -62,14 +75,62 @@ const VendorDetailsPage = () => {
     findVenue();
     // eslint-disable-next-line
   }, [venueName]);
+
+  const onChange = (e) => {
+    setEnquiryFormData({ ...enquiryFormData, [e.target.name]: e.target.value });
+  };
+
+  const handleEnquiryByUser = async (e) => {
+    e.preventDefault();
+    try {
+      setMessageSent(false);
+      const response = await fetch(`${host}/api/notify/send-sms`, {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify(enquiryFormData),
+      });
+      if (!response.ok) {
+        throw new Error("Failed to provide availablity details right now");
+      }
+      console.log(enquiryFormData);
+      toast.success("Sent availablity details on provided mobile number");
+      setEnquiryFormData({
+        fullName: "",
+        contactNumber: "",
+        emailAddress: "",
+        functionDate: "",
+        totalGuests: "",
+        totalRooms: "",
+        functionTime: "",
+        functionType: "",
+      });
+    } catch (error) {
+      toast.error(error.message);
+      console.error(error.message);
+    } finally {
+      setMessageSent(false);
+    }
+  };
+
+  const handleVendorDetails = async () => {
+    const response = await fetch(`${host}/api/notify/send-sms`, {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+    });
+  };
+
   return (
     <>
       <>
         <div
           style={{ fontFamily: "sans-serif" }}
-          className="h-[160vh] py-12 w-full bg-gradient-to-tr from-red-100 to-blue-100 shadow-inner shadow-slate-400"
+          className="h-full py-12 w-full bg-gradient-to-tr from-red-100 to-blue-100 shadow-inner shadow-slate-400"
         >
-          <div className="flex justify-between h-full w-[85%] rounded-sm mx-auto">
+          <div className="flex flex-col lg:flex-row justify-between h-full w-[85%] rounded-sm mx-auto">
             {venue && (
               <>
                 <div className="flex flex-col">
@@ -128,8 +189,8 @@ const VendorDetailsPage = () => {
                   </div>
                 </div>
                 <div className="flex flex-col space-y-6 w-[450px]">
-                  <div className="flex flex-col w-full items-center shadow-sm shadow-slate-600 bg-white">
-                    <div className="flex justify-between items-center w-full px-4 border-b-gray-200 border-[1px] h-12">
+                  <div className="flex flex-col w-full items-center  bg-white rounded-md">
+                    <div className="flex justify-between items-center w-full px-4 border-gray-200 border-b-[1px] h-12">
                       <span>Starting Price</span>
                       <div
                         onClick={togglePricingInfo}
@@ -196,12 +257,14 @@ const VendorDetailsPage = () => {
                       </span>
                     </div>
                   </div>
-                  <div className="h-fit bg-transparent w-full shadow-sm shadow-slate-600">
-                    <div className="flex text-lg items-center justify-around h-fit border-b-black border-[1px]">
+                  <div className="h-fit bg-transparent w-full">
+                    <div className="flex text-lg items-center justify-around h-fit ">
                       <button
                         onClick={() => toggleComponent(1)}
-                        className={`flex items-center space-x-1 px-4 py-2 hover:text-red-500 w-full h-16 bg-white shadow-sm shadow-red-900 ${
-                          !isVisible ? "text-red-500" : "text-gray-500"
+                        className={`flex items-center space-x-1 px-4 py-2 w-full h-16 border-red-600 border-r-2 ${
+                          isVisible ? "border-b-2" : "border-b-0"
+                        } bg-white duration-300 rounded-tl-md ${
+                          !isVisible ? "text-red-600" : "text-gray-500"
                         } ${!isVisible ? "cursor-default" : "cursor-pointer"} `}
                       >
                         <MdEmail />
@@ -210,24 +273,34 @@ const VendorDetailsPage = () => {
                       <hr />
                       <button
                         onClick={() => toggleComponent(2)}
-                        className={`flex items-center space-x-1 px-4 py-2 hover:text-red-500 w-full h-16 bg-white shadow-sm shadow-red-900 ${
-                          !isVisible ? "text-gray-500" : "text-red-500"
-                        } ${!isVisible ? "cursor-pointer" : "cursor-default"}`}
+                        className={`flex items-center space-x-1 px-4 py-2 w-full h-16 border-red-600 ${
+                          isVisible ? "border-b-0" : "border-b-2"
+                        } bg-white duration-300 rounded-tr-md
+                          ${!isVisible ? "text-gray-500" : "text-red-500"} ${
+                          !isVisible ? "cursor-pointer" : "cursor-default"
+                        }`}
                       >
                         <MdPhone />
                         <span>View Contact</span>
                       </button>
                     </div>
-                    <div className="h-[60vh] bg-white">
+                    <div className="h-fit bg-white rounded-b-md">
                       {!isVisible ? (
                         <div className="h-full w-full space-y-4 flex flex-col p-4">
                           <span>Hi {venue.name},</span>
-                          <form method="post" className="flex w-full">
+                          <form
+                            onSubmit={handleEnquiryByUser}
+                            // method="post"
+                            className="flex flex-col space-y-6 w-full"
+                          >
                             <div className="grid grid-cols-2 w-full gap-4">
                               <div className="w-full mx-auto text-center my-4">
                                 <input
                                   type="text"
-                                  className="py-2 focus:outline-none cursor-pointer focus:cursor-default focus:border-b-2 hover:border-black border-b-[1px] border-gray-500 focus:border-red-600"
+                                  name="fullName"
+                                  onChange={onChange}
+                                  value={enquiryFormData.fullName}
+                                  className="w-full py-2 focus:outline-none cursor-pointer focus:cursor-default focus:border-b-2 hover:border-black border-b-[1px] border-gray-500 focus:border-red-600"
                                   required
                                   placeholder="Full name"
                                 />
@@ -235,7 +308,10 @@ const VendorDetailsPage = () => {
                               <div className="w-full mx-auto text-center my-4">
                                 <input
                                   type="phone"
-                                  className="py-2 focus:outline-none cursor-pointer focus:cursor-default focus:border-b-2 hover:border-black border-b-[1px] border-gray-500 focus:border-red-600"
+                                  name="contactNumber"
+                                  onChange={onChange}
+                                  value={enquiryFormData.contactNumber}
+                                  className="w-full py-2 focus:outline-none cursor-pointer focus:cursor-default focus:border-b-2 hover:border-black border-b-[1px] border-gray-500 focus:border-red-600"
                                   required
                                   minLength={10}
                                   maxLength={10}
@@ -245,7 +321,10 @@ const VendorDetailsPage = () => {
                               <div className="w-full mx-auto text-center my-4">
                                 <input
                                   type="email"
-                                  className="py-2 focus:outline-none cursor-pointer focus:cursor-default focus:border-b-2 hover:border-black border-b-[1px] border-gray-500 focus:border-red-600"
+                                  name="emailAddress"
+                                  onChange={onChange}
+                                  value={enquiryFormData.emailAddress}
+                                  className="w-full py-2 focus:outline-none cursor-pointer focus:cursor-default focus:border-b-2 hover:border-black border-b-[1px] border-gray-500 focus:border-red-600"
                                   required
                                   placeholder="Email"
                                 />
@@ -253,6 +332,9 @@ const VendorDetailsPage = () => {
                               <div className="w-full mx-auto text-center my-4">
                                 <input
                                   type="date"
+                                  name="functionDate"
+                                  onChange={onChange}
+                                  value={enquiryFormData.functionDate}
                                   className="w-full py-2 focus:outline-none cursor-pointer focus:cursor-default focus:border-b-2 hover:border-black border-b-[1px] border-gray-500 focus:border-red-600 appearance-none"
                                   placeholder="Function date"
                                 />
@@ -260,14 +342,20 @@ const VendorDetailsPage = () => {
                               <div className="w-full mx-auto text-center my-4">
                                 <input
                                   type="number"
-                                  className="py-2 focus:outline-none cursor-pointer focus:cursor-default focus:border-b-2 hover:border-black border-b-[1px] border-gray-500 focus:border-red-600"
+                                  name="totalGuests"
+                                  onChange={onChange}
+                                  value={enquiryFormData.totalGuests}
+                                  className="w-full py-2 focus:outline-none cursor-pointer focus:cursor-default focus:border-b-2 hover:border-black border-b-[1px] border-gray-500 focus:border-red-600"
                                   placeholder="No of guests(min: 50)"
                                 />
                               </div>
                               <div className="w-full mx-auto text-center my-4">
                                 <input
                                   type="number"
-                                  className="py-2 focus:outline-none cursor-pointer focus:cursor-default focus:border-b-2 hover:border-black border-b-[1px] border-gray-500 focus:border-red-600"
+                                  name="totalRooms"
+                                  onChange={onChange}
+                                  value={enquiryFormData.totalRooms}
+                                  className="w-full py-2 focus:outline-none cursor-pointer focus:cursor-default focus:border-b-2 hover:border-black border-b-[1px] border-gray-500 focus:border-red-600"
                                   placeholder="No of rooms"
                                 />
                               </div>
@@ -279,16 +367,30 @@ const VendorDetailsPage = () => {
                                   <div className="space-x-1">
                                     <input
                                       type="radio"
-                                      name="wedding"
-                                      id="wedding"
+                                      className="cursor-pointer"
+                                      name="functionType"
+                                      value="preWedding"
+                                      checked={
+                                        enquiryFormData.functionType ===
+                                        "preWedding"
+                                      }
+                                      onChange={onChange}
+                                      id="functionType"
                                     />
                                     <label htmlFor="wedding">Pre Wedding</label>
                                   </div>
                                   <div className="space-x-1">
                                     <input
                                       type="radio"
-                                      name="wedding"
-                                      id="wedding"
+                                      className="cursor-pointer"
+                                      name="functionType"
+                                      value="wedding"
+                                      checked={
+                                        enquiryFormData.functionType ===
+                                        "wedding"
+                                      }
+                                      onChange={onChange}
+                                      id="functionType"
                                     />
                                     <label htmlFor="wedding">Wedding</label>
                                   </div>
@@ -300,20 +402,82 @@ const VendorDetailsPage = () => {
                                 </span>
                                 <div className="flex justify-between">
                                   <div className="space-x-1">
-                                    <input type="radio" name="day" id="day" />
+                                    <input
+                                      type="radio"
+                                      className="cursor-pointer"
+                                      name="functionTime"
+                                      value="evening"
+                                      onChange={onChange}
+                                      checked={
+                                        enquiryFormData.functionTime ===
+                                        "evening"
+                                      }
+                                      id="functionTime"
+                                    />
                                     <label htmlFor="preWedding">Evening</label>
                                   </div>
                                   <div className="space-x-1">
-                                    <input type="radio" name="day" id="day" />
+                                    <input
+                                      type="radio"
+                                      className="cursor-pointer"
+                                      name="functionTime"
+                                      onChange={onChange}
+                                      value="day"
+                                      checked={
+                                        enquiryFormData.functionTime === "day"
+                                      }
+                                      id="functionTime"
+                                    />
                                     <label htmlFor="day">Day</label>
                                   </div>
                                 </div>
                               </div>
                             </div>
+                            <button
+                              type="submit"
+                              disabled={messageSent}
+                              className="w-full bg-red-600 hover:bg-red-700 duration-300 text-white px-4 py-4 rounded-md"
+                            >
+                              <span>Check Availability & Prices</span>
+                            </button>
                           </form>
                         </div>
                       ) : (
-                        <div>contact</div>
+                        <div className="flex flex-col justify-start w-full p-4">
+                          <span className="font-medium">
+                            Verify the mobile number to contact the vendor
+                          </span>
+                          <form
+                            onSubmit={handleVendorDetails}
+                            method="post"
+                            className="w-full flex flex-col mb-2"
+                          >
+                            <div className="flex space-x-4 mt-2 w-full jusitfy-around">
+                              <input
+                                className="border-gray-400 focus:outline-none focus:placeholder:text-red-200 border-b-[1px]  hover:border-black h-8"
+                                type="text"
+                                placeholder="Full name"
+                              />
+                              <input
+                                className="border-gray-400 focus:outline-none focus:placeholder:text-red-200 border-b-[1px]  hover:border-black h-8"
+                                type="phone"
+                                placeholder="Mobile number"
+                              />
+                            </div>
+                            <div className="flex flex-col w-full">
+                              <div className="flex space-x-1 mt-3 items-center">
+                                <input type="checkbox" />
+                                <span>Text me vendors details</span>
+                              </div>
+                              <button
+                                type="submit"
+                                className="mt-4 bg-red-600 text-white hover:bg-red-700 py-3 rounded-md text-xl duration-300"
+                              >
+                                Verify
+                              </button>
+                            </div>
+                          </form>
+                        </div>
                       )}
                     </div>
                   </div>
