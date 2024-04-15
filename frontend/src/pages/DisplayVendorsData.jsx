@@ -10,25 +10,24 @@ const DisplayVendorsData = () => {
   const { location } = useContext(LocationContext);
   const { category, subCategory } = useParams();
   const vendorData =
-    location === "all"
-      ? vendorsData["all"][category]
-        ? vendorsData["all"][category][
-            subCategory || Object.keys(vendorsData["all"][category])[0]
-          ]
-        : vendorsData["all"][category] || []
-      : vendorsData[location]
-      ? vendorsData[location][category]
-        ? vendorsData[location][category][
-            subCategory || Object.keys(vendorsData[location][category])[0]
-          ]
-        : vendorsData[location][category || "venues"] || []
-      : [];
+    vendorsData[location]?.[category]?.[subCategory || "wedding-venues"] || [];
 
   return (
     <>
       <div className="shadow-inner shadow-slate-400 bg-gradient-to-tr from-red-100 to-blue-100 flex flex-col items-center justify-start h-full w-full">
-        <div className="w-[85%] mt-20">another exta data</div>
-        <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-6  my-10 h-full w-[85%]">
+        <div className="w-[85%] mt-12 ">
+          <span className="text-3xl font-semibold">
+            {subCategory.charAt(0).toUpperCase() + subCategory.slice(1)}
+          </span>
+          <p className="flex items-end">
+            Showing results{" "}
+            <span className="px-1 font-medium mt-1">
+              {vendorData.length}
+            </span>{" "}
+            as per your search criteria
+          </p>
+        </div>
+        <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-6  my-6 h-full w-[85%]">
           {vendorData === undefined ? (
             <div>
               Data cannot be fetched in this category right at the moment.
@@ -43,12 +42,12 @@ const DisplayVendorsData = () => {
                   /\s+/g,
                   "-"
                 )}`}
-                onClick={()=>{window.scrollTo(0,0)}}
+                onClick={() => {
+                  window.scrollTo(0, 0);
+                }}
+                key={venue.id}
               >
-                <div
-                  key={venue.id}
-                  className="flex flex-col items-start w-full hover:scale-105 hover:shadow-2xl hover:bg-white shadow-slate-600 cursor-pointer rounded-md duration-200 p-2"
-                >
+                <div className="flex flex-col items-start w-full hover:scale-105 hover:shadow-2xl hover:bg-white shadow-slate-600 cursor-pointer rounded-md duration-200 p-2">
                   <div className="flex items-center">
                     <img
                       className="rounded-lg h-[254px] w-[372px]"
