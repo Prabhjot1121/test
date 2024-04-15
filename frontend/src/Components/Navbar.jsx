@@ -154,7 +154,13 @@ const Navbar = () => {
             </div>
           ) : (
             <div className="flex items-center space-x-6">
-              <Link to="/userProfile/dashboard" className="cursor-pointer">
+              <Link
+                to="/userProfile/dashboard"
+                onClick={() => {
+                  window.scrollTo(0, 0);
+                }}
+                className="cursor-pointer"
+              >
                 <RxPerson color="#345566" size={35} />
               </Link>
               <button
