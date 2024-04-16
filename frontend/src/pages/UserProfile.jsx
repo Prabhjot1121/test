@@ -5,7 +5,7 @@ const UserProfile = () => {
   const location = useLocation();
   return (
     <>
-      <div className="flex items-center justify-between w-full h-[90vh] bg-gradient-to-tr from-red-100 to-blue-100 shadow-inner shadow-slate-400">
+      <div className="flex items-center justify-between w-full h-full bg-gradient-to-tr from-red-100 to-blue-100 shadow-inner shadow-slate-400">
         <div className="flex w-full h-full">
           <div className="flex flex-col justify-start items-center w-[25%] p-4 border-r-2 border-slate-300">
             <Link
@@ -51,18 +51,18 @@ const UserProfile = () => {
               Account Settings
             </Link>
             <Link
-              to="/userProfile/support"
+              to="/userProfile/activity"
               className={`font-medium bg-red-700 ${
-                location.pathname === "/userProfile/support"
+                location.pathname === "/userProfile/activity"
                   ? "bg-white"
                   : "bg-red-700"
               } ${
-                location.pathname === "/userProfile/support"
+                location.pathname === "/userProfile/activity"
                   ? "text-red-600"
                   : "text-white"
               } hover:text-red-600 hover:bg-transparent duration-300 cursor-pointer text-sm xl:text-lg font-sans flex items-center mx-2 px-2 my-2 w-full justify-start h-12 shadow-sm shadow-red-900 rounded-md`}
             >
-              Support
+              Activity
             </Link>
             <Link
               to="/userProfile/premium"
