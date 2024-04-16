@@ -48,7 +48,6 @@ const UserDetails = () => {
         body: JSON.stringify(updatedUserData),
       });
       if (!response.ok) {
-        toast.error("Failed to update user data, try after some time");
         throw new Error("Failed to update user data");
       }
       toast.success("User data successfully updated");
@@ -56,7 +55,6 @@ const UserDetails = () => {
       setEditUserData(true);
     } catch (error) {
       toast.error("Failed to update user data");
-      // console.error(error.message);
     }
   };
 
@@ -66,7 +64,7 @@ const UserDetails = () => {
   }, [token]);
 
   return (
-    <div className="h-full w-full">
+    <div className="min-h-[84vh] w-full">
       {userData.map((user) => (
         <div key={user._id} className="my-2 p-2 rounded-md h-full w-full">
           <div className="flex items-center w-full justify-between text-3xl font-semibold">
