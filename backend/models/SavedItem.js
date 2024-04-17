@@ -7,13 +7,13 @@ const savedItem = new Schema({
     type: mongoose.Schema.Types.ObjectId,
     ref: User,
   },
-  itemId: {
-    type: String,
-    required: true,
-  },
   userName: {
     type: String,
     ref: User,
+  },
+  itemId: {
+    type: String,
+    required: true,
   },
   name: {
     type: String,
@@ -54,7 +54,7 @@ const savedItem = new Schema({
   itemSaved: {
     type: Boolean,
     default: false,
-  }
+  },
 });
 
 const SavedItem = mongoose.model("SavedItem", savedItem);
