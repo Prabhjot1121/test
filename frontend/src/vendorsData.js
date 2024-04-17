@@ -3,47 +3,7 @@ export const vendorsData = {
     venues: {
       "wedding-venues": [
         {
-          id: 1,
-          name: "Ramada by Wyndham Bengaluru Yelahanka",
-          image: "venues-all.webp",
-          location: "delhi NCR",
-          rating: 4.9,
-          reviews: 7,
-          foodCategory: {
-            vegPlatePrice: 1000,
-            nonVegPlatePrice: 2000,
-          },
-        },
-        {
-          id: 2,
-          name: "Crown Plaza Okhla",
-          image: "venues-all-2.webp",
-          location: "udaipur",
-          foodCategory: {
-            vegPlatePrice: 1200,
-            nonVegPlatePrice: 2400,
-          },
-          rating: 4.9,
-          reviews: {
-            "no of reviews": 7,
-          },
-        },
-        {
-          id: 3,
-          name: "Radisson Jaipur City Center",
-          image: "venues-all-3.webp",
-          location: "jaipur",
-          foodCategory: {
-            vegPlatePrice: 1500,
-            nonVegPlatePrice: 3000,
-          },
-          rating: 4.9,
-          reviews: {
-            "no of reviews": 7,
-          },
-        },
-        {
-          id: 4,
+          itemId: 4,
           name: "Ramada by Wyndham Bengaluru Yelahanka",
           image: "venues-all-6.webp",
           location: "delhi NCR",
@@ -55,7 +15,7 @@ export const vendorsData = {
           },
         },
         {
-          id: 5,
+          itemId: 5,
           name: "Crown Plaza Okhla",
           image: "venues-all-5.webp",
           location: "udaipur",
@@ -69,7 +29,7 @@ export const vendorsData = {
           },
         },
         {
-          id: 6,
+          itemId: 6,
           name: "Holiday Inn Jaipur",
           image: "Holiday Inn Jaipur.webp",
           location: "jaipur",
@@ -83,7 +43,7 @@ export const vendorsData = {
           },
         },
         {
-          id: 7,
+          itemId: 7,
           name: "CIDCO Convention Centre",
           image: "CIDCO.webp",
           location: "mumbai",
@@ -97,7 +57,7 @@ export const vendorsData = {
           },
         },
         {
-          id: 8,
+          itemId: 8,
           name: "Samode Palace",
           image: "Samode Palace.webp",
           location: "jaipur",
@@ -111,7 +71,7 @@ export const vendorsData = {
           },
         },
         {
-          id: 9,
+          itemId: 9,
           name: "Jaibagh Palace",
           image: "Jaibagh Palace.webp",
           location: "jaipur",
@@ -125,7 +85,7 @@ export const vendorsData = {
           },
         },
         {
-          id: 10,
+          itemId: 10,
           name: "Four Points by Sheraton",
           image: "Four Points by Sheraton.webp",
           location: "delhi",
@@ -139,7 +99,7 @@ export const vendorsData = {
           },
         },
         {
-          id: 11,
+          itemId: 11,
           name: "POLO LUXURIOUS DESTINATION",
           image: "POLO LUXURIOUS DESTINATION.webp",
           location: "jaipur",
@@ -153,7 +113,7 @@ export const vendorsData = {
           },
         },
         {
-          id: 12,
+          itemId: 12,
           name: "Hotel Grand Maple",
           image: "Hotel Grand Maple.webp",
           location: "jaipur",
@@ -167,7 +127,7 @@ export const vendorsData = {
           },
         },
         {
-          id: 13,
+          itemId: 13,
           name: "Lalita Grand",
           image: "Lalita Grand.webp",
           location: "delhi",
@@ -181,7 +141,7 @@ export const vendorsData = {
           },
         },
         {
-          id: 14,
+          itemId: 14,
           name: "The Pergola",
           image: "The Pergola.webp",
           location: "mumbai",
@@ -195,7 +155,7 @@ export const vendorsData = {
           },
         },
         {
-          id: 15,
+          itemId: 15,
           name: "Stardom Resort Jaipur",
           image: "Stardom Resort Jaipur.webp",
           location: "jaipur",
@@ -209,7 +169,7 @@ export const vendorsData = {
           },
         },
         {
-          id: 16,
+          itemId: 16,
           name: "Chevron",
           image: "Chevron.webp",
           location: "delhi",
@@ -223,7 +183,7 @@ export const vendorsData = {
           },
         },
         {
-          id: 17,
+          itemId: 17,
           name: "Radisson Blu Plaza Delhi Airport",
           image: "Radisson Blu Plaza Delhi Airport.webp",
           location: "delhi",
@@ -239,8 +199,8 @@ export const vendorsData = {
       ],
       "banquet-halls": [
         {
-          id: 21,
-          name: "Umaid Palace - An organic retreat",
+          itemId: 18,
+          name: "Umaid Palace",
           image: "umaid palace.webp",
           location: "Jaipur",
           foodCategory: {
@@ -253,7 +213,7 @@ export const vendorsData = {
           },
         },
         {
-          id: 21,
+          itemId: 19,
           name: "Novotel Jaipur Convention Centre",
           image: "Novotel Jaipur Convention.webp",
           location: "Jaipur",
@@ -267,7 +227,7 @@ export const vendorsData = {
           },
         },
         {
-          id: 21,
+          itemId: 20,
           name: "Bamboo saa Resort and Spa",
           image: "bamboo resort.webp",
           location: "udaipur",
@@ -281,7 +241,7 @@ export const vendorsData = {
           },
         },
         {
-          id: 21,
+          itemId: 21,
           name: "Hotel Grand Maple",
           image: "Hotel Grand Maple.webp",
           location: "delhi NCR",
@@ -295,7 +255,7 @@ export const vendorsData = {
           },
         },
         {
-          id: 21,
+          itemId: 22,
           name: "CIDCO Convention Centre",
           image: "CIDCO.webp",
           location: "delhi NCR",
@@ -309,7 +269,7 @@ export const vendorsData = {
           },
         },
         {
-          id: 21,
+          itemId: 23,
           name: "Four Points by Sheraton",
           image: "Four Points by Sheraton.webp",
           location: "delhi NCR",
@@ -323,7 +283,7 @@ export const vendorsData = {
           },
         },
         {
-          id: 21,
+          itemId: 24,
           name: "Crown Plaza Mayur Vihar",
           image: "Crown Plaza Mayur vihar.webp",
           location: "Greater Noida, Delhi",
@@ -337,7 +297,7 @@ export const vendorsData = {
           },
         },
         {
-          id: 21,
+          itemId: 25,
           name: "Radisson Blu Plaza Delhi Airport",
           image: "Radisson Blu Plaza Delhi Airport.webp",
           location: "Aerocity, Delhi",
@@ -351,7 +311,7 @@ export const vendorsData = {
           },
         },
         {
-          id: 21,
+          itemId: 26,
           name: "Hotel Raj Bagh Palace",
           image: "Hotel Raj Bagh Palace.webp",
           location: "delhi NCR",
@@ -367,8 +327,8 @@ export const vendorsData = {
       ],
       farmhouses: [
         {
-          id: 5,
-          name: "Umaid Palace - An Organic Retreat",
+          itemId: 27,
+          name: "Umaid Palace",
           image: "umaid palace.webp",
           location: "udaipur",
           foodCategory: {
@@ -381,7 +341,7 @@ export const vendorsData = {
           },
         },
         {
-          id: 5,
+          itemId: 28,
           name: "Novotel Jaipur Convention Centre",
           image: "Novotel Jaipur Convention.webp",
           location: "udaipur",
@@ -395,7 +355,7 @@ export const vendorsData = {
           },
         },
         {
-          id: 5,
+          itemId: 29,
           name: "Bamboo Saa & Resort Spa",
           image: "bamboo resort.webp",
           location: "udaipur",
@@ -409,7 +369,7 @@ export const vendorsData = {
           },
         },
         {
-          id: 21,
+          itemId: 30,
           name: "CIDCO Convention Centre",
           image: "CIDCO.webp",
           location: "Navi Mumbai",
@@ -423,7 +383,7 @@ export const vendorsData = {
           },
         },
         {
-          id: 21,
+          itemId: 31,
           name: "The Pergola",
           image: "The Pergola.webp",
           location: "Navi Mumbai",
@@ -437,7 +397,7 @@ export const vendorsData = {
           },
         },
         {
-          id: 5,
+          itemId: 32,
           name: "Hotel Grand Maple",
           image: "Hotel Grand Maple.webp",
           location: "udaipur",
@@ -453,7 +413,7 @@ export const vendorsData = {
       ],
       "wedding-resorts": [
         {
-          id: 7,
+          itemId: 33,
           name: "Rainforest Resort, Igatpuri",
           image: "Rainforest Resort Igatpuri.webp",
           location: "Mumbai",
@@ -467,7 +427,7 @@ export const vendorsData = {
           },
         },
         {
-          id: 8,
+          itemId: 34,
           name: "Hotel Grand Maple",
           image: "Hotel Grand Maple.webp",
           location: "jaipur",
@@ -481,7 +441,7 @@ export const vendorsData = {
           },
         },
         {
-          id: 9,
+          itemId: 35,
           name: "Bamboo Saa Resort & Spa",
           image: "bamboo resort.webp",
           location: "udaipur",
@@ -495,7 +455,7 @@ export const vendorsData = {
           },
         },
         {
-          id: 9,
+          itemId: 36,
           name: "Chomu Palace Hotel",
           image: "chomu palace.webp",
           location: "jaipur",
@@ -509,7 +469,7 @@ export const vendorsData = {
           },
         },
         {
-          id: 9,
+          itemId: 37,
           name: "Aizaa Resorts & Hotels Jaipur",
           image: "aiza.webp",
           location: "jaipur",
@@ -523,7 +483,7 @@ export const vendorsData = {
           },
         },
         {
-          id: 9,
+          itemId: 38,
           name: "Amargarh Resort",
           image: "Amargarh Resort.webp",
           location: "udaipur",
@@ -539,7 +499,7 @@ export const vendorsData = {
       ],
       "party-halls": [
         {
-          id: 10,
+          itemId: 39,
           name: "Jaibagh Palace",
           image: "jaibagh Palace.webp",
           location: "Jaipur",
@@ -553,7 +513,7 @@ export const vendorsData = {
           },
         },
         {
-          id: 11,
+          itemId: 40,
           name: "Blue Sea Banquets",
           image: "Blue Sea Mumbai.webp",
           location: "Mumbai",
@@ -567,7 +527,7 @@ export const vendorsData = {
           },
         },
         {
-          id: 12,
+          itemId: 41,
           name: "Radisson Blu Hotel Greater Noida",
           image: "Radisson Blu Hotel Greater Noida.webp",
           location: "Greater Noida",
@@ -581,7 +541,7 @@ export const vendorsData = {
           },
         },
         {
-          id: 9,
+          itemId: 42,
           name: "Yaan Wellness Retreat",
           image: "Yaan Wellness Retreat.webp",
           location: "Udaipur",
@@ -595,7 +555,7 @@ export const vendorsData = {
           },
         },
         {
-          id: 9,
+          itemId: 43,
           name: "Radisson Blu Mumbai International Airport",
           image: "Radisson Blu Mumbai.webp",
           location: "Mumbai",
@@ -609,7 +569,7 @@ export const vendorsData = {
           },
         },
         {
-          id: 9,
+          itemId: 44,
           name: "Tivoli Grand Resort Hotel",
           image: "Tivoli Grand Resort Hotel Delhi.webp",
           location: "delhi",
@@ -625,7 +585,7 @@ export const vendorsData = {
       ],
       "destination-wedding": [
         {
-          id: 13,
+          itemId: 45,
           name: "Jaibagh Palace",
           image: "jaibagh Palace.webp",
           location: "Jaipur",
@@ -639,7 +599,7 @@ export const vendorsData = {
           },
         },
         {
-          id: 14,
+          itemId: 46,
           name: "Yaan Wellness & Retreat",
           image: "Yaan Wellness Retreat.webp",
           location: "udaipur",
@@ -653,7 +613,7 @@ export const vendorsData = {
           },
         },
         {
-          id: 15,
+          itemId: 47,
           name: "Grassfield Valley Resort",
           image: "Grassfield Valley Resort.webp",
           location: "jaipur",
@@ -671,37 +631,79 @@ export const vendorsData = {
     photographers: {
       "wedding-photographers": [
         {
-          id: 16,
-          name: " mohit Wedding Photographers",
-          image: "venues-all.webp",
+          itemId: 48,
+          name: "Creation Frame Makers",
+          image: "Creation Frame Makers.webp",
           location: "delhi NCR",
           foodCategory: {
             vegPlatePrice: 1000,
             nonVegPlatePrice: 2000,
           },
-          rating: 4.9,
+          rating: 5.0,
           reviews: {
             "no of reviews": 7,
           },
         },
         {
-          id: 17,
-          name: "Wedding Shoot Photographers",
-          image: "venues-all-2.webp",
+          itemId: 49,
+          name: "Pixel Stream",
+          image: "Pixel Stream.webp",
           location: "udaipur",
           foodCategory: {
             vegPlatePrice: 1200,
             nonVegPlatePrice: 2400,
           },
-          rating: 4.9,
+          rating: 5.0,
           reviews: {
             "no of reviews": 7,
           },
         },
         {
-          id: 18,
-          name: "Destination Videography Center",
-          image: "venues-all-3.webp",
+          itemId: 50,
+          name: "Wedmeclick",
+          image: "Wedmeclick.webp",
+          location: "jaipur",
+          foodCategory: {
+            vegPlatePrice: 1500,
+            nonVegPlatePrice: 3000,
+          },
+          rating: 4.6,
+          reviews: {
+            "no of reviews": 7,
+          },
+        },
+        {
+          itemId: 50,
+          name: "The Wedding Donut",
+          image: "The Wedding Donut.webp",
+          location: "jaipur",
+          foodCategory: {
+            vegPlatePrice: 1500,
+            nonVegPlatePrice: 3000,
+          },
+          rating: 4.7,
+          reviews: {
+            "no of reviews": 7,
+          },
+        },
+        {
+          itemId: 151,
+          name: "7Clicks Photography",
+          image: "7Clicks Photography.webp",
+          location: "jaipur",
+          foodCategory: {
+            vegPlatePrice: 1500,
+            nonVegPlatePrice: 3000,
+          },
+          rating: 4.8,
+          reviews: {
+            "no of reviews": 7,
+          },
+        },
+        {
+          itemId: 152,
+          name: "Fearless Pheras",
+          image: "Fearless Pheras.webp",
           location: "jaipur",
           foodCategory: {
             vegPlatePrice: 1500,
@@ -712,10 +714,24 @@ export const vendorsData = {
             "no of reviews": 7,
           },
         },
+        {
+          itemId: 152,
+          name: "Feeling Gajab",
+          image: "Feeling Gajab.webp",
+          location: "jaipur",
+          foodCategory: {
+            vegPlatePrice: 1500,
+            nonVegPlatePrice: 3000,
+          },
+          rating: 5.0,
+          reviews: {
+            "no of reviews": 7,
+          },
+        },
       ],
       "pre-wedding-shoot": [
         {
-          id: 16,
+          itemId: 51,
           name: "Ramada  Wedding Photographers",
           image: "venues-all.webp",
           location: "delhi NCR",
@@ -729,7 +745,7 @@ export const vendorsData = {
           },
         },
         {
-          id: 17,
+          itemId: 52,
           name: "Wedding Shoot Photographers",
           image: "venues-all-2.webp",
           location: "udaipur",
@@ -743,7 +759,7 @@ export const vendorsData = {
           },
         },
         {
-          id: 18,
+          itemId: 53,
           name: "Destination Videography Center",
           image: "venues-all-3.webp",
           location: "jaipur",
@@ -763,7 +779,7 @@ export const vendorsData = {
     venues: {
       "wedding-venues": [
         {
-          id: 1,
+          itemId: 54,
           name: "Ramada by Wyndham Bengaluru Yelahanka",
           image: "venues-all.webp",
           location: "delhi NCR",
@@ -777,7 +793,7 @@ export const vendorsData = {
           },
         },
         {
-          id: 2,
+          itemId: 55,
           name: "Crown Plaza Okhla",
           image: "venues-all-2.webp",
           location: "udaipur",
@@ -791,7 +807,7 @@ export const vendorsData = {
           },
         },
         {
-          id: 3,
+          itemId: 56,
           name: "Radisson Jaipur City Center",
           image: "venues-all-3.webp",
           location: "jaipur",
@@ -815,7 +831,7 @@ export const vendorsData = {
           reviews: {
             "no of reviews": 7,
           },
-          id: 1,
+          itemId: 57,
           name: "Ramada by Wyndham Bengaluru Yelahanka",
           image: "venues-all.webp",
           location: "Jaipur",
@@ -829,7 +845,7 @@ export const vendorsData = {
           reviews: {
             "no of reviews": 7,
           },
-          id: 2,
+          itemId: 58,
           name: "Crown Plaza Okhla",
           image: "venues-all-2.webp",
           location: "Jaipur",
@@ -843,7 +859,7 @@ export const vendorsData = {
           reviews: {
             "no of reviews": 7,
           },
-          id: 3,
+          itemId: 59,
           name: "Radisson Jaipur City Center",
           image: "venues-all-3.webp",
           location: "jaipur",
@@ -858,7 +874,7 @@ export const vendorsData = {
   udaipur: {
     venues: [
       {
-        id: 1,
+        itemId: 60,
         name: "Ramada by Wyndham Bengaluru Yelahanka",
         image: "venues-all.webp",
         location: "delhi NCR",
@@ -872,7 +888,7 @@ export const vendorsData = {
         reviews: {
           "no of reviews": 7,
         },
-        id: 2,
+        itemId: 61,
         name: "Crown Plaza Okhla",
         image: "venues-all-2.webp",
         location: "udaipur",
@@ -886,7 +902,7 @@ export const vendorsData = {
         reviews: {
           "no of reviews": 7,
         },
-        id: 3,
+        itemId: 62,
         name: "Radisson Jaipur City Center",
         image: "venues-all-3.webp",
         location: "jaipur",
@@ -904,7 +920,7 @@ export const vendorsData = {
   mumbai: {
     venues: [
       {
-        id: 1,
+        itemId: 63,
         name: "Ramada by Wyndham Bengaluru Yelahanka",
         image: "venues-all.webp",
         location: "delhi NCR",
@@ -918,7 +934,7 @@ export const vendorsData = {
         reviews: {
           "no of reviews": 7,
         },
-        id: 2,
+        itemId: 64,
         name: "Crown Plaza Okhla",
         image: "venues-all-2.webp",
         location: "udaipur",
@@ -932,7 +948,7 @@ export const vendorsData = {
         reviews: {
           "no of reviews": 7,
         },
-        id: 3,
+        itemId: 65,
         name: "Radisson Jaipur City Center",
         image: "venues-all-3.webp",
         location: "jaipur",
