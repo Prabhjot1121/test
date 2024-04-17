@@ -80,7 +80,6 @@ const Vendors = (props) => {
                   <Link
                     className="font-normal hover:text-red-600"
                     to={`/vendors/${location}/venues/all/farmhouses`}
-                    onClick={() => console.log(vendorsData.length)}
                   >
                     Lawns / Farmhouses
                   </Link>

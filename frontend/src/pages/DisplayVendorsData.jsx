@@ -21,9 +21,7 @@ const DisplayVendorsData = () => {
           </span>
           <p className="flex items-end">
             Showing results{" "}
-            <span className="px-1 font-medium mt-1">
-              {vendorData.length}
-            </span>{" "}
+            <span className="px-1 font-medium mt-1">{vendorData.length}</span>{" "}
             as per your search criteria
           </p>
         </div>
@@ -42,12 +40,17 @@ const DisplayVendorsData = () => {
                   /\s+/g,
                   "-"
                 )}`}
+
+                // to={`/vendors/${location}/${category}/all/${subCategory}/${venue.itemId}`}
                 onClick={() => {
                   window.scrollTo(0, 0);
                 }}
-                key={venue.id}
+                key={venue.itemId}
               >
-                <div className="flex flex-col items-start w-full hover:scale-105 hover:shadow-2xl hover:bg-white shadow-slate-600 cursor-pointer rounded-md duration-200 p-2">
+                <div
+                  key={venue.itemId}
+                  className="flex flex-col items-start w-full hover:scale-105 hover:shadow-2xl hover:bg-white shadow-slate-600 cursor-pointer rounded-md duration-200 p-2"
+                >
                   <div className="flex items-center">
                     <img
                       className="rounded-lg h-[254px] w-[372px]"

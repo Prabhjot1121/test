@@ -18,7 +18,11 @@ const UserProfile = () => {
                 location.pathname === "/userProfile/dashboard"
                   ? "text-red-600"
                   : "text-white"
-              } hover:text-red-600 hover:bg-transparent duration-300 cursor-pointer text-sm xl:text-lg font-sans flex items-center mx-2 px-2 my-2 w-full justify-start h-12 shadow-sm shadow-red-900 rounded-md`}
+              } hover:text-red-600 ${
+                location.pathname === "/userProfile/dashboard"
+                  ? "hover:bg-white"
+                  : "hover:bg-transparent"
+              } duration-300 cursor-pointer text-sm xl:text-lg font-sans flex items-center mx-2 px-2 my-2 w-full justify-start h-12 shadow-sm shadow-red-900 rounded-md`}
             >
               Dashboard
             </Link>
@@ -32,9 +36,32 @@ const UserProfile = () => {
                 location.pathname === "/userProfile/personal-Info"
                   ? "text-red-600"
                   : "text-white"
-              } hover:text-red-600 hover:bg-transparent duration-300 cursor-pointer text-sm xl:text-lg font-sans flex items-center mx-2 px-2 my-2 w-full justify-start h-12 shadow-sm shadow-red-900 rounded-md`}
+              } hover:text-red-600 ${
+                location.pathname === "/userProfile/personal-Info"
+                  ? "hover:bg-white"
+                  : "hover:bg-transparent"
+              } duration-300 cursor-pointer text-sm xl:text-lg font-sans flex items-center mx-2 px-2 my-2 w-full justify-start h-12 shadow-sm shadow-red-900 rounded-md`}
             >
               Personal Information
+            </Link>
+
+            <Link
+              to="/userProfile/activity"
+              className={`font-medium bg-red-700 ${
+                location.pathname === "/userProfile/activity"
+                  ? "bg-white"
+                  : "bg-red-700"
+              } ${
+                location.pathname === "/userProfile/activity"
+                  ? "text-red-600"
+                  : "text-white"
+              } hover:text-red-600 ${
+                location.pathname === "/userProfile/activity"
+                  ? "hover:bg-white"
+                  : "hover:bg-transparent"
+              } duration-300 cursor-pointer text-sm xl:text-lg font-sans flex items-center mx-2 px-2 my-2 w-full justify-start h-12 shadow-sm shadow-red-900 rounded-md`}
+            >
+              Activity
             </Link>
             <Link
               to="/userProfile/settings"
@@ -46,23 +73,13 @@ const UserProfile = () => {
                 location.pathname === "/userProfile/settings"
                   ? "text-red-600"
                   : "text-white"
-              } hover:text-red-600 hover:bg-transparent duration-300 cursor-pointer text-sm xl:text-lg font-sans flex items-center mx-2 px-2 my-2 w-full justify-start h-12 shadow-sm shadow-red-900 rounded-md`}
+              } hover:text-red-600 ${
+                location.pathname === "/userProfile/settings"
+                  ? "hover:bg-white"
+                  : "hover:bg-transparent"
+              } duration-300 cursor-pointer text-sm xl:text-lg font-sans flex items-center mx-2 px-2 my-2 w-full justify-start h-12 shadow-sm shadow-red-900 rounded-md`}
             >
               Account Settings
-            </Link>
-            <Link
-              to="/userProfile/activity"
-              className={`font-medium bg-red-700 ${
-                location.pathname === "/userProfile/activity"
-                  ? "bg-white"
-                  : "bg-red-700"
-              } ${
-                location.pathname === "/userProfile/activity"
-                  ? "text-red-600"
-                  : "text-white"
-              } hover:text-red-600 hover:bg-transparent duration-300 cursor-pointer text-sm xl:text-lg font-sans flex items-center mx-2 px-2 my-2 w-full justify-start h-12 shadow-sm shadow-red-900 rounded-md`}
-            >
-              Activity
             </Link>
             <Link
               to="/userProfile/premium"
@@ -74,7 +91,11 @@ const UserProfile = () => {
                 location.pathname === "/userProfile/premium"
                   ? "text-red-600"
                   : "text-white"
-              } hover:text-red-600 hover:bg-transparent duration-300 cursor-pointer text-sm xl:text-lg font-sans flex items-center mx-2 px-2 my-2 w-full justify-start h-12 shadow-sm shadow-red-900 rounded-md`}
+              } hover:text-red-600 ${
+                location.pathname === "/userProfile/premium"
+                  ? "hover:bg-white"
+                  : "hover:bg-transparent"
+              } duration-300 cursor-pointer text-sm xl:text-lg font-sans flex items-center mx-2 px-2 my-2 w-full justify-start h-12 shadow-sm shadow-red-900 rounded-md`}
             >
               Premium
             </Link>
