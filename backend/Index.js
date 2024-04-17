@@ -23,7 +23,7 @@ app.use("/api/auth", require("./routes/auth"));
 app.use("/api/notify", require("./routes/notify"));
 app.use("/api/activity", require("./routes/activity"));
 
-app.get("/", (req, res) => {
+app.get("/api/", (req, res) => {
   return res.send("Hello World");
 });
 
