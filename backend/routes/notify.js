@@ -36,7 +36,7 @@ router.post(
       return res.status(400).json({ errors: errors.array() });
     }
     const mobileNumber = contactNumber;
-    const message = `Hello ${fullName} from utsav, We received your request to check availablity for this hotel, As you mentioned the details for your  ${functionType} function on date ${functionDate} in ${functionTime} and we would like you to know that hotel book is available as your requirement and can be booked between 12-2-24 to 12-3-24 `;
+    const message = `Hello ${fullName} from utsav, We received your request to check availablity for this hotel:, As you mentioned the details for your  ${functionType} function on date ${functionDate} in ${functionTime} and we would like you to know that hotel book is available as your requirement and can be booked between 12-2-24 to 12-3-24 `;
     try {
       await client.messages.create({
         body: message,
