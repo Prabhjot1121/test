@@ -6,7 +6,12 @@ import About from "./pages/About";
 import Contact from "./pages/Contacts/Contact";
 import LogIn from "./Authentication/Login";
 import SignUp from "./Authentication/SignUp";
-import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
+import {
+  BrowserRouter as Router,
+  Routes,
+  Route,
+  useParams,
+} from "react-router-dom";
 import Footer from "./Components/Footer";
 import { Toaster } from "react-hot-toast";
 import UserProfile from "./pages/UserProfile";
@@ -19,67 +24,74 @@ import { AuthProvider } from "./Context/Authentication_context/AuthContext";
 import DisplayVendorsData from "./pages/DisplayVendorsData";
 import { LocationProvider } from "./Context/Location_context/LocationContext";
 import VendorDetailsPage from "./Components/VendorDetailsPage";
+import { ActivityProvider } from "./Context/Activity_context/ActivityContext";
 
 function App() {
+  const { location, category, subCategory } = useParams();
   return (
     <>
       <Router>
         <LocationProvider>
           <AuthProvider>
-            <Toaster
-              position="top-center"
-              toastOptions={{ duration: 1000 }}
-              reverseOrder={false}
-            ></Toaster>
-            <Navbar />
-            <Routes>
-              <Route exact index element={<Home />} />
-              <Route exact path="/" element={<Home />} />
-              <Route exact path="/vendors" element={<Vendors />} />
-              <Route
-                exact
-                path="/vendors/:location/:category?/:all?/:subCategory?"
-                element={<DisplayVendorsData />}
-              />
-              <Route
-                exact
-                path="/vendors/:location/:category?/:all?/:subCategory?/:name?"
-                element={<VendorDetailsPage />}
-              />
-              <Route exact path="/features" element={<Features />} />
-              <Route exact path="/about" element={<About />} />
-              <Route exact path="/contact" element={<Contact />} />
-              <Route exact path="/logIn" element={<LogIn />} />
-              <Route exact path="/signUp" element={<SignUp />} />
-              <Route exact path="/userProfile/" element={<UserProfile />}>
+            <ActivityProvider>
+              <Toaster
+                position="top-center"
+                toastOptions={{ duration: 1000 }}
+                reverseOrder={false}
+              ></Toaster>
+              <Navbar />
+              <Routes>
+                <Route exact index element={<Home />} />
+                <Route exact path="/" element={<Home />} />
+                <Route exact path="/vendors" element={<Vendors />} />
                 <Route
                   exact
-                  path="/userProfile/dashboard"
-                  element={<Dashboard />}
+                  path="/vendors/:location/:category?/:all?/:subCategory?"
+                  element={<DisplayVendorsData />}
                 />
                 <Route
                   exact
-                  path="/userProfile/personal-Info"
-                  element={<UserDetails />}
+                  path="/vendors/:location/:category?/:all?/:subCategory?/:name?"
+                  element={<VendorDetailsPage />}
                 />
-                <Route
-                  exact
-                  path="/userProfile/settings"
-                  element={<Settings />}
-                />
-                <Route
-                  exact
-                  path="/userProfile/activity"
-                  element={<Activity />}
-                />
-                <Route
-                  exact
-                  path="/userProfile/premium"
-                  element={<Premium />}
-                />
-              </Route>
-            </Routes>
-            <Footer />
+                <Route exact path="/features" element={<Features />} />
+                <Route exact path="/about" element={<About />} />
+                <Route exact path="/contact" element={<Contact />} />
+                <Route exact path="/logIn" element={<LogIn />} />
+                <Route exact path="/signUp" element={<SignUp />} />
+                <Route exact path="/userProfile/" element={<UserProfile />}>
+                  <Route
+                    exact
+                    path="/userProfile/dashboard"
+                    element={<Dashboard />}
+                  />
+                  <Route
+                    exact
+                    path="/userProfile/personal-Info"
+                    element={<UserDetails />}
+                  />
+                  <Route
+                    exact
+                    path="/userProfile/settings"
+                    element={<Settings />}
+                  />
+                  <Route
+                    exact
+                    path="/userProfile/activity"
+                    category={category}
+                    subCategory={subCategory}
+                    location={location}
+                    element={<Activity />}
+                  />
+                  <Route
+                    exact
+                    path="/userProfile/premium"
+                    element={<Premium />}
+                  />
+                </Route>
+              </Routes>
+              <Footer />
+            </ActivityProvider>
           </AuthProvider>
         </LocationProvider>
       </Router>
