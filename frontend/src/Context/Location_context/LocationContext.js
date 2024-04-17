@@ -5,7 +5,7 @@ export const LocationContext = createContext();
 
 export const LocationProvider = ({ children }) => {
   const [location, setLocation] = useState(() => {
-    return localStorage.getItem("location") || "";
+    return localStorage.getItem("location") || "all";
   });
 
   useEffect(() => {

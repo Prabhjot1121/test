@@ -103,24 +103,28 @@ export const AuthProvider = ({ children }) => {
 
   // get user data handle
   const getUserData = async () => {
-    const response = await fetch(`${host}/getUserData`, {
-      method: "GET",
-      headers: {
-        "Content-Type": "application/json",
-        "auth-token": token,
-      },
-    });
-    if (!response.ok) {
-      throw new Error("failed to fetch user data");
+    try {
+      const response = await fetch(`${host}/getUserData`, {
+        method: "GET",
+        headers: {
+          "Content-Type": "application/json",
+          "auth-token": token,
+        },
+      });
+      if (!response.ok) {
+        throw new Error("failed to fetch user data");
+      }
+      const data = await response.json();
+      console.log(data);
+      if (Array.isArray(data.user)) {
+        setUserData(data.user);
+      } else {
+        setUserData([data.user]); // Convert single object to array
+      }
+      toast.success("user data fetched");
+    } catch (error) {
+      toast.error(error.message)
     }
-    const data = await response.json();
-    console.log(data);
-    if (Array.isArray(data.user)) {
-      setUserData(data.user);
-    } else {
-      setUserData([data.user]); // Convert single object to array
-    }
-    toast.success("user data fetched");
   };
 
   return (
