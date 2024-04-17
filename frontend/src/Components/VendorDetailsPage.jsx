@@ -20,7 +20,12 @@ const VendorDetailsPage = () => {
   const [priceInfo, setPriceInfo] = useState("hidden");
   const [messageSent, setMessageSent] = useState(false);
   const [isVisible, setIsVisible] = useState(false);
+  const { category, name, subCategory, location } = useParams();
+  const venueName = name.replace(/-/g, " ");
+  const [venue, setVenue] = useState(null);
   const [enquiryFormData, setEnquiryFormData] = useState({
+    venueName: "",
+    venueLocation: "",
     fullName: "",
     contactNumber: "",
     emailAddress: "",
@@ -30,9 +35,6 @@ const VendorDetailsPage = () => {
     functionType: "",
     functionTime: "",
   });
-  const { category, name, subCategory } = useParams();
-  const venueName = name.replace(/-/g, " ");
-  const [venue, setVenue] = useState(null);
 
   const toggleComponent = (id) => {
     if (id === 2) {
@@ -123,6 +125,40 @@ const VendorDetailsPage = () => {
     });
   };
 
+  const handleSaveItem = async () => {
+    if (!token) {
+      toast("Please login first");
+      return;
+    }
+
+    if (!venue) {
+      toast.error("Data is not available to process this request");
+      return;
+    }
+
+    try {
+      const response = await fetch(`${host}/api/activity/saveItem`, {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+          "auth-token": token,
+        },
+        body: JSON.stringify(venue),
+      });
+      console.log(venue);
+      if (!response.ok) {
+        throw new Error("Failed to process the request");
+      }
+
+      const data = await response.json();
+      console.log(data);
+      toast.success("Data saved successfully!");
+    } catch (error) {
+      console.error(error.message);
+      toast.error(error.message);
+    }
+  };
+
   return (
     <>
       <>
@@ -172,10 +208,13 @@ const VendorDetailsPage = () => {
                           <MdPhotoLibrary />
                           <span className="">Photos</span>
                         </div>
-                        <div className="flex items-center text-slate-500 hover:text-red-600 cursor-pointer space-x-1 w-full justify-center  border-r-[1px] border-slate-500">
+                        <button
+                          onClick={handleSaveItem}
+                          className="flex items-center text-slate-500 hover:text-red-600 cursor-pointer space-x-1 w-full justify-center  border-r-[1px] border-slate-500"
+                        >
                           <IoMdHeart />
                           <span className="">Shortlist</span>
-                        </div>
+                        </button>
                         <div className="flex items-center text-slate-500 hover:text-red-600 cursor-pointer space-x-1 w-full justify-center  border-r-[1px] border-slate-500">
                           <FaPen />
                           <span className="">Write a Review</span>
