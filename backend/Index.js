@@ -10,23 +10,22 @@ app.use(express.json({ limit: "30mb", extended: true }));
 app.use(express.urlencoded({ limit: "30mb", extended: true }));
 
 app.use(
-  cors(
+  cors()
   //   {
   //   origin: ["https://utsav.vercel.app"],
   //   methods: ["POST", "GET", "PUT", "DELETE"],
   //   credentials: true,
   // }
-)
 );
-
-app.get("/", (req, res) => {
-  return res.send("Hello World");
-});
 
 // adding routes
 app.use("/api/auth", require("./routes/auth"));
 app.use("/api/notify", require("./routes/notify"));
 app.use("/api/activity", require("./routes/activity"));
+
+app.get("/", (req, res) => {
+  return res.send("Hello World");
+});
 
 app.listen(port, () => {
   console.log(`utsav backend running on http://localhost:${port}`);
