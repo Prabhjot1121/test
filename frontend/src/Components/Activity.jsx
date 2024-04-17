@@ -1,61 +1,23 @@
-import React, { useContext, useEffect, useState } from "react";
-import { AuthContext } from "../Context/Authentication_context/AuthContext";
-import toast from "react-hot-toast";
-import { Link, useParams } from "react-router-dom";
+import React, { useContext, useEffect } from "react";
 import { MdLocationPin, MdStar } from "react-icons/md";
-import { FaCircle, FaCross } from "react-icons/fa";
 import { RxCrossCircled } from "react-icons/rx";
 import { IoMdSad } from "react-icons/io";
+import { ActivityContext } from "../Context/Activity_context/ActivityContext";
 
-const Activity = (props) => {
-  const [savedItemsData, setSavedItemsData] = useState([]);
-  const { token } = useContext(AuthContext);
-  const host = "http://localhost:8000/api/activity";
-  const { location, category, subCategory } = props;
+const Activity = () => {
+  const { savedItemsData, getSavedItemsData, removeItem } =
+    useContext(ActivityContext);
 
   const handleGetSavedItemsData = async () => {
-    if (token) {
-      try {
-        const response = await fetch(`${host}/getSavedItems`, {
-          method: "GET",
-          headers: {
-            "Content-Type": "application/json",
-            "auth-token": token,
-          },
-        });
-        if (!response.ok) {
-          throw new Error("Failed to fetch data");
-        }
-        const data = await response.json();
-        setSavedItemsData(data);
-        toast.success("Shortlisted items data!");
-      } catch (error) {
-        toast.error(error.message);
-      }
-    }
+    getSavedItemsData();
   };
   useEffect(() => {
     handleGetSavedItemsData();
+    // eslint-disable-next-line
   }, []);
 
   const handleRemoveItem = async (_id) => {
-    if (token) {
-      try {
-        const response = await fetch(`${host}/removeItem/${_id}`, {
-          method: "DELETE",
-          headers: {
-            "auth-token": token,
-          },
-        });
-        if (!response.ok) {
-          throw new Error("Can't process the request right now");
-        }
-        toast.success("Item removed successfully");
-        setSavedItemsData(savedItemsData.filter((item) => item._id !== _id));
-      } catch (error) {
-        toast.error(error.message);
-      }
-    }
+    removeItem(_id);
   };
   return (
     <>
@@ -64,15 +26,17 @@ const Activity = (props) => {
           <span className="my-4 text-3xl font-medium underline-offset-8 underline decoration-red-600">
             Shortlisted Items
           </span>
-          <div className="flex items-center mb-4 space-x-2 bg-red-700 shadow-sm shadow-red-900 rounded-md font-medium text-white px-4 py-2">
-            <span className="">Total: </span>
-            <span className="">{savedItemsData.length}</span>
-          </div>
+          {savedItemsData && (
+            <div className="flex items-center mb-4 space-x-2 border-[1px] border-red-700 text-red-700 rounded-md font-medium px-4 py-2">
+              <span className="">Total: </span>
+              <span className="">{savedItemsData?.length}</span>
+            </div>
+          )}
         </div>
 
-        <div className="grid grid-cols-3 gap-5 row-auto w-full mx-auto">
-          {savedItemsData.length !== 0 ? (
-            savedItemsData.map((item) => {
+        <div className="grid grid-cols-3 gap-5 row-auto w-full mx-auto pb-4">
+          {savedItemsData?.length !== 0 ? (
+            savedItemsData?.map((item) => { 
               return (
                 <>
                   <div
@@ -89,8 +53,8 @@ const Activity = (props) => {
                         onClick={() => {
                           handleRemoveItem(item._id);
                         }}
-                        className="absolute top-1 right-1 rounded-full"
-                        color="orange"
+                        className="absolute bg-black  top-1 right-1 rounded-full"
+                        color="white"
                         size={25}
                       />
                     </div>
