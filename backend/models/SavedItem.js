@@ -55,6 +55,10 @@ const savedItem = new Schema({
     type: Boolean,
     default: false,
   },
+  createdAt: {
+    type: Date,
+    default: Date.now,
+  },
 });
 
 const SavedItem = mongoose.model("SavedItem", savedItem);

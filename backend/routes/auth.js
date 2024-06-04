@@ -5,7 +5,7 @@ const User = require("../models/User");
 const fetchUser = require("../middleware/fetchUser");
 const bcrypt = require("bcryptjs");
 const jwt = require("jsonwebtoken");
-
+const nodemailer = require("nodemailer");
 const JWT_SECRET = "utsav-application@2905";
 
 // Create user route
@@ -60,6 +60,52 @@ router.post(
     }
   }
 );
+
+// router: to send email verification
+router.post("/sendEmail", fetchUser, async (req, res) => {
+  try {
+    const userId = req.user.id;
+    const user = await User.findById(userId);
+    if (!user) {
+      return res.status(404).json("user not found");
+    }
+    let transporter = nodemailer.createTransport({
+      host: "live.smtp.mailtrap.io",
+      port: 587,
+      auth: {
+        user: "api",
+        pass: "********c20f",
+      },
+    });
+
+    const data = {
+      user: {
+        id: user.id,
+        name: user.name,
+      },
+    };
+
+    const token = jwt.sign(data, JWT_SECRET, { expiresIn: "10m" });
+
+    const mailConfigurations = {
+      from: "nimble2905@gmail",
+      to: user.email,
+      subject: "Email Verification",
+      text: `Hi! There, You have recently visited  
+        our website and entered your email. 
+        Please follow the given link to verify your email 
+        http://localhost:3000/verify/${token}  
+        Thanks`,
+    };
+
+    transporter.sendMail(mailConfigurations, function (error, info) {
+      console.log("Email Sent Successfully");
+      res.json(mailConfigurations);
+      console.log(info?.response);
+      console.log({ user });
+    });
+  } catch (error) {}
+});
 
 // route 2: login using authentication
 router.post(
@@ -172,7 +218,7 @@ router.get("/getAllUsersData", fetchUser, async (req, res) => {
   }
 });
 
-// route 6: to delete user
+// route 6: to delete user p[']
 router.delete("/deleteUser/:id", fetchUser, async (req, res) => {
   const userId = req.user.id;
   const user = await User.findById(userId);
