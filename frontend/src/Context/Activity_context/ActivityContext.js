@@ -1,3 +1,4 @@
+import moment from "moment-timezone"; // Importing moment-timezone
 import { createContext, useState } from "react";
 import toast from "react-hot-toast";
 export const ActivityContext = createContext();
@@ -12,7 +13,6 @@ export const ActivityProvider = ({ children }) => {
       toast("Please login first");
       return;
     }
-
     try {
       const response = await fetch(`${host}/saveItem`, {
         method: "POST",
@@ -50,10 +50,15 @@ export const ActivityProvider = ({ children }) => {
           throw new Error("Failed to fetch data");
         }
         const data = await response.json();
-        setSavedItemsData(data);
+        const sortedSavedData = data.sort((a, b) => {
+          const aCreatedAt = moment(a.createdAt).tz("Asia/Kolkata");
+          const bCreatedAt = moment(b.createdAt).tz("Asia/Kolkata");
+          return bCreatedAt - aCreatedAt;
+        });
+        setSavedItemsData(sortedSavedData);
         toast.success("Shortlisted items data!");
+        console.log(sortedSavedData);
         console.log(data);
-        console.log(savedItemsData);
       } catch (error) {
         toast.error(error.message);
       }
