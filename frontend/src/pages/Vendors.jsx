@@ -28,7 +28,7 @@ const Vendors = (props) => {
   };
   return (
     <>
-      <div className="shadow-inner shadow-slate-400 flex flex-col items-center justify-start bg-gradient-to-tr from-red-100 to-blue-100 w-full">
+      <div className="shadow-inner shadow-slate-400 flex flex-col items-center justify-start bg-gradient-to-tr from-red-100 to-blue-100 w-full min-h-screen">
         <div className="flex items-center justify-between  mt-16 w-[85%] h-12">
           <div className="flex flex-row text-3xl justify-start h-fit items-center w-fit">
             <span className="text-2xl underline underline-offset-8 decoration-red-600 font-semibold">
@@ -43,7 +43,7 @@ const Vendors = (props) => {
           <div className="w-full">
             <div
               onClick={() => handleDropdown("venue1")}
-              className="flex justify-between cursor-pointer h-28 w-full bg-violet-200"
+              className="flex justify-between cursor-pointer h-28 w-full shadow-lg shadow-red-200 rounded-md border-[1px] border-black"
             >
               <div className="flex items-center space-x-1 w-fit">
                 <span className="font-semibold p-2">Venues</span>
@@ -52,7 +52,7 @@ const Vendors = (props) => {
               <div className="w-fit h-full">
                 <img
                   src={venues}
-                  className="rounded-tl-[4rem] h-full w-full"
+                  className="rounded-tl-[4rem] rounded-r-md h-full w-full"
                   alt=""
                 />
               </div>
@@ -63,7 +63,9 @@ const Vendors = (props) => {
                   <Link
                     className="font-medium"
                     to={`/vendors/${location}/venues/all/wedding-venues`}
-                    onClick={() => console.log(location)}
+                    onClick={() => {
+                      window.scrollTo(0, 0);
+                    }}
                   >
                     View All Venues
                   </Link>
@@ -72,6 +74,9 @@ const Vendors = (props) => {
                   <Link
                     className="font-normal hover:text-red-600"
                     to={`/vendors/${location}/venues/all/banquet-halls`}
+                    onClick={() => {
+                      window.scrollTo(0, 0);
+                    }}
                   >
                     Banquet Halls
                   </Link>
@@ -80,6 +85,9 @@ const Vendors = (props) => {
                   <Link
                     className="font-normal hover:text-red-600"
                     to={`/vendors/${location}/venues/all/farmhouses`}
+                    onClick={() => {
+                      window.scrollTo(0, 0);
+                    }}
                   >
                     Lawns / Farmhouses
                   </Link>
@@ -88,6 +96,9 @@ const Vendors = (props) => {
                   <Link
                     className="font-normal hover:text-red-600"
                     to={`/vendors/${location}/venues/all/wedding-resorts`}
+                    onClick={() => {
+                      window.scrollTo(0, 0);
+                    }}
                   >
                     Wedding Resorts
                   </Link>
@@ -96,6 +107,9 @@ const Vendors = (props) => {
                   <Link
                     className="font-normal hover:text-red-600"
                     to={`/vendors/${location}/venues/all/party-halls`}
+                    onClick={() => {
+                      window.scrollTo(0, 0);
+                    }}
                   >
                     Party Halls
                   </Link>
@@ -104,6 +118,9 @@ const Vendors = (props) => {
                   <Link
                     className="font-normal hover:text-red-600"
                     to={`/vendors/${location}/venues/all/destination-wedding`}
+                    onClick={() => {
+                      window.scrollTo(0, 0);
+                    }}
                   >
                     Destination Wedding
                   </Link>
@@ -114,7 +131,7 @@ const Vendors = (props) => {
           <div className="w-full">
             <div
               onClick={() => handleDropdown("venue2")}
-              className="flex justify-between cursor-pointer h-28 w-full bg-pink-200"
+              className="flex justify-between cursor-pointer h-28 w-full shadow-lg shadow-red-200 rounded-md border-[1px] border-black"
             >
               <div className="flex items-center space-x-1 w-fit">
                 <span className="font-semibold p-2">Photographers</span>
@@ -123,7 +140,7 @@ const Vendors = (props) => {
               <div className="h-full">
                 <img
                   src={photographer}
-                  className="rounded-tl-[4rem] h-full w-full"
+                  className="rounded-tl-[4rem] rounded-r-md h-full w-full"
                   alt=""
                 />
               </div>
@@ -134,16 +151,11 @@ const Vendors = (props) => {
                   <Link
                     className="font-normal hover:text-red-600"
                     to={`/vendors/${location}/photographers/all/wedding-photographers`}
+                    onClick={() => {
+                      window.scrollTo(0, 0);
+                    }}
                   >
                     Photographers
-                  </Link>
-                </span>
-                <span>
-                  <Link
-                    className="font-normal hover:text-red-600"
-                    to={`/vendors/${location}/photographers/all/pre-wedding-shoot`}
-                  >
-                    Pre Wedding Photographers
                   </Link>
                 </span>
               </div>
@@ -153,7 +165,7 @@ const Vendors = (props) => {
           <div className="w-full">
             <div
               onClick={() => handleDropdown("venue4")}
-              className="flex justify-between cursor-pointer h-28 w-full bg-violet-200"
+              className="flex justify-between cursor-pointer h-28 w-full shadow-lg shadow-red-200 rounded-md border-[1px] border-black"
             >
               <div className="flex items-center space-x-1 w-fit">
                 <span className="font-semibold p-2">Planning & Decor</span>
@@ -162,7 +174,7 @@ const Vendors = (props) => {
               <div className="h-full">
                 <img
                   src={planningDecor}
-                  className="rounded-tl-[4rem] h-full w-full"
+                  className="rounded-tl-[4rem] rounded-r-md h-full w-full"
                   alt=""
                 />
               </div>
@@ -199,7 +211,7 @@ const Vendors = (props) => {
           <div className="w-full">
             <div
               onClick={() => handleDropdown("venue5")}
-              className="flex justify-between cursor-pointer h-28 w-full bg-violet-200"
+              className="flex justify-between cursor-pointer h-28 w-full shadow-lg shadow-red-200 rounded-md border-[1px] border-black"
             >
               <div className="flex items-center space-x-1 w-fit">
                 <span className="font-semibold p-2">Bridal Wear</span>
@@ -208,21 +220,13 @@ const Vendors = (props) => {
               <div className="h-full">
                 <img
                   src={bridalWear}
-                  className="rounded-tl-[4rem] h-full w-full"
+                  className="rounded-tl-[4rem] rounded-r-md h-full w-full"
                   alt=""
                 />
               </div>
             </div>
             {isVisibleMap["venue5"] && (
               <div className="grid grid-cols-2 gap-3 w-full my-6 p-2">
-                <span>
-                  <Link
-                    className="font-medium"
-                    to={`/vendors/${location}/bridal-wears`}
-                  >
-                    View All Bridal Wear
-                  </Link>
-                </span>
                 <span>
                   <Link
                     className="font-normal hover:text-red-600"
@@ -269,7 +273,7 @@ const Vendors = (props) => {
           <div className="w-full">
             <div
               onClick={() => handleDropdown("venue6")}
-              className="flex justify-between cursor-pointer h-28 w-full bg-violet-200"
+              className="flex justify-between cursor-pointer h-28 w-full shadow-lg shadow-red-200 rounded-md border-[1px] border-black"
             >
               <div className="flex items-center space-x-1 w-fit">
                 <span className="font-semibold p-2">Groom Wear</span>
@@ -278,7 +282,7 @@ const Vendors = (props) => {
               <div className="h-full">
                 <img
                   src={groomWear}
-                  className="rounded-tl-[4rem] h-full w-full"
+                  className="rounded-tl-[4rem] rounded-r-md h-full w-full"
                   alt=""
                 />
               </div>
@@ -288,7 +292,7 @@ const Vendors = (props) => {
                 <span>
                   <Link
                     className="font-medium"
-                    to={`/vendors/${location}/groom-wears`}
+                    to={`/vendors/${location}/groom/all/groom-wears`}
                   >
                     View All Groom Wear
                   </Link>
@@ -296,7 +300,7 @@ const Vendors = (props) => {
                 <span>
                   <Link
                     className="font-normal hover:text-red-600"
-                    to={`/vendors/${location}/groom-wear/all/wedding-sherwani`}
+                    to={`/vendors/${location}/groom/all/sherwani`}
                   >
                     Sherwani
                   </Link>
@@ -304,7 +308,7 @@ const Vendors = (props) => {
                 <span>
                   <Link
                     className="font-normal hover:text-red-600"
-                    to={`/vendors/${location}/groom-wear/all/wedding-suits`}
+                    to={`/vendors/${location}/groom/all/suits`}
                   >
                     Wedding Suits / Tuxes
                   </Link>
@@ -312,7 +316,7 @@ const Vendors = (props) => {
                 <span>
                   <Link
                     className="font-normal hover:text-red-600"
-                    to={`/vendors/${location}/groom-wear/all/wedding-rent-sherwani`}
+                    to={`/vendors/${location}/groom/all/sherwani on rent`}
                   >
                     Sherwani on Rent
                   </Link>
@@ -323,7 +327,7 @@ const Vendors = (props) => {
           <div className="w-full">
             <div
               onClick={() => handleDropdown("venue7")}
-              className="flex justify-between cursor-pointer h-28 w-full bg-violet-200"
+              className="flex justify-between cursor-pointer h-28 w-full shadow-lg shadow-red-200 rounded-md border-[1px] border-black"
             >
               <div className="flex items-center space-x-1 w-fit">
                 <span className="font-semibold p-2">Mehendi</span>
@@ -332,7 +336,7 @@ const Vendors = (props) => {
               <div className="h-full">
                 <img
                   src={mehendiArtist}
-                  className="rounded-tl-[4rem] h-full w-full"
+                  className="rounded-tl-[4rem] rounded-r-md h-full w-full"
                   alt=""
                 />
               </div>
@@ -342,7 +346,7 @@ const Vendors = (props) => {
                 <span>
                   <Link
                     className="font-normal hover:text-red-600"
-                    to={`/vendors/${location}/mehendi-artists`}
+                    to={`/vendors/${location}/mehendi/all/mehendi-artists`}
                   >
                     Mehendi Artist
                   </Link>
@@ -350,7 +354,7 @@ const Vendors = (props) => {
               </div>
             )}{" "}
           </div>
-          <div className="w-full">
+          {/* <div className="w-full">
             <div
               onClick={() => handleDropdown("venue8")}
               className="flex justify-between cursor-pointer h-28 w-full bg-violet-200"
@@ -413,8 +417,8 @@ const Vendors = (props) => {
                 </span>
               </div>
             )}
-          </div>
-          <div className="w-full">
+          </div> */}
+          {/* <div className="w-full">
             <div
               onClick={() => handleDropdown("venue9")}
               className="flex justify-between cursor-pointer h-28 w-full bg-violet-200"
@@ -529,8 +533,8 @@ const Vendors = (props) => {
                 </span>
               </div>
             )}{" "}
-          </div>
-          <div className="w-full">
+          </div> */}
+          {/* <div className="w-full">
             <div
               onClick={() => handleDropdown("venue11")}
               className="flex justify-between cursor-pointer h-28 w-full bg-violet-200"
@@ -599,8 +603,8 @@ const Vendors = (props) => {
                 </span>
               </div>
             )}{" "}
-          </div>
-          <div className="w-full">
+          </div> */}
+          {/* <div className="w-full">
             <div
               onClick={() => handleDropdown("venue12")}
               className="flex justify-between cursor-pointer h-28 w-full bg-violet-200"
@@ -637,7 +641,7 @@ const Vendors = (props) => {
                 </span>
               </div>
             )}{" "}
-          </div>
+          </div> */}
         </div>
       </div>
     </>
