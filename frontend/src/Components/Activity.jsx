@@ -34,9 +34,9 @@ const Activity = () => {
           )}
         </div>
 
-        <div className="grid grid-cols-3 gap-5 row-auto w-full mx-auto pb-4">
+        <div className="grid sm:grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5 row-auto w-full mx-auto pb-4">
           {savedItemsData?.length !== 0 ? (
-            savedItemsData?.map((item) => { 
+            savedItemsData?.map((item) => {
               return (
                 <>
                   <div

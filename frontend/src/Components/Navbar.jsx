@@ -86,7 +86,7 @@ const Navbar = () => {
             >
               Vendors
             </Link>
-            <Link
+            {/* <Link
               style={{ fontFamily: "sans-serif" }}
               className={`font-medium text-xl hover:text-red-600 ${
                 location.pathname === "/photos"
@@ -99,7 +99,7 @@ const Navbar = () => {
               }}
             >
               Photos
-            </Link>
+            </Link> */}
 
             <Link
               style={{ fontFamily: "sans-serif" }}
@@ -155,7 +155,7 @@ const Navbar = () => {
           ) : (
             <div className="flex items-center space-x-6">
               <Link
-                to="/userProfile/dashboard"
+                to="/userProfile/profile"
                 onClick={() => {
                   window.scrollTo(0, 0);
                 }}

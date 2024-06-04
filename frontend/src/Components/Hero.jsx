@@ -21,7 +21,7 @@ const Hero = () => {
             </span>
           </div>
           {/* search bar for searching different categories and other  */}
-          <div className="">
+          {/* <div className="">
             <div className="border-0 border-b-2 border-black justify-between flex items-end">
               <input
                 style={{ fontFamily: "sans-serif" }}
@@ -35,7 +35,7 @@ const Hero = () => {
                 <FaSearch size={20} />
               </span>
             </div>
-          </div>
+          </div> */}
         </div>
       </div>
       {/* why we content */}

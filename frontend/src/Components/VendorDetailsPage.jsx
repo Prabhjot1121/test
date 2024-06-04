@@ -2,21 +2,16 @@ import React, { useContext, useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import toast from "react-hot-toast";
 import { vendorsData } from "../vendorsData";
-import {
-  MdArrowDropDown,
-  MdArrowDropUp,
-  MdEmail,
-  MdLocationOn,
-  MdPhone,
-  MdPhotoLibrary,
-} from "react-icons/md";
-import { FaPen, FaRupeeSign, FaShare, FaWhatsapp } from "react-icons/fa";
+import { MdEmail, MdLocationOn, MdPhone, MdPhotoLibrary } from "react-icons/md";
+import { FaPen, FaShare } from "react-icons/fa";
 import { IoMdHeart } from "react-icons/io";
 import { AuthContext } from "../Context/Authentication_context/AuthContext";
+import WriteReview from "./WriteReview";
 
 const VendorDetailsPage = () => {
   const { token } = useContext(AuthContext);
   const host = "http://localhost:8000";
+  const [reviewsData, setReviewsData] = useState("");
   const [priceInfo, setPriceInfo] = useState("hidden");
   const [messageSent, setMessageSent] = useState(false);
   const [isVisible, setIsVisible] = useState(false);
@@ -35,6 +30,7 @@ const VendorDetailsPage = () => {
     functionType: "",
     functionTime: "",
   });
+  const [venueAvailable, setVenueAvailable] = useState(false);
 
   const toggleComponent = (id) => {
     if (id === 2) {
@@ -64,6 +60,7 @@ const VendorDetailsPage = () => {
         );
         if (foundVenue) {
           setVenue(foundVenue);
+          console.log(foundVenue);
           return;
         }
       }
@@ -97,7 +94,10 @@ const VendorDetailsPage = () => {
         throw new Error("Failed to provide availablity details right now");
       }
       console.log(enquiryFormData);
-      toast.success("Sent availablity details on provided mobile number");
+      toast.success(
+        "Sent availablity details on provided mobile number and available"
+      );
+      setVenueAvailable(true);
       setEnquiryFormData({
         fullName: "",
         contactNumber: "",
@@ -159,225 +159,194 @@ const VendorDetailsPage = () => {
     }
   };
 
+  const handleBookVenueNow = async () => {
+    if (venueAvailable) {
+    }
+  };
+
+  const handleGetReviews = async () => {
+    const response = await fetch(`${host}/api/activity/getAllReviews`, {
+      method: "GET",
+      headers: {
+        "Content-Type": "application/json",
+      },
+    });
+    if (!response.ok) {
+      throw new Error("Could not get reviews data");
+    }
+    const data = await response.json();
+    console.log(data);
+    setReviewsData(data);
+  };
+
+  useEffect(() => {
+    handleGetReviews();
+  }, [venue]);
+
   return (
     <>
-      <>
-        <div
-          style={{ fontFamily: "sans-serif" }}
-          className="h-full py-12 w-full bg-gradient-to-tr from-red-100 to-blue-100 shadow-inner shadow-slate-400"
-        >
-          <div className="flex flex-col lg:flex-row justify-between h-full w-[85%] rounded-sm mx-auto">
-            {venue && (
-              <>
-                <div className="flex flex-col">
-                  <div className="flex justify-center relative h-[76.5vh] w-fit">
-                    <img
-                      className="rounded-sm h-[400px] shadow-sm shadow-black w-[700px]"
-                      src={`/vendorsDataImages/${venue.image}`}
-                      alt=""
-                    />
-                    <div className="absolute bottom-0 rounded-sm space-y-4 flex flex-col justify-start w-[95%] shadow-sm shadow-slate-900 h-52 bg-white">
-                      <div className="flex w-full h-full justify-between p-4">
-                        <div className="flex flex-col space-y-2 items-start justify-start ">
-                          <span className="font-medium text-xl">
-                            {venue.name}
+      <div
+        style={{ fontFamily: "sans-serif" }}
+        className="space-y-20 h-full py-12 w-full bg-gradient-to-tr from-red-100 to-blue-100 shadow-inner shadow-slate-400"
+      >
+        <div className="flex flex-col lg:flex-row justify-between h-full w-[94%] rounded-sm mx-auto">
+          {venue && (
+            <>
+              {/* item photo and content */}
+              <div className="flex flex-col">
+                <div className="flex justify-center relative h-[76.5vh] w-fit">
+                  <img
+                    className="rounded-sm h-[400px] shadow-sm shadow-black w-[700px]"
+                    src={`/vendorsDataImages/${venue.image}`}
+                    alt=""
+                  />
+                  <div className="absolute bottom-0 rounded-sm space-y-4 flex flex-col justify-start w-[95%] shadow-sm shadow-slate-900 h-52 bg-white">
+                    <div className="flex w-full h-full justify-between p-4">
+                      <div className="flex flex-col space-y-2 items-start justify-start ">
+                        <span className="font-medium text-xl">
+                          {venue.name}
+                        </span>
+                        <div className="flex space-x-2">
+                          <MdLocationOn size={25} />
+                          <span className="text-slate-500">
+                            {venue.location.charAt(0).toUpperCase() +
+                              venue.location.slice(1)}
                           </span>
-                          <div className="flex space-x-2">
-                            <MdLocationOn size={25} />
-                            <span className="text-slate-500">
-                              {venue.location.charAt(0).toUpperCase() +
-                                venue.location.slice(1)}
-                            </span>
-                          </div>
-                          <div className="flex text-slate-400 text-xs space-x-1">
-                            <span>{venue.name}</span>
-                            <span className="">
-                              {venue.location.charAt(0).toUpperCase() +
-                                venue.location.slice(1)}
-                            </span>
-                          </div>
-                          <div className="flex items-center text-green-700 space-x-2 hover:text-green-600 cursor-pointer">
-                            <MdPhone color="green" />
-                            <span>Contact</span>
-                          </div>
                         </div>
-                        <div>{venue.rating}</div>
+                        <div className="flex text-slate-400 text-xs space-x-1">
+                          <span>{venue.name}</span>
+                          <span className="">
+                            {venue.location.charAt(0).toUpperCase() +
+                              venue.location.slice(1)}
+                          </span>
+                        </div>
+                        <div className="flex items-center text-green-700 space-x-2 hover:text-green-600 cursor-pointer">
+                          <MdPhone color="green" />
+                          <span>Contact</span>
+                        </div>
                       </div>
-                      <div className="flex items-center justify-between w-full h-16 bg-gray-50">
-                        <div className="flex items-center text-slate-500 hover:text-red-600 cursor-pointer space-x-1 w-full justify-center  border-r-[1px] border-slate-500">
-                          <MdPhotoLibrary />
-                          <span className="">Photos</span>
-                        </div>
+                      <div>{venue.rating}</div>
+                    </div>
+                    <div className="flex items-center justify-between w-full h-16 bg-gray-50">
+                      <div className="flex items-center text-slate-500 hover:text-red-600 cursor-pointer space-x-1 w-full justify-center  border-r-[1px] border-slate-500">
+                        <MdPhotoLibrary />
+                        <span className="">Photos</span>
+                      </div>
+                      <button
+                        onClick={handleSaveItem}
+                        className="flex items-center text-slate-500 hover:text-red-600 cursor-pointer space-x-1 w-full justify-center  border-r-[1px] border-slate-500"
+                      >
+                        <IoMdHeart />
+                        <span className="">Shortlist</span>
+                      </button>
+                      <div className="flex items-center text-slate-500 hover:text-red-600 cursor-pointer space-x-1 w-full justify-center  border-r-[1px] border-slate-500">
+                        <FaPen />
+                        <span className="">Write a Review</span>
+                      </div>
+                      <div className="flex items-center text-slate-500 hover:text-red-600 cursor-pointer space-x-1 w-full justify-center ">
+                        <FaShare />
                         <button
-                          onClick={handleSaveItem}
-                          className="flex items-center text-slate-500 hover:text-red-600 cursor-pointer space-x-1 w-full justify-center  border-r-[1px] border-slate-500"
+                          onClick={() =>
+                            navigator.clipboard.writeText(window.location.href)
+                          }
                         >
-                          <IoMdHeart />
-                          <span className="">Shortlist</span>
+                          Share
                         </button>
-                        <div className="flex items-center text-slate-500 hover:text-red-600 cursor-pointer space-x-1 w-full justify-center  border-r-[1px] border-slate-500">
-                          <FaPen />
-                          <span className="">Write a Review</span>
-                        </div>
-                        <div className="flex items-center text-slate-500 hover:text-red-600 cursor-pointer space-x-1 w-full justify-center ">
-                          <FaShare />
-                          <span className="">Share</span>
-                        </div>
                       </div>
                     </div>
                   </div>
                 </div>
-                <div className="flex flex-col space-y-6 w-[450px]">
-                  <div className="flex flex-col w-full items-center  bg-white rounded-md">
-                    <div className="flex justify-between items-center w-full px-4 border-gray-200 border-b-[1px] h-12">
-                      <span>Starting Price</span>
-                      <div
-                        onClick={togglePricingInfo}
-                        className="flex items-center cursor-pointer"
-                      >
-                        <span className="text-red-600">Pricing Info</span>
-                        {priceInfo === "hidden" ? (
-                          <MdArrowDropDown color="red" size={25} />
-                        ) : (
-                          <MdArrowDropUp color="red" size={25} />
-                        )}
-                      </div>
-                    </div>
-                    <div
-                      className={`${priceInfo} items-center w-full px-4 justify-between border-b-[1px] border-gray-200 h-20`}
+              </div>
+              {/* contact components */}
+              <div className="flex flex-col space-y-6 w-[560px]">
+                <div className="h-fit bg-transparent w-full">
+                  <div className="flex text-lg items-center justify-around h-fit w-full">
+                    <button
+                      onClick={() => toggleComponent(1)}
+                      className={`flex items-center space-x-1 px-4 py-2 w-full h-16 border-red-600 border-r-2 ${
+                        isVisible ? "border-b-2" : "border-b-0"
+                      } bg-white duration-300 rounded-tl-md ${
+                        !isVisible ? "text-red-600" : "text-gray-500"
+                      } ${!isVisible ? "cursor-default" : "cursor-pointer"} `}
                     >
-                      <div className="flex flex-col items-start space-y-1 justify-center">
-                        <span className="text-sm font-medium">
-                          Starting price of room
-                        </span>
-                        <div className="text-gray-400 flex items-center">
-                          <FaRupeeSign />
-                          <span>4500 per room</span>
-                        </div>
-                      </div>
-                      <div className="flex flex-col items-start space-y-1 justify-center">
-                        <span className="text-sm font-medium">
-                          Starting Price of Decor
-                        </span>
-                        <div className="text-gray-400 flex items-center">
-                          <FaRupeeSign />
-                          <span>50,000</span>
-                        </div>
-                      </div>
-                    </div>
-                    <div className="flex items-center w-full justify-between px-4 border-b-[1px] border-gray-200 h-16">
-                      <div className="flex items-center h-full">
-                        <FaRupeeSign color="red" />
-                        <div className="flex items-center ">
-                          <div className="text-lg text-red-600 font-medium">
-                            {venue.foodCategory?.vegPlatePrice}{" "}
-                            <span className="text-base"> per plate </span>
-                          </div>
-                          &nbsp;
-                          <span className="text-gray-400">(taxes extra )</span>
-                        </div>
-                      </div>
-                      <span className="text-gray-600 text-sm">Veg price</span>
-                    </div>
-                    <div className="flex items-center w-full justify-between px-4 border-b-[1px] border-gray-200 h-16">
-                      <div className="flex items-center h-full">
-                        <FaRupeeSign color="red" />
-                        <div className="flex items-center ">
-                          <div className="text-lg text-red-600 font-medium">
-                            {venue.foodCategory?.nonVegPlatePrice}{" "}
-                            <span className="text-base"> per plate </span>
-                          </div>
-                          &nbsp;
-                          <span className="text-gray-400 ">(taxes extra )</span>
-                        </div>
-                      </div>
-                      <span className="text-gray-600 text-sm">
-                        Non - Veg price
-                      </span>
-                    </div>
-                  </div>
-                  <div className="h-fit bg-transparent w-full">
-                    <div className="flex text-lg items-center justify-around h-fit ">
-                      <button
-                        onClick={() => toggleComponent(1)}
-                        className={`flex items-center space-x-1 px-4 py-2 w-full h-16 border-red-600 border-r-2 ${
-                          isVisible ? "border-b-2" : "border-b-0"
-                        } bg-white duration-300 rounded-tl-md ${
-                          !isVisible ? "text-red-600" : "text-gray-500"
-                        } ${!isVisible ? "cursor-default" : "cursor-pointer"} `}
-                      >
-                        <MdEmail />
-                        <span>Send Message</span>
-                      </button>
-                      <hr />
-                      <button
-                        onClick={() => toggleComponent(2)}
-                        className={`flex items-center space-x-1 px-4 py-2 w-full h-16 border-red-600 ${
-                          isVisible ? "border-b-0" : "border-b-2"
-                        } bg-white duration-300 rounded-tr-md
+                      <MdEmail />
+                      <span>Check Availablity</span>
+                    </button>
+                    <hr />
+                    <button
+                      onClick={() => toggleComponent(2)}
+                      className={`flex items-center space-x-1 px-4 py-2 w-full h-16 border-red-600 ${
+                        isVisible ? "border-b-0" : "border-b-2"
+                      } bg-white duration-300 rounded-tr-md
                           ${!isVisible ? "text-gray-500" : "text-red-500"} ${
-                          !isVisible ? "cursor-pointer" : "cursor-default"
-                        }`}
-                      >
-                        <MdPhone />
-                        <span>View Contact</span>
-                      </button>
-                    </div>
-                    <div className="h-fit bg-white rounded-b-md">
-                      {!isVisible ? (
-                        <div className="h-full w-full space-y-4 flex flex-col p-4">
-                          <span>Hi {venue.name},</span>
-                          <form
-                            onSubmit={handleEnquiryByUser}
-                            // method="post"
-                            className="flex flex-col space-y-6 w-full"
-                          >
-                            <div className="grid grid-cols-2 w-full gap-4">
-                              <div className="w-full mx-auto text-center my-4">
-                                <input
-                                  type="text"
-                                  name="fullName"
-                                  onChange={onChange}
-                                  value={enquiryFormData.fullName}
-                                  className="w-full py-2 focus:outline-none cursor-pointer focus:cursor-default focus:border-b-2 hover:border-black border-b-[1px] border-gray-500 focus:border-red-600"
-                                  required
-                                  placeholder="Full name"
-                                />
-                              </div>
-                              <div className="w-full mx-auto text-center my-4">
-                                <input
-                                  type="phone"
-                                  name="contactNumber"
-                                  onChange={onChange}
-                                  value={enquiryFormData.contactNumber}
-                                  className="w-full py-2 focus:outline-none cursor-pointer focus:cursor-default focus:border-b-2 hover:border-black border-b-[1px] border-gray-500 focus:border-red-600"
-                                  required
-                                  minLength={10}
-                                  maxLength={10}
-                                  placeholder="Contact number"
-                                />
-                              </div>
-                              <div className="w-full mx-auto text-center my-4">
-                                <input
-                                  type="email"
-                                  name="emailAddress"
-                                  onChange={onChange}
-                                  value={enquiryFormData.emailAddress}
-                                  className="w-full py-2 focus:outline-none cursor-pointer focus:cursor-default focus:border-b-2 hover:border-black border-b-[1px] border-gray-500 focus:border-red-600"
-                                  required
-                                  placeholder="Email"
-                                />
-                              </div>
-                              <div className="w-full mx-auto text-center my-4">
-                                <input
-                                  type="date"
-                                  name="functionDate"
-                                  onChange={onChange}
-                                  value={enquiryFormData.functionDate}
-                                  className="w-full py-2 focus:outline-none cursor-pointer focus:cursor-default focus:border-b-2 hover:border-black border-b-[1px] border-gray-500 focus:border-red-600 appearance-none"
-                                  placeholder="Function date"
-                                />
-                              </div>
+                        !isVisible ? "cursor-pointer" : "cursor-default"
+                      }`}
+                    >
+                      <MdPhone />
+                      <span>Book Now</span>
+                    </button>
+                  </div>
+                  <div className="h-fit bg-white rounded-b-md">
+                    {!isVisible ? (
+                      <div className="h-full w-full space-y-4 flex flex-col p-4">
+                        <span>Hi {venue.name},</span>
+                        <form
+                          onSubmit={handleEnquiryByUser}
+                          // method="post"
+                          className="flex flex-col space-y-6 w-full"
+                        >
+                          <div className="grid grid-cols-1 lg:grid-cols-2 w-full gap-4">
+                            <div className="w-full mx-auto text-center my-4">
+                              <input
+                                type="text"
+                                name="fullName"
+                                onChange={onChange}
+                                value={enquiryFormData.fullName}
+                                className="w-full py-2 focus:outline-none cursor-pointer focus:cursor-default focus:border-b-2 hover:border-black border-b-[1px] border-gray-500 focus:border-red-600"
+                                required
+                                placeholder="Full name"
+                              />
+                            </div>
+                            <div className="w-full mx-auto text-center my-4">
+                              <input
+                                type="phone"
+                                name="contactNumber"
+                                onChange={onChange}
+                                value={enquiryFormData.contactNumber}
+                                className="w-full py-2 focus:outline-none cursor-pointer focus:cursor-default focus:border-b-2 hover:border-black border-b-[1px] border-gray-500 focus:border-red-600"
+                                required
+                                minLength={10}
+                                maxLength={10}
+                                placeholder="Contact number"
+                              />
+                            </div>
+                            <div className="w-full mx-auto text-center my-4">
+                              <input
+                                type="email"
+                                name="emailAddress"
+                                onChange={onChange}
+                                value={enquiryFormData.emailAddress}
+                                className="w-full py-2 focus:outline-none cursor-pointer focus:cursor-default focus:border-b-2 hover:border-black border-b-[1px] border-gray-500 focus:border-red-600"
+                                required
+                                placeholder="Email"
+                              />
+                            </div>
+                            <div className="w-full mx-auto text-center my-4">
+                              <input
+                                type="date"
+                                name="functionDate"
+                                onChange={onChange}
+                                value={enquiryFormData.functionDate}
+                                className="w-full py-2 focus:outline-none cursor-pointer focus:cursor-default focus:border-b-2 hover:border-black border-b-[1px] border-gray-500 focus:border-red-600 appearance-none"
+                                placeholder="Function date"
+                                min={(() => {
+                                  const today = new Date();
+                                  today.setDate(today.getDate() + 1); // Add one day to today's date
+                                  return today.toISOString().split("T")[0]; // Set min attribute to tomorrow's date
+                                })()}
+                              />
+                            </div>
+                            {!category === "photographers" && (
                               <div className="w-full mx-auto text-center my-4">
                                 <input
                                   type="number"
@@ -388,6 +357,8 @@ const VendorDetailsPage = () => {
                                   placeholder="No of guests(min: 50)"
                                 />
                               </div>
+                            )}
+                            {!category === "photographers" && (
                               <div className="w-full mx-auto text-center my-4">
                                 <input
                                   type="number"
@@ -398,135 +369,166 @@ const VendorDetailsPage = () => {
                                   placeholder="No of rooms"
                                 />
                               </div>
-                              <div className="flex flex-col text-sm space-y-2">
-                                <span className="text-lg font-medium">
-                                  Function Type
-                                </span>
-                                <div className="flex justify-between">
-                                  <div className="space-x-1">
-                                    <input
-                                      type="radio"
-                                      className="cursor-pointer"
-                                      name="functionType"
-                                      value="preWedding"
-                                      checked={
-                                        enquiryFormData.functionType ===
-                                        "preWedding"
-                                      }
-                                      onChange={onChange}
-                                      id="functionType"
-                                    />
-                                    <label htmlFor="wedding">Pre Wedding</label>
-                                  </div>
-                                  <div className="space-x-1">
-                                    <input
-                                      type="radio"
-                                      className="cursor-pointer"
-                                      name="functionType"
-                                      value="wedding"
-                                      checked={
-                                        enquiryFormData.functionType ===
-                                        "wedding"
-                                      }
-                                      onChange={onChange}
-                                      id="functionType"
-                                    />
-                                    <label htmlFor="wedding">Wedding</label>
-                                  </div>
+                            )}
+                            <div className="flex flex-col text-sm space-y-2">
+                              <span className="text-lg font-medium">
+                                Function Type
+                              </span>
+                              <div className="grid grid-cols-2 w-full gap-2">
+                                <div className="space-x-1">
+                                  <input
+                                    type="radio"
+                                    className="cursor-pointer"
+                                    name="functionType"
+                                    value="preWedding"
+                                    checked={
+                                      enquiryFormData.functionType ===
+                                      "preWedding"
+                                    }
+                                    onChange={onChange}
+                                    id="functionType"
+                                  />
+                                  <label htmlFor="wedding">Pre Wedding</label>
+                                </div>
+                                <div className="space-x-1">
+                                  <input
+                                    type="radio"
+                                    className="cursor-pointer"
+                                    name="functionType"
+                                    value="wedding"
+                                    checked={
+                                      enquiryFormData.functionType === "wedding"
+                                    }
+                                    onChange={onChange}
+                                    id="functionType"
+                                  />
+                                  <label htmlFor="wedding">wedding</label>
+                                </div>
+                                <div className="space-x-1">
+                                  <input
+                                    type="radio"
+                                    className="cursor-pointer"
+                                    name="functionType"
+                                    value="party"
+                                    checked={
+                                      enquiryFormData.functionType === "party"
+                                    }
+                                    onChange={onChange}
+                                    id="functionType"
+                                  />
+                                  <label htmlFor="party">Party</label>
+                                </div>
+                                <div className="space-x-1">
+                                  <input
+                                    type="radio"
+                                    className="cursor-pointer"
+                                    name="functionType"
+                                    value="farewell"
+                                    checked={
+                                      enquiryFormData.functionType ===
+                                      "farewell"
+                                    }
+                                    onChange={onChange}
+                                    id="functionType"
+                                  />
+                                  <label htmlFor="wedding">farewell</label>
                                 </div>
                               </div>
-                              <div className="flex flex-col text-sm space-y-2">
-                                <span className="text-lg font-medium">
-                                  Function Time
-                                </span>
-                                <div className="flex justify-between">
-                                  <div className="space-x-1">
-                                    <input
-                                      type="radio"
-                                      className="cursor-pointer"
-                                      name="functionTime"
-                                      value="evening"
-                                      onChange={onChange}
-                                      checked={
-                                        enquiryFormData.functionTime ===
-                                        "evening"
-                                      }
-                                      id="functionTime"
-                                    />
-                                    <label htmlFor="preWedding">Evening</label>
-                                  </div>
-                                  <div className="space-x-1">
-                                    <input
-                                      type="radio"
-                                      className="cursor-pointer"
-                                      name="functionTime"
-                                      onChange={onChange}
-                                      value="day"
-                                      checked={
-                                        enquiryFormData.functionTime === "day"
-                                      }
-                                      id="functionTime"
-                                    />
-                                    <label htmlFor="day">Day</label>
-                                  </div>
+                            </div>
+                            <div className="flex flex-col text-sm space-y-2">
+                              <span className="text-lg font-medium">
+                                Function Time
+                              </span>
+                              <div className="flex justify-between">
+                                <div className="space-x-1">
+                                  <input
+                                    type="radio"
+                                    className="cursor-pointer"
+                                    name="functionTime"
+                                    value="evening"
+                                    onChange={onChange}
+                                    checked={
+                                      enquiryFormData.functionTime === "evening"
+                                    }
+                                    id="functionTime"
+                                  />
+                                  <label htmlFor="time">Evening</label>
+                                </div>
+                                <div className="space-x-1">
+                                  <input
+                                    type="radio"
+                                    className="cursor-pointer"
+                                    name="functionTime"
+                                    onChange={onChange}
+                                    value="day"
+                                    checked={
+                                      enquiryFormData.functionTime === "day"
+                                    }
+                                    id="functionTime"
+                                  />
+                                  <label htmlFor="day">Day</label>
                                 </div>
                               </div>
+                            </div>
+                          </div>
+                          <button
+                            type="submit"
+                            disabled={messageSent}
+                            className="w-full bg-red-600 hover:bg-red-700 duration-300 text-white px-4 py-4 rounded-md"
+                          >
+                            <span>Check Availability & Prices</span>
+                          </button>
+                        </form>
+                      </div>
+                    ) : (
+                      <div className="flex flex-col justify-start w-full p-4">
+                        <span className="font-medium">
+                          Verify the mobile number to contact the vendor
+                        </span>
+                        <form
+                          onSubmit={handleVendorDetails}
+                          method="post"
+                          className="w-full flex flex-col mb-2"
+                        >
+                          <div className="flex space-x-4 mt-2 w-full jusitfy-around">
+                            <input
+                              className="border-gray-400 focus:outline-none focus:placeholder:text-red-200 border-b-[1px]  hover:border-black h-8"
+                              type="text"
+                              placeholder="Full name"
+                            />
+                            <input
+                              className="border-gray-400 focus:outline-none focus:placeholder:text-red-200 border-b-[1px]  hover:border-black h-8"
+                              type="phone"
+                              placeholder="Mobile number"
+                            />
+                          </div>
+                          <div className="flex flex-col w-full">
+                            <div className="flex space-x-1 mt-3 items-center">
+                              <input type="checkbox" />
+                              <span>Text me vendors details</span>
                             </div>
                             <button
                               type="submit"
-                              disabled={messageSent}
-                              className="w-full bg-red-600 hover:bg-red-700 duration-300 text-white px-4 py-4 rounded-md"
+                              className="mt-4 bg-red-600 text-white hover:bg-red-700 py-3 rounded-md text-xl duration-300"
                             >
-                              <span>Check Availability & Prices</span>
+                              Verify
                             </button>
-                          </form>
-                        </div>
-                      ) : (
-                        <div className="flex flex-col justify-start w-full p-4">
-                          <span className="font-medium">
-                            Verify the mobile number to contact the vendor
-                          </span>
-                          <form
-                            onSubmit={handleVendorDetails}
-                            method="post"
-                            className="w-full flex flex-col mb-2"
-                          >
-                            <div className="flex space-x-4 mt-2 w-full jusitfy-around">
-                              <input
-                                className="border-gray-400 focus:outline-none focus:placeholder:text-red-200 border-b-[1px]  hover:border-black h-8"
-                                type="text"
-                                placeholder="Full name"
-                              />
-                              <input
-                                className="border-gray-400 focus:outline-none focus:placeholder:text-red-200 border-b-[1px]  hover:border-black h-8"
-                                type="phone"
-                                placeholder="Mobile number"
-                              />
-                            </div>
-                            <div className="flex flex-col w-full">
-                              <div className="flex space-x-1 mt-3 items-center">
-                                <input type="checkbox" />
-                                <span>Text me vendors details</span>
-                              </div>
-                              <button
-                                type="submit"
-                                className="mt-4 bg-red-600 text-white hover:bg-red-700 py-3 rounded-md text-xl duration-300"
-                              >
-                                Verify
-                              </button>
-                            </div>
-                          </form>
-                        </div>
-                      )}
-                    </div>
+                          </div>
+                        </form>
+                      </div>
+                    )}
                   </div>
-                  <div></div>
                 </div>
-              </>
-            )}
-          </div>
+                <div></div>
+              </div>
+            </>
+          )}
         </div>
-      </>
+        {/* review */}
+        <div className="flex flex-col justify-between h-full w-[94%] mx-auto">
+          <WriteReview venue={venue} handleGetReviews={handleGetReviews} reviewsData={reviewsData} />
+        </div>
+      </div>
     </>
   );
 };
