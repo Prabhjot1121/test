@@ -14,10 +14,10 @@ const DisplayVendorsData = () => {
 
   return (
     <>
-      <div className="shadow-inner shadow-slate-400 bg-gradient-to-tr from-red-100 to-blue-100 flex flex-col items-center justify-start h-full w-full">
+      <div className="shadow-inner shadow-slate-400 bg-gradient-to-tr from-red-100 to-blue-100 flex flex-col items-center justify-start min-h-screen w-full">
         <div className="w-[85%] mt-12 ">
           <span className="text-3xl font-semibold">
-            {subCategory.charAt(0).toUpperCase() + subCategory.slice(1)}
+            {subCategory?.charAt(0).toUpperCase() + subCategory?.slice(1)}
           </span>
           <p className="flex items-end">
             Showing results{" "}
@@ -40,7 +40,6 @@ const DisplayVendorsData = () => {
                   /\s+/g,
                   "-"
                 )}`}
-
                 // to={`/vendors/${location}/${category}/all/${subCategory}/${venue.itemId}`}
                 onClick={() => {
                   window.scrollTo(0, 0);
@@ -73,29 +72,6 @@ const DisplayVendorsData = () => {
                       <span>
                         {venue.location.charAt(0).toUpperCase() +
                           venue.location.slice(1)}
-                      </span>
-                    </div>
-
-                    <div className="flex space-x-4 w-full ">
-                      <div className="flex flex-col items-start">
-                        <span className="text-sm text-slate-500">Veg</span>
-                        <span className="flex items-center text-sm">
-                          <FaRupeeSign />
-                          <span className="text-lg font-medium mr-1">
-                            {venue.foodCategory?.vegPlatePrice}
-                          </span>
-                          per plate
-                        </span>
-                      </div>
-                      <span className="flex flex-col items-start">
-                        <span className="text-sm text-slate-500">Non-Veg</span>
-                        <span className="flex items-center text-sm">
-                          <FaRupeeSign />
-                          <span className="text-lg font-medium mr-1">
-                            {venue.foodCategory?.nonVegPlatePrice}
-                          </span>
-                          per plate
-                        </span>
                       </span>
                     </div>
                   </div>
