@@ -9,9 +9,9 @@ export const vendorsData = {
           location: "delhi NCR",
           rating: 4.3,
           reviews: 7,
-          foodCategory: {
-            vegPlatePrice: 1000,
-            nonVegPlatePrice: 2000,
+          variety: {
+            firstPrice: 1000,
+            secondPrice: 2000,
           },
         },
         {
@@ -19,9 +19,9 @@ export const vendorsData = {
           name: "Crown Plaza Okhla",
           image: "venues-all-5.webp",
           location: "udaipur",
-          foodCategory: {
-            vegPlatePrice: 1200,
-            nonVegPlatePrice: 2400,
+          variety: {
+            firstPrice: 1200,
+            secondPrice: 2400,
           },
           rating: 4.6,
           reviews: {
@@ -33,9 +33,9 @@ export const vendorsData = {
           name: "Holiday Inn Jaipur",
           image: "Holiday Inn Jaipur.webp",
           location: "jaipur",
-          foodCategory: {
-            vegPlatePrice: 1500,
-            nonVegPlatePrice: 3000,
+          variety: {
+            firstPrice: 1500,
+            secondPrice: 3000,
           },
           rating: 4.5,
           reviews: {
@@ -47,9 +47,9 @@ export const vendorsData = {
           name: "CIDCO Convention Centre",
           image: "CIDCO.webp",
           location: "mumbai",
-          foodCategory: {
-            vegPlatePrice: 1500,
-            nonVegPlatePrice: 3000,
+          variety: {
+            firstPrice: 1500,
+            secondPrice: 3000,
           },
           rating: 4.5,
           reviews: {
@@ -61,9 +61,9 @@ export const vendorsData = {
           name: "Samode Palace",
           image: "Samode Palace.webp",
           location: "jaipur",
-          foodCategory: {
-            vegPlatePrice: 1500,
-            nonVegPlatePrice: 3000,
+          variety: {
+            firstPrice: 1500,
+            secondPrice: 3000,
           },
           rating: 4.5,
           reviews: {
@@ -75,9 +75,9 @@ export const vendorsData = {
           name: "Jaibagh Palace",
           image: "Jaibagh Palace.webp",
           location: "jaipur",
-          foodCategory: {
-            vegPlatePrice: 1500,
-            nonVegPlatePrice: 3000,
+          variety: {
+            firstPrice: 1500,
+            secondPrice: 3000,
           },
           rating: 4.5,
           reviews: {
@@ -89,9 +89,9 @@ export const vendorsData = {
           name: "Four Points by Sheraton",
           image: "Four Points by Sheraton.webp",
           location: "delhi",
-          foodCategory: {
-            vegPlatePrice: 1500,
-            nonVegPlatePrice: 3000,
+          variety: {
+            firstPrice: 1500,
+            secondPrice: 3000,
           },
           rating: 4.5,
           reviews: {
@@ -103,9 +103,9 @@ export const vendorsData = {
           name: "POLO LUXURIOUS DESTINATION",
           image: "POLO LUXURIOUS DESTINATION.webp",
           location: "jaipur",
-          foodCategory: {
-            vegPlatePrice: 1500,
-            nonVegPlatePrice: 3000,
+          variety: {
+            firstPrice: 1500,
+            secondPrice: 3000,
           },
           rating: 4.5,
           reviews: {
@@ -117,9 +117,9 @@ export const vendorsData = {
           name: "Hotel Grand Maple",
           image: "Hotel Grand Maple.webp",
           location: "jaipur",
-          foodCategory: {
-            vegPlatePrice: 1500,
-            nonVegPlatePrice: 3000,
+          variety: {
+            firstPrice: 1500,
+            secondPrice: 3000,
           },
           rating: 4.5,
           reviews: {
@@ -131,9 +131,9 @@ export const vendorsData = {
           name: "Lalita Grand",
           image: "Lalita Grand.webp",
           location: "delhi",
-          foodCategory: {
-            vegPlatePrice: 1500,
-            nonVegPlatePrice: 3000,
+          variety: {
+            firstPrice: 1500,
+            secondPrice: 3000,
           },
           rating: 4.5,
           reviews: {
@@ -145,9 +145,9 @@ export const vendorsData = {
           name: "The Pergola",
           image: "The Pergola.webp",
           location: "mumbai",
-          foodCategory: {
-            vegPlatePrice: 1500,
-            nonVegPlatePrice: 3000,
+          variety: {
+            firstPrice: 1500,
+            secondPrice: 3000,
           },
           rating: 4.5,
           reviews: {
@@ -159,9 +159,9 @@ export const vendorsData = {
           name: "Stardom Resort Jaipur",
           image: "Stardom Resort Jaipur.webp",
           location: "jaipur",
-          foodCategory: {
-            vegPlatePrice: 1500,
-            nonVegPlatePrice: 3000,
+          variety: {
+            firstPrice: 1500,
+            secondPrice: 3000,
           },
           rating: 4.5,
           reviews: {
@@ -173,9 +173,9 @@ export const vendorsData = {
           name: "Chevron",
           image: "Chevron.webp",
           location: "delhi",
-          foodCategory: {
-            vegPlatePrice: 1500,
-            nonVegPlatePrice: 3000,
+          variety: {
+            firstPrice: 1500,
+            secondPrice: 3000,
           },
           rating: 4.5,
           reviews: {
@@ -187,9 +187,9 @@ export const vendorsData = {
           name: "Radisson Blu Plaza Delhi Airport",
           image: "Radisson Blu Plaza Delhi Airport.webp",
           location: "delhi",
-          foodCategory: {
-            vegPlatePrice: 1500,
-            nonVegPlatePrice: 3000,
+          variety: {
+            firstPrice: 1500,
+            secondPrice: 3000,
           },
           rating: 4.5,
           reviews: {
@@ -203,9 +203,9 @@ export const vendorsData = {
           name: "Umaid Palace",
           image: "umaid palace.webp",
           location: "Jaipur",
-          foodCategory: {
-            vegPlatePrice: 1000,
-            nonVegPlatePrice: 2000,
+          variety: {
+            firstPrice: 1000,
+            secondPrice: 2000,
           },
           rating: 4.8,
           reviews: {
@@ -217,9 +217,9 @@ export const vendorsData = {
           name: "Novotel Jaipur Convention Centre",
           image: "Novotel Jaipur Convention.webp",
           location: "Jaipur",
-          foodCategory: {
-            vegPlatePrice: 1000,
-            nonVegPlatePrice: 2000,
+          variety: {
+            firstPrice: 1000,
+            secondPrice: 2000,
           },
           rating: 4.8,
           reviews: {
@@ -231,9 +231,9 @@ export const vendorsData = {
           name: "Bamboo saa Resort and Spa",
           image: "bamboo resort.webp",
           location: "udaipur",
-          foodCategory: {
-            vegPlatePrice: 1000,
-            nonVegPlatePrice: 2000,
+          variety: {
+            firstPrice: 1000,
+            secondPrice: 2000,
           },
           rating: 4.8,
           reviews: {
@@ -245,9 +245,9 @@ export const vendorsData = {
           name: "Hotel Grand Maple",
           image: "Hotel Grand Maple.webp",
           location: "delhi NCR",
-          foodCategory: {
-            vegPlatePrice: 1000,
-            nonVegPlatePrice: 2000,
+          variety: {
+            firstPrice: 1000,
+            secondPrice: 2000,
           },
           rating: 4.8,
           reviews: {
@@ -259,9 +259,9 @@ export const vendorsData = {
           name: "CIDCO Convention Centre",
           image: "CIDCO.webp",
           location: "delhi NCR",
-          foodCategory: {
-            vegPlatePrice: 1000,
-            nonVegPlatePrice: 2000,
+          variety: {
+            firstPrice: 1000,
+            secondPrice: 2000,
           },
           rating: 4.8,
           reviews: {
@@ -273,9 +273,9 @@ export const vendorsData = {
           name: "Four Points by Sheraton",
           image: "Four Points by Sheraton.webp",
           location: "delhi NCR",
-          foodCategory: {
-            vegPlatePrice: 1000,
-            nonVegPlatePrice: 2000,
+          variety: {
+            firstPrice: 1000,
+            secondPrice: 2000,
           },
           rating: 4.8,
           reviews: {
@@ -287,9 +287,9 @@ export const vendorsData = {
           name: "Crown Plaza Mayur Vihar",
           image: "Crown Plaza Mayur vihar.webp",
           location: "Greater Noida, Delhi",
-          foodCategory: {
-            vegPlatePrice: 1000,
-            nonVegPlatePrice: 2000,
+          variety: {
+            firstPrice: 1000,
+            secondPrice: 2000,
           },
           rating: 4.8,
           reviews: {
@@ -301,9 +301,9 @@ export const vendorsData = {
           name: "Radisson Blu Plaza Delhi Airport",
           image: "Radisson Blu Plaza Delhi Airport.webp",
           location: "Aerocity, Delhi",
-          foodCategory: {
-            vegPlatePrice: 1000,
-            nonVegPlatePrice: 2000,
+          variety: {
+            firstPrice: 1000,
+            secondPrice: 2000,
           },
           rating: 4.8,
           reviews: {
@@ -315,9 +315,9 @@ export const vendorsData = {
           name: "Hotel Raj Bagh Palace",
           image: "Hotel Raj Bagh Palace.webp",
           location: "delhi NCR",
-          foodCategory: {
-            vegPlatePrice: 1000,
-            nonVegPlatePrice: 2000,
+          variety: {
+            firstPrice: 1000,
+            secondPrice: 2000,
           },
           rating: 4.8,
           reviews: {
@@ -331,9 +331,9 @@ export const vendorsData = {
           name: "Umaid Palace",
           image: "umaid palace.webp",
           location: "udaipur",
-          foodCategory: {
-            vegPlatePrice: 1200,
-            nonVegPlatePrice: 2400,
+          variety: {
+            firstPrice: 1200,
+            secondPrice: 2400,
           },
           rating: 4.9,
           reviews: {
@@ -345,9 +345,9 @@ export const vendorsData = {
           name: "Novotel Jaipur Convention Centre",
           image: "Novotel Jaipur Convention.webp",
           location: "udaipur",
-          foodCategory: {
-            vegPlatePrice: 1200,
-            nonVegPlatePrice: 2400,
+          variety: {
+            firstPrice: 1200,
+            secondPrice: 2400,
           },
           rating: 4.9,
           reviews: {
@@ -359,9 +359,9 @@ export const vendorsData = {
           name: "Bamboo Saa & Resort Spa",
           image: "bamboo resort.webp",
           location: "udaipur",
-          foodCategory: {
-            vegPlatePrice: 1200,
-            nonVegPlatePrice: 2400,
+          variety: {
+            firstPrice: 1200,
+            secondPrice: 2400,
           },
           rating: 4.9,
           reviews: {
@@ -373,9 +373,9 @@ export const vendorsData = {
           name: "CIDCO Convention Centre",
           image: "CIDCO.webp",
           location: "Navi Mumbai",
-          foodCategory: {
-            vegPlatePrice: 1000,
-            nonVegPlatePrice: 2000,
+          variety: {
+            firstPrice: 1000,
+            secondPrice: 2000,
           },
           rating: 4.8,
           reviews: {
@@ -387,9 +387,9 @@ export const vendorsData = {
           name: "The Pergola",
           image: "The Pergola.webp",
           location: "Navi Mumbai",
-          foodCategory: {
-            vegPlatePrice: 1000,
-            nonVegPlatePrice: 2000,
+          variety: {
+            firstPrice: 1000,
+            secondPrice: 2000,
           },
           rating: 4.8,
           reviews: {
@@ -401,9 +401,9 @@ export const vendorsData = {
           name: "Hotel Grand Maple",
           image: "Hotel Grand Maple.webp",
           location: "udaipur",
-          foodCategory: {
-            vegPlatePrice: 1200,
-            nonVegPlatePrice: 2400,
+          variety: {
+            firstPrice: 1200,
+            secondPrice: 2400,
           },
           rating: 4.9,
           reviews: {
@@ -417,9 +417,9 @@ export const vendorsData = {
           name: "Rainforest Resort, Igatpuri",
           image: "Rainforest Resort Igatpuri.webp",
           location: "Mumbai",
-          foodCategory: {
-            vegPlatePrice: 1000,
-            nonVegPlatePrice: 2000,
+          variety: {
+            firstPrice: 1000,
+            secondPrice: 2000,
           },
           rating: 4.9,
           reviews: {
@@ -431,9 +431,9 @@ export const vendorsData = {
           name: "Hotel Grand Maple",
           image: "Hotel Grand Maple.webp",
           location: "jaipur",
-          foodCategory: {
-            vegPlatePrice: 1200,
-            nonVegPlatePrice: 2400,
+          variety: {
+            firstPrice: 1200,
+            secondPrice: 2400,
           },
           rating: 4.9,
           reviews: {
@@ -445,9 +445,9 @@ export const vendorsData = {
           name: "Bamboo Saa Resort & Spa",
           image: "bamboo resort.webp",
           location: "udaipur",
-          foodCategory: {
-            vegPlatePrice: 1500,
-            nonVegPlatePrice: 3000,
+          variety: {
+            firstPrice: 1500,
+            secondPrice: 3000,
           },
           rating: 4.9,
           reviews: {
@@ -459,9 +459,9 @@ export const vendorsData = {
           name: "Chomu Palace Hotel",
           image: "chomu palace.webp",
           location: "jaipur",
-          foodCategory: {
-            vegPlatePrice: 1500,
-            nonVegPlatePrice: 3000,
+          variety: {
+            firstPrice: 1500,
+            secondPrice: 3000,
           },
           rating: 4.9,
           reviews: {
@@ -473,9 +473,9 @@ export const vendorsData = {
           name: "Aizaa Resorts & Hotels Jaipur",
           image: "aiza.webp",
           location: "jaipur",
-          foodCategory: {
-            vegPlatePrice: 1500,
-            nonVegPlatePrice: 3000,
+          variety: {
+            firstPrice: 1500,
+            secondPrice: 3000,
           },
           rating: 4.9,
           reviews: {
@@ -487,9 +487,9 @@ export const vendorsData = {
           name: "Amargarh Resort",
           image: "Amargarh Resort.webp",
           location: "udaipur",
-          foodCategory: {
-            vegPlatePrice: 1500,
-            nonVegPlatePrice: 3000,
+          variety: {
+            firstPrice: 1500,
+            secondPrice: 3000,
           },
           rating: 4.9,
           reviews: {
@@ -503,9 +503,9 @@ export const vendorsData = {
           name: "Jaibagh Palace",
           image: "jaibagh Palace.webp",
           location: "Jaipur",
-          foodCategory: {
-            vegPlatePrice: 1000,
-            nonVegPlatePrice: 2000,
+          variety: {
+            firstPrice: 1000,
+            secondPrice: 2000,
           },
           rating: 4.9,
           reviews: {
@@ -517,9 +517,9 @@ export const vendorsData = {
           name: "Blue Sea Banquets",
           image: "Blue Sea Mumbai.webp",
           location: "Mumbai",
-          foodCategory: {
-            vegPlatePrice: 1200,
-            nonVegPlatePrice: 2400,
+          variety: {
+            firstPrice: 1200,
+            secondPrice: 2400,
           },
           rating: 4.9,
           reviews: {
@@ -531,9 +531,9 @@ export const vendorsData = {
           name: "Radisson Blu Hotel Greater Noida",
           image: "Radisson Blu Hotel Greater Noida.webp",
           location: "Greater Noida",
-          foodCategory: {
-            vegPlatePrice: 1500,
-            nonVegPlatePrice: 3000,
+          variety: {
+            firstPrice: 1500,
+            secondPrice: 3000,
           },
           rating: 4.9,
           reviews: {
@@ -545,9 +545,9 @@ export const vendorsData = {
           name: "Yaan Wellness Retreat",
           image: "Yaan Wellness Retreat.webp",
           location: "Udaipur",
-          foodCategory: {
-            vegPlatePrice: 1500,
-            nonVegPlatePrice: 3000,
+          variety: {
+            firstPrice: 1500,
+            secondPrice: 3000,
           },
           rating: 4.9,
           reviews: {
@@ -559,9 +559,9 @@ export const vendorsData = {
           name: "Radisson Blu Mumbai International Airport",
           image: "Radisson Blu Mumbai.webp",
           location: "Mumbai",
-          foodCategory: {
-            vegPlatePrice: 1500,
-            nonVegPlatePrice: 3000,
+          variety: {
+            firstPrice: 1500,
+            secondPrice: 3000,
           },
           rating: 4.9,
           reviews: {
@@ -573,9 +573,9 @@ export const vendorsData = {
           name: "Tivoli Grand Resort Hotel",
           image: "Tivoli Grand Resort Hotel Delhi.webp",
           location: "delhi",
-          foodCategory: {
-            vegPlatePrice: 1500,
-            nonVegPlatePrice: 3000,
+          variety: {
+            firstPrice: 1500,
+            secondPrice: 3000,
           },
           rating: 4.9,
           reviews: {
@@ -589,9 +589,9 @@ export const vendorsData = {
           name: "Jaibagh Palace",
           image: "jaibagh Palace.webp",
           location: "Jaipur",
-          foodCategory: {
-            vegPlatePrice: 1000,
-            nonVegPlatePrice: 2000,
+          variety: {
+            firstPrice: 1000,
+            secondPrice: 2000,
           },
           rating: 4.9,
           reviews: {
@@ -603,9 +603,9 @@ export const vendorsData = {
           name: "Yaan Wellness & Retreat",
           image: "Yaan Wellness Retreat.webp",
           location: "udaipur",
-          foodCategory: {
-            vegPlatePrice: 1200,
-            nonVegPlatePrice: 2400,
+          variety: {
+            firstPrice: 1200,
+            secondPrice: 2400,
           },
           rating: 4.9,
           reviews: {
@@ -617,9 +617,9 @@ export const vendorsData = {
           name: "Grassfield Valley Resort",
           image: "Grassfield Valley Resort.webp",
           location: "jaipur",
-          foodCategory: {
-            vegPlatePrice: 1500,
-            nonVegPlatePrice: 3000,
+          variety: {
+            firstPrice: 1500,
+            secondPrice: 3000,
           },
           rating: 4.9,
           reviews: {
@@ -635,9 +635,9 @@ export const vendorsData = {
           name: "Creation Frame Makers",
           image: "Creation Frame Makers.webp",
           location: "delhi NCR",
-          foodCategory: {
-            vegPlatePrice: 1000,
-            nonVegPlatePrice: 2000,
+          variety: {
+            firstPrice: 1000,
+            secondPrice: 2000,
           },
           rating: 5.0,
           reviews: {
@@ -649,9 +649,9 @@ export const vendorsData = {
           name: "Pixel Stream",
           image: "Pixel Stream.webp",
           location: "udaipur",
-          foodCategory: {
-            vegPlatePrice: 1200,
-            nonVegPlatePrice: 2400,
+          variety: {
+            firstPrice: 1200,
+            secondPrice: 2400,
           },
           rating: 5.0,
           reviews: {
@@ -659,13 +659,13 @@ export const vendorsData = {
           },
         },
         {
-          itemId: 50,
+          itemId: 501,
           name: "Wedmeclick",
           image: "Wedmeclick.webp",
           location: "jaipur",
-          foodCategory: {
-            vegPlatePrice: 1500,
-            nonVegPlatePrice: 3000,
+          variety: {
+            firstPrice: 1500,
+            secondPrice: 3000,
           },
           rating: 4.6,
           reviews: {
@@ -673,13 +673,13 @@ export const vendorsData = {
           },
         },
         {
-          itemId: 50,
+          itemId: 51,
           name: "The Wedding Donut",
           image: "The Wedding Donut.webp",
           location: "jaipur",
-          foodCategory: {
-            vegPlatePrice: 1500,
-            nonVegPlatePrice: 3000,
+          variety: {
+            firstPrice: 1500,
+            secondPrice: 3000,
           },
           rating: 4.7,
           reviews: {
@@ -691,9 +691,9 @@ export const vendorsData = {
           name: "7Clicks Photography",
           image: "7Clicks Photography.webp",
           location: "jaipur",
-          foodCategory: {
-            vegPlatePrice: 1500,
-            nonVegPlatePrice: 3000,
+          variety: {
+            firstPrice: 1500,
+            secondPrice: 3000,
           },
           rating: 4.8,
           reviews: {
@@ -705,9 +705,9 @@ export const vendorsData = {
           name: "Fearless Pheras",
           image: "Fearless Pheras.webp",
           location: "jaipur",
-          foodCategory: {
-            vegPlatePrice: 1500,
-            nonVegPlatePrice: 3000,
+          variety: {
+            firstPrice: 1500,
+            secondPrice: 3000,
           },
           rating: 4.9,
           reviews: {
@@ -715,13 +715,13 @@ export const vendorsData = {
           },
         },
         {
-          itemId: 152,
+          itemId: 153,
           name: "Feeling Gajab",
           image: "Feeling Gajab.webp",
           location: "jaipur",
-          foodCategory: {
-            vegPlatePrice: 1500,
-            nonVegPlatePrice: 3000,
+          variety: {
+            firstPrice: 1500,
+            secondPrice: 3000,
           },
           rating: 5.0,
           reviews: {
@@ -729,29 +729,17 @@ export const vendorsData = {
           },
         },
       ],
-      "pre-wedding-shoot": [
+    },
+    "planning-decor": {
+      "wedding-planners": [
         {
-          itemId: 51,
-          name: "Ramada  Wedding Photographers",
-          image: "venues-all.webp",
-          location: "delhi NCR",
-          foodCategory: {
-            vegPlatePrice: 1000,
-            nonVegPlatePrice: 2000,
-          },
-          rating: 4.9,
-          reviews: {
-            "no of reviews": 7,
-          },
-        },
-        {
-          itemId: 52,
-          name: "Wedding Shoot Photographers",
-          image: "venues-all-2.webp",
+          itemId: 200,
+          name: "7 Grace Eventz",
+          image: "7 Grace Eventz.webp",
           location: "udaipur",
-          foodCategory: {
-            vegPlatePrice: 1200,
-            nonVegPlatePrice: 2400,
+          variety: {
+            firstPrice: 1000,
+            secondPrice: 2000,
           },
           rating: 4.9,
           reviews: {
@@ -759,13 +747,253 @@ export const vendorsData = {
           },
         },
         {
-          itemId: 53,
-          name: "Destination Videography Center",
-          image: "venues-all-3.webp",
+          itemId: 201,
+          name: "Bling It On",
+          image: "bling It On.webp",
+          location: "delhi NCR",
+          variety: {
+            firstPrice: 1000,
+            secondPrice: 2000,
+          },
+          rating: 4.9,
+          reviews: {
+            "no of reviews": 7,
+          },
+        },
+        {
+          itemId: 202,
+          name: "Blissful Weddings",
+          image: "Blissful Weddings.webp",
           location: "jaipur",
-          foodCategory: {
-            vegPlatePrice: 1500,
-            nonVegPlatePrice: 3000,
+          variety: {
+            firstPrice: 1000,
+            secondPrice: 2000,
+          },
+          rating: 4.9,
+          reviews: {
+            "no of reviews": 7,
+          },
+        },
+        {
+          itemId: 203,
+          name: "Event Gurus",
+          image: "Event Gurus.webp",
+          location: "mumbai",
+          variety: {
+            firstPrice: 1000,
+            secondPrice: 2000,
+          },
+          rating: 4.9,
+          reviews: {
+            "no of reviews": 7,
+          },
+        },
+        {
+          itemId: 204,
+          name: "Eventmakers",
+          image: "Eventmakers.webp",
+          location: "udaipur",
+          variety: {
+            firstPrice: 1000,
+            secondPrice: 2000,
+          },
+          rating: 4.9,
+          reviews: {
+            "no of reviews": 7,
+          },
+        },
+        {
+          itemId: 205,
+          name: "Purple Planet Events",
+          image: "Purple Planet Events.webp",
+          location: "udaipur",
+          variety: {
+            firstPrice: 1000,
+            secondPrice: 2000,
+          },
+          rating: 4.9,
+          reviews: {
+            "no of reviews": 7,
+          },
+        },
+        {
+          itemId: 206,
+          name: "The Celebrators",
+          image: "The Celebrators.webp",
+          location: "mumbai",
+          variety: {
+            firstPrice: 1000,
+            secondPrice: 2000,
+          },
+          rating: 4.9,
+          reviews: {
+            "no of reviews": 7,
+          },
+        },
+        {
+          itemId: 207,
+          name: "The Shadi Vibes",
+          image: "The Shadi Vibes.webp",
+          location: "delhi NCR",
+          variety: {
+            firstPrice: 1000,
+            secondPrice: 2000,
+          },
+          rating: 4.9,
+          reviews: {
+            "no of reviews": 7,
+          },
+        },
+        {
+          itemId: 208,
+          name: "Wedding Project India",
+          image: "Wedding Project India.webp",
+          location: "jaipur",
+          variety: {
+            firstPrice: 1000,
+            secondPrice: 2000,
+          },
+          rating: 4.9,
+          reviews: {
+            "no of reviews": 7,
+          },
+        },
+      ],
+      "wedding-decorators": [
+        {
+          itemId: 209,
+          name: "Zzeeh Wedding Planners",
+          image: "Zzeeh Wedding Planners.webp",
+          location: "udaipur",
+          variety: {
+            firstPrice: 1000,
+            secondPrice: 2000,
+          },
+          rating: 4.9,
+          reviews: {
+            "no of reviews": 7,
+          },
+        },
+        {
+          itemId: 210,
+          name: "Yellow Umbrella Entertainments",
+          image: "Yellow Umbrella Entertainments.webp",
+          location: "delhi NCR",
+          variety: {
+            firstPrice: 1000,
+            secondPrice: 2000,
+          },
+          rating: 4.9,
+          reviews: {
+            "no of reviews": 7,
+          },
+        },
+        {
+          itemId: 211,
+          name: "The Design Atelier",
+          image: "The Design Atelier.webp",
+          location: "jaipur",
+          variety: {
+            firstPrice: 1000,
+            secondPrice: 2000,
+          },
+          rating: 4.9,
+          reviews: {
+            "no of reviews": 7,
+          },
+        },
+        {
+          itemId: 212,
+          name: "The Camellia Events",
+          image: "The Camellia Events.webp",
+          location: "mumbai",
+          variety: {
+            firstPrice: 1000,
+            secondPrice: 2000,
+          },
+          rating: 4.9,
+          reviews: {
+            "no of reviews": 7,
+          },
+        },
+        {
+          itemId: 213,
+          name: "Blue Sea Events & Entertainments",
+          image: "Blue Sea and Entertainments.webp",
+          location: "udaipur",
+          variety: {
+            firstPrice: 1000,
+            secondPrice: 2000,
+          },
+          rating: 4.9,
+          reviews: {
+            "no of reviews": 7,
+          },
+        },
+        {
+          itemId: 214,
+          name: "Melting Flowers",
+          image: "Melting Flowers.webp",
+          location: "jaipur",
+          variety: {
+            firstPrice: 1000,
+            secondPrice: 2000,
+          },
+          rating: 4.9,
+          reviews: {
+            "no of reviews": 7,
+          },
+        },
+        {
+          itemId: 215,
+          name: "Kashi Events",
+          image: "Kashi Events.webp",
+          location: "pune",
+          variety: {
+            firstPrice: 1000,
+            secondPrice: 2000,
+          },
+          rating: 4.9,
+          reviews: {
+            "no of reviews": 7,
+          },
+        },
+        {
+          itemId: 216,
+          name: "The Glitttering Arc",
+          image: "The Glitttering Arc.webp",
+          location: "mumbai",
+          variety: {
+            firstPrice: 1000,
+            secondPrice: 2000,
+          },
+          rating: 4.9,
+          reviews: {
+            "no of reviews": 7,
+          },
+        },
+        {
+          itemId: 217,
+          name: "The Partywala",
+          image: "The Partywala.webp",
+          location: "jaipur",
+          variety: {
+            firstPrice: 1000,
+            secondPrice: 2000,
+          },
+          rating: 4.9,
+          reviews: {
+            "no of reviews": 7,
+          },
+        },
+        {
+          itemId: 218,
+          name: "Tiger Lily",
+          image: "Tiger Lily.webp",
+          location: "udaipur",
+          variety: {
+            firstPrice: 1000,
+            secondPrice: 2000,
           },
           rating: 4.9,
           reviews: {
@@ -780,12 +1008,12 @@ export const vendorsData = {
       "wedding-venues": [
         {
           itemId: 54,
-          name: "Ramada by Wyndham Bengaluru Yelahanka",
+          name: "Ramada by Wyndham Bengaluru Yelahanka,Delhi",
           image: "venues-all.webp",
           location: "delhi NCR",
-          foodCategory: {
-            vegPlatePrice: 1000,
-            nonVegPlatePrice: 2000,
+          variety: {
+            firstPrice: 1000,
+            secondPrice: 2000,
           },
           rating: 4.9,
           reviews: {
@@ -794,12 +1022,12 @@ export const vendorsData = {
         },
         {
           itemId: 55,
-          name: "Crown Plaza Okhla",
+          name: "Crown Plaza Okhla Udaipur",
           image: "venues-all-2.webp",
           location: "udaipur",
-          foodCategory: {
-            vegPlatePrice: 1200,
-            nonVegPlatePrice: 2400,
+          variety: {
+            firstPrice: 1200,
+            secondPrice: 2400,
           },
           rating: 4.9,
           reviews: {
@@ -811,9 +1039,9 @@ export const vendorsData = {
           name: "Radisson Jaipur City Center",
           image: "venues-all-3.webp",
           location: "jaipur",
-          foodCategory: {
-            vegPlatePrice: 1500,
-            nonVegPlatePrice: 3000,
+          variety: {
+            firstPrice: 1500,
+            secondPrice: 3000,
           },
           rating: 4.9,
           reviews: {
@@ -835,9 +1063,9 @@ export const vendorsData = {
           name: "Ramada by Wyndham Bengaluru Yelahanka",
           image: "venues-all.webp",
           location: "Jaipur",
-          foodCategory: {
-            vegPlatePrice: 1000,
-            nonVegPlatePrice: 2000,
+          variety: {
+            firstPrice: 1000,
+            secondPrice: 2000,
           },
         },
         {
@@ -849,9 +1077,9 @@ export const vendorsData = {
           name: "Crown Plaza Okhla",
           image: "venues-all-2.webp",
           location: "Jaipur",
-          foodCategory: {
-            vegPlatePrice: 1200,
-            nonVegPlatePrice: 2400,
+          variety: {
+            firstPrice: 1200,
+            secondPrice: 2400,
           },
         },
         {
@@ -863,9 +1091,9 @@ export const vendorsData = {
           name: "Radisson Jaipur City Center",
           image: "venues-all-3.webp",
           location: "jaipur",
-          foodCategory: {
-            vegPlatePrice: 1500,
-            nonVegPlatePrice: 3000,
+          variety: {
+            firstPrice: 1500,
+            secondPrice: 3000,
           },
         },
       ],
@@ -878,9 +1106,9 @@ export const vendorsData = {
         name: "Ramada by Wyndham Bengaluru Yelahanka",
         image: "venues-all.webp",
         location: "delhi NCR",
-        foodCategory: {
-          vegPlatePrice: 1000,
-          nonVegPlatePrice: 2000,
+        variety: {
+          firstPrice: 1000,
+          secondPrice: 2000,
         },
       },
       {
@@ -892,9 +1120,9 @@ export const vendorsData = {
         name: "Crown Plaza Okhla",
         image: "venues-all-2.webp",
         location: "udaipur",
-        foodCategory: {
-          vegPlatePrice: 1200,
-          nonVegPlatePrice: 2400,
+        variety: {
+          firstPrice: 1200,
+          secondPrice: 2400,
         },
       },
       {
@@ -906,9 +1134,9 @@ export const vendorsData = {
         name: "Radisson Jaipur City Center",
         image: "venues-all-3.webp",
         location: "jaipur",
-        foodCategory: {
-          vegPlatePrice: 1500,
-          nonVegPlatePrice: 3000,
+        variety: {
+          firstPrice: 1500,
+          secondPrice: 3000,
         },
       },
     ],
@@ -924,9 +1152,9 @@ export const vendorsData = {
         name: "Ramada by Wyndham Bengaluru Yelahanka",
         image: "venues-all.webp",
         location: "delhi NCR",
-        foodCategory: {
-          vegPlatePrice: 1000,
-          nonVegPlatePrice: 2000,
+        variety: {
+          firstPrice: 1000,
+          secondPrice: 2000,
         },
       },
       {
@@ -938,9 +1166,9 @@ export const vendorsData = {
         name: "Crown Plaza Okhla",
         image: "venues-all-2.webp",
         location: "udaipur",
-        foodCategory: {
-          vegPlatePrice: 1200,
-          nonVegPlatePrice: 2400,
+        variety: {
+          firstPrice: 1200,
+          secondPrice: 2400,
         },
       },
       {
@@ -952,9 +1180,9 @@ export const vendorsData = {
         name: "Radisson Jaipur City Center",
         image: "venues-all-3.webp",
         location: "jaipur",
-        foodCategory: {
-          vegPlatePrice: 1500,
-          nonVegPlatePrice: 3000,
+        variety: {
+          firstPrice: 1500,
+          secondPrice: 3000,
         },
       },
     ],
