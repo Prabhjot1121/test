@@ -12,12 +12,11 @@ app.use(express.json({ limit: "30mb", extended: true }));
 app.use(express.urlencoded({ limit: "30mb", extended: true }));
 
 app.use(
-  cors()
-  //  {
-  //  origin: ["https://utsav.vercel.app"],
-  //  methods: ["POST", "GET", "PUT", "DELETE"],
-  //  credentials: true,
-  // }
+  cors({
+    origin: ["https://utsav.vercel.app"],
+    methods: ["POST", "GET", "PUT", "DELETE"],
+    credentials: true,
+  })
 );
 app.use(bodyParser.json());
 
