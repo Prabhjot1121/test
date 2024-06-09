@@ -14,7 +14,6 @@ import {
 import Footer from "./Components/Footer";
 import { Toaster } from "react-hot-toast";
 import UserProfile from "./pages/UserProfile";
-import Dashboard from "./Components/Dashboard";
 import UserDetails from "./Components/UserDetails";
 import Settings from "./Components/Settings";
 import Activity from "./Components/Activity";
