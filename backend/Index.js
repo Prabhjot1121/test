@@ -40,7 +40,7 @@ process.on("uncaughtException", (err) => {
   process.exit(1);
 });
 
-app.get("/api/", (req, res) => {
+app.get("/", (req, res) => {
   return res.send("Hello World");
 });
 
