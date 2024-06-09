@@ -29,9 +29,9 @@ const Vendors = (props) => {
   return (
     <>
       <div className="shadow-inner shadow-slate-400 flex flex-col items-center justify-start bg-gradient-to-tr from-red-100 to-blue-100 w-full min-h-screen">
-        <div className="flex items-center justify-between  mt-16 w-[85%] h-12">
-          <div className="flex flex-row text-3xl justify-start h-fit items-center w-fit">
-            <span className="text-2xl underline underline-offset-8 decoration-red-600 font-semibold">
+        <div className="flex flex-col md:flex-row items-start md:items-center space-y-6 md:space-y-0 justify-between  mt-16 w-[85%] md:h-12">
+          <div className="flex flex-row text-lg md:text-2xl lg:text-3xl justify-start h-fit items-center w-fit">
+            <span className="underline underline-offset-8 decoration-red-600 font-semibold">
               Wedding Categories
             </span>
             &gt;
@@ -39,7 +39,7 @@ const Vendors = (props) => {
           <Location />
         </div>
         {/* <Location/> */}
-        <div className="grid grid-cols-1 sm:grid-cols-2 gap-6 pb-10 grid-flow-row row-auto w-[85%] mt-4">
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-6 pb-10 grid-flow-row row-auto w-[85%] mt-4">
           <div className="w-full">
             <div
               onClick={() => handleDropdown("venue1")}
