@@ -6,6 +6,7 @@ const fetchUser = require("../middleware/fetchUser");
 const bcrypt = require("bcryptjs");
 const jwt = require("jsonwebtoken");
 const nodemailer = require("nodemailer");
+const Reviews = require("../models/Review");
 const JWT_SECRET = "utsav-application@2905";
 
 // Create user route
@@ -17,7 +18,7 @@ router.post(
     body("password", "password must be atleast 8 characters").isLength({
       min: 8,
     }),
-    body("mobile number", "mobile number must be of 10 character"),
+    body("mobileNumber", "mobile number must be of 10 character"),
     body("address", "write your unique address in it"),
   ],
   async (req, res) => {
@@ -227,10 +228,12 @@ router.delete("/deleteUser/:id", fetchUser, async (req, res) => {
       return res.status(404).json("User not found");
     }
     await User.findByIdAndDelete(userId);
+    await Reviews.deleteMany({ userId });
     res.json("Account deleted successfully");
   } catch (error) {
     console.error(error.message);
     res.status(501).json("Internal server error");
   }
 });
+
 module.exports = router;
