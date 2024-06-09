@@ -1,5 +1,5 @@
 import moment from "moment-timezone"; // Importing moment-timezone
-import { createContext, useState } from "react";
+import { createContext, useEffect, useRef, useState } from "react";
 import toast from "react-hot-toast";
 export const ActivityContext = createContext();
 
@@ -7,6 +7,15 @@ export const ActivityProvider = ({ children }) => {
   const [savedItemsData, setSavedItemsData] = useState([]);
   const token = localStorage.getItem("token");
   const host = "http://localhost:8000/api/activity";
+  const [venue, setVenue] = useState(null);
+  const inputRef = useRef(null);
+  const [reviewsData, setReviewsData] = useState([]);
+  const [reviewText, setReviewText] = useState("");
+  const [fetchedUserReviewsData, setFetchedUserReviewsData] = useState([]);
+
+  const handleClear = () => {
+    inputRef.current.value = "";
+  };
 
   const saveItem = async (venueData) => {
     if (!token) {
@@ -23,8 +32,8 @@ export const ActivityProvider = ({ children }) => {
         body: JSON.stringify(venueData),
       });
       console.log(venueData);
-      if (!response.ok) {
-        throw new Error("Failed to process the request");
+      if (response.status === 409) {
+        toast.custom("Item already saved by this user");
       }
 
       const data = await response.json();
@@ -56,7 +65,6 @@ export const ActivityProvider = ({ children }) => {
           return bCreatedAt - aCreatedAt;
         });
         setSavedItemsData(sortedSavedData);
-        toast.success("Shortlisted items data!");
         console.log(sortedSavedData);
         console.log(data);
       } catch (error) {
@@ -84,6 +92,110 @@ export const ActivityProvider = ({ children }) => {
     }
   };
 
+  const saveReview = async () => {
+    try {
+      const response = await fetch(`${host}/saveReview`, {
+        method: "POST",
+        headers: {
+          "auth-token": token,
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({ reviewText, itemId: venue.itemId }),
+      });
+      if (!response.ok) {
+        console.log(response);
+        if (response.status === 400) {
+          toast.error("You already have reviewed");
+          handleClear();
+        } else {
+          toast.error("could not post review");
+          handleClear();
+        }
+        return;
+      }
+      const data = await response.json();
+      console.log(data);
+      toast.success("Review Submitted!");
+      handleClear();
+      setReviewText("");
+      getReviews();
+    } catch (error) {
+      console.error("Failed to process the request:", error);
+      toast.error("An unexpected error occurred. Please try again later.");
+    }
+  };
+
+  // fetch all reviews
+  const getReviews = async () => {
+    try {
+      const response = await fetch(`${host}/getAllReviews/${venue.itemId}`, {
+        method: "GET",
+        headers: {
+          "Content-Type": "application",
+        },
+      });
+      if (response.ok) {
+        const data = await response.json();
+        console.log(data);
+        setReviewsData(data);
+      }
+    } catch (error) {
+      toast.error("Could not fetch reviews data right now");
+    }
+  };
+
+  // fetch all reviews associated with a userId
+  // const handleFetchAllReviews = async (token) => {
+  //   const response = await fetch(`${host}/fetchAllReviews`, {
+  //     method: "GET",
+  //     headers: {
+  //       "Content-Type": "application/json",
+  //       "auth-token": token,
+  //     },
+  //   });
+  //   if (!response.ok) {
+  //     toast.error("Could not fetch all reviews right now");
+  //     return;
+  //   }
+
+  //   const data = await response.json();
+  //   console.log(data);
+  //   setFetchedUserReviewsData(data);
+  // };
+  // useEffect(() => {
+  //   handleFetchAllReviews();
+  //    eslint-disable-next-line
+  // }, [token]);
+
+  const formatTime = (timestamp) => {
+    const currentTime = new Date();
+    const postTime = new Date(timestamp);
+
+    const timeDifference = Math.floor((currentTime - postTime) / 1000); // in seconds
+
+    if (timeDifference < 60) {
+      return `${timeDifference} seconds ago`;
+    } else if (timeDifference < 3600) {
+      const minutes = Math.floor(timeDifference / 60);
+      return `${minutes} minute${minutes > 1 ? "s" : ""} ago`;
+    } else if (timeDifference < 86400) {
+      const hours = Math.floor(timeDifference / 3600);
+      return `${hours} hour${hours > 1 ? "s" : ""} ago`;
+    } else {
+      const options = {
+        weekday: "long",
+        year: "numeric",
+        month: "long",
+        day: "numeric",
+        hour: "numeric",
+        minute: "numeric",
+        second: "numeric",
+        // timeZoneName: "short",
+      };
+      return new Date(timestamp).toLocaleDateString("en-US", options);
+    }
+  };
+
   return (
     <>
       <ActivityContext.Provider
@@ -91,9 +203,22 @@ export const ActivityProvider = ({ children }) => {
           getSavedItemsData,
           savedItemsData,
           saveItem,
-          token,
           host,
+          token,
           removeItem,
+          venue,
+          setVenue,
+          getReviews,
+          saveReview,
+          handleClear,
+          inputRef,
+          reviewText,
+          setReviewText,
+          reviewsData,
+          setReviewsData,
+          fetchedUserReviewsData,
+          // handleFetchAllReviews,
+          formatTime,
         }}
       >
         {children}
