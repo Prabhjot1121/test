@@ -27,7 +27,7 @@ router.post("/saveItem", fetchUser, async (req, res) => {
       userId: userId,
     });
     if (existingSavedItem) {
-      return res.status(400).json("Item already saved by this user");
+      return res.status(409).json("Item already saved by this user");
     }
 
     const savedItem = new SavedItem({
