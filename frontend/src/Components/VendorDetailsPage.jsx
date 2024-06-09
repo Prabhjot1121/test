@@ -5,11 +5,12 @@ import { vendorsData } from "../vendorsData";
 import { MdEmail, MdLocationOn, MdPhone, MdPhotoLibrary } from "react-icons/md";
 import { FaPen, FaShare } from "react-icons/fa";
 import { IoMdHeart } from "react-icons/io";
-import { AuthContext } from "../Context/Authentication_context/AuthContext";
 import WriteReview from "./WriteReview";
+import { ActivityContext } from "../Context/Activity_context/ActivityContext";
+import Reviews from "../Components/Reviews";
 
 const VendorDetailsPage = () => {
-  const { token } = useContext(AuthContext);
+  const { token, venue, setVenue } = useContext(ActivityContext);
   const host = "http://localhost:8000";
   const [reviewsData, setReviewsData] = useState("");
   const [priceInfo, setPriceInfo] = useState("hidden");
@@ -17,7 +18,7 @@ const VendorDetailsPage = () => {
   const [isVisible, setIsVisible] = useState(false);
   const { category, name, subCategory, location } = useParams();
   const venueName = name.replace(/-/g, " ");
-  const [venue, setVenue] = useState(null);
+  // const [venue, setVenue] = useState(null);
   const [enquiryFormData, setEnquiryFormData] = useState({
     venueName: "",
     venueLocation: "",
@@ -40,13 +41,6 @@ const VendorDetailsPage = () => {
     }
   };
 
-  const togglePricingInfo = () => {
-    if (priceInfo === "hidden") {
-      setPriceInfo("flex");
-    } else {
-      setPriceInfo("hidden");
-    }
-  };
   const findVenue = () => {
     // Iterate over each location in vendorsData
     for (const location in vendorsData) {
@@ -165,23 +159,26 @@ const VendorDetailsPage = () => {
   };
 
   const handleGetReviews = async () => {
-    const response = await fetch(`${host}/api/activity/getAllReviews`, {
-      method: "GET",
-      headers: {
-        "Content-Type": "application/json",
-      },
-    });
-    if (!response.ok) {
-      throw new Error("Could not get reviews data");
+    if (venue && venue.itemid) {
+      const response = await fetch(
+        `${host}/api/activity/getAllReviews/${venue.itemId}`,
+        {
+          method: "GET",
+          headers: {
+            "Content-Type": "application/json",
+          },
+        }
+      );
+      if (!response.ok) {
+        throw new Error("Could not get reviews data");
+      }
+      const data = await response.json();
+      console.log(data);
+      setReviewsData(data);
+    } else {
+      console.log("didn't get venue and itemId");
     }
-    const data = await response.json();
-    console.log(data);
-    setReviewsData(data);
   };
-
-  useEffect(() => {
-    handleGetReviews();
-  }, [venue]);
 
   return (
     <>
@@ -239,10 +236,6 @@ const VendorDetailsPage = () => {
                         <IoMdHeart />
                         <span className="">Shortlist</span>
                       </button>
-                      <div className="flex items-center text-slate-500 hover:text-red-600 cursor-pointer space-x-1 w-full justify-center  border-r-[1px] border-slate-500">
-                        <FaPen />
-                        <span className="">Write a Review</span>
-                      </div>
                       <div className="flex items-center text-slate-500 hover:text-red-600 cursor-pointer space-x-1 w-full justify-center ">
                         <FaShare />
                         <button
@@ -526,7 +519,12 @@ const VendorDetailsPage = () => {
         </div>
         {/* review */}
         <div className="flex flex-col justify-between h-full w-[94%] mx-auto">
-          <WriteReview venue={venue} handleGetReviews={handleGetReviews} reviewsData={reviewsData} />
+          <WriteReview
+            venue={venue}
+            handleGetReviews={handleGetReviews}
+            reviewsData={reviewsData}
+          />
+          <Reviews />
         </div>
       </div>
     </>

@@ -25,14 +25,14 @@ const Login = () => {
         style={{ fontFamily: "sans-serif" }}
         className="flex justify-center items-center mx-auto w-full  bg-gradient-to-tr from-red-100 to-blue-100 h-[90vh]"
       >
-        <div className="flex items-center flex-col h-fit w-1/2">
+        <div className="flex items-center flex-col h-fit w-full lg:w-1/2">
           <span className="font-semibold text-3xl">LogIn to Continue</span>
           <form
             onSubmit={handleLogIn}
             className="flex items-center justify-center my-10 w-full"
             method="post"
           >
-            <div className="flex flex-col space-y-6 items-center justify-start h-[40vh] w-5/6">
+            <div className="flex flex-col space-y-6 items-center justify-start h-[40vh] w-full lg:w-5/6">
               <div className="flex flex-col items-start justify-center w-[60%]">
                 <label htmlFor="email">Email Address:</label>
                 <input

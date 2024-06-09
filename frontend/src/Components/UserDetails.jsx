@@ -67,7 +67,7 @@ const UserDetails = () => {
     <div className="min-h-[84vh] w-full">
       {userData.map((user) => (
         <div key={user._id} className="my-2 p-2 rounded-md h-full w-full">
-          <div className="flex items-center w-full justify-between text-3xl font-semibold">
+          <div className="flex items-center w-full justify-between text-xl lg:text-3xl font-semibold">
             <span className="flex items-center">
               <h2 className="underline decoration-red-600 underline-offset-2  ">
                 Personal Information
@@ -77,10 +77,11 @@ const UserDetails = () => {
             <FaUserEdit
               onClick={handleEditUserData}
               className="cursor-pointer"
+              size={25}
               style={{ color: "#dc2626" }}
             />
           </div>
-          <div className="grid row-auto w-full gap-5 mt-6 grid-cols-2">
+          <div className="grid row-auto w-full gap-5 mt-6 grid-cols-1 lg:grid-cols-2">
             <div className="flex flex-col justify-start w-full">
               <label
                 htmlFor="name"

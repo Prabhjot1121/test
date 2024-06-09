@@ -2,6 +2,7 @@ import React, { useContext, useEffect, useState } from "react";
 import toast from "react-hot-toast";
 import { FaUser } from "react-icons/fa";
 import { ActivityContext } from "../Context/Activity_context/ActivityContext";
+import { MdDelete } from "react-icons/md";
 
 const UserAssociatedReviews = () => {
   const token = localStorage.getItem("token");
@@ -58,31 +59,48 @@ const UserAssociatedReviews = () => {
       toast.error("No authentication token found.");
       return;
     }
-    
-    const response = await fetch(`${host}/deleteReview/${_id}`, {
-      method: "DELETE",
-      headers: {
-        "auth-token": token,
-      },
-    });
-    if (response.ok) {
-      toast.error("could not delete review");
+
+    try {
+      const response = await fetch(`${host}/deleteReview/${_id}`, {
+        method: "DELETE",
+        headers: {
+          "auth-token": token,
+        },
+      });
+
+      if (!response.ok) {
+        toast.error("Could not delete review");
+        console.log("Response status:", response.status);
+        console.log("Response message:", response.statusText);
+        return;
+      }
+
+      const data = await response.json();
+      console.log("Delete response data:", data);
+      toast.success("Review deleted!");
+
+      // Fetch the updated reviews list after deletion
+      handleFetchAllReviews();
+    } catch (error) {
+      console.error("Error deleting review:", error);
+      toast.error("An error occurred while deleting the review.");
     }
-    const data = await response.json();
-    console.log(data);
-    toast.success("Review deleted!");
   };
 
   return (
     <div>
-      <span>Reviews you have posted till now</span>
-      <button onClick={handleFetchAllReviews}>Reviews</button>
-      <div className="flex flex-col space-y-2">
+      <button
+        className="text-red-700 font-semibold p-2 border-[1px] border-red-700 rounded-md"
+        onClick={handleFetchAllReviews}
+      >
+        Total Reviews: {fetchedUserReviewsData.length}
+      </button>
+      <div className="flex flex-col">
         {Array.isArray(fetchedUserReviewsData) &&
         fetchedUserReviewsData.length > 0 ? (
           fetchedUserReviewsData.map((userReviews) => (
-            <div key={userReviews._id} className="w-full ">
-              <div className="w-2/3 space-y-2 py-2 px-4 shadow-sm bg-red-50 shadow-red-200 rounded-md">
+            <div key={userReviews._id} className="w-full">
+              <div className="flex flex-col w-full lg:w-2/3 py-2 px-4 mt-4 space-y-1  shadow-sm bg-red-50 shadow-red-200 rounded-md">
                 <div className="flex justify-between">
                   <div className="flex space-x-2">
                     <FaUser size={20}></FaUser>
@@ -90,21 +108,23 @@ const UserAssociatedReviews = () => {
                       {userReviews.userId.name}
                     </span>
                   </div>
-                  <button onClick={handleDeleteReviewWithId(userReviews._id)}>
-                    Delete
+                  <button
+                    onClick={() => handleDeleteReviewWithId(userReviews._id)}
+                  >
+                    <MdDelete color="#cb000f" />
                   </button>
                 </div>
-                <p className="font-thin tracking-tight">
+                <div className="font-normal text-sm tracking-tight">
                   {userReviews.reviewText}
-                </p>
-                <span className="pt-2 text-red-600">
+                </div>
+                <span className="text-sm pt-2 text-red-600">
                   {formatTime(userReviews.createdAt)}
                 </span>
               </div>
             </div>
           ))
         ) : (
-          <p>No reviews found.</p>
+          <p className="mt-4">No reviews found.</p>
         )}
       </div>
     </div>

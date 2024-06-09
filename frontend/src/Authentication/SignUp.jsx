@@ -27,17 +27,17 @@ const SignUp = () => {
     <>
       <div
         style={{ fontFamily: "sans-serif" }}
-        className="flex justify-center items-center mx-auto w-full  bg-gradient-to-tr from-red-100 to-blue-100 h-[90vh]"
+        className="flex justify-center items-center mx-auto w-full  bg-gradient-to-tr from-red-100 to-blue-100 lg:h-[90vh]"
       >
-        <div className="flex items-center flex-col h-fit w-1/2">
+        <div className="flex items-center flex-col h-full mt-10 w-full lg:w-1/2">
           <span className="font-semibold text-3xl">Create Account</span>
           <form
             onSubmit={handleSignUp}
-            className="flex flex-col space-y-6 my-10 items-start w-full"
+            className="flex flex-col space-y-6 my-10 px-4 items-start w-full"
             method="post"
           >
-            <div className="flex space-x-6 w-full">
-              <div className="flex flex-col w-1/2">
+            <div className="flex flex-col lg:flex-row lg:space-x-6 space-y-4 lg:space-y-0 w-full">
+              <div className="flex flex-col w-full lg:w-1/2">
                 <label className="w-fit cursor-pointer" htmlFor="first name">
                   First Name:
                 </label>
@@ -54,7 +54,7 @@ const SignUp = () => {
                   />
                 </div>
               </div>
-              <div className="flex flex-col w-1/2">
+              <div className="flex flex-col w-full lg:w-1/2">
                 <label className="w-fit cursor-pointer" htmlFor="last name">
                   Last Name:
                 </label>
@@ -72,8 +72,8 @@ const SignUp = () => {
                 </div>
               </div>
             </div>
-            <div className="flex space-x-6 w-full">
-              <div className="flex flex-col w-1/2">
+            <div className="flex flex-col lg:flex-row lg:space-x-6 space-y-4 lg:space-y-0 w-full">
+              <div className="flex flex-col w-full lg:w-1/2">
                 <label className="w-fit cursor-pointer" htmlFor="mobile number">
                   Mobile Number:
                 </label>
@@ -92,7 +92,7 @@ const SignUp = () => {
                   />
                 </div>
               </div>
-              <div className="flex flex-col w-1/2">
+              <div className="flex flex-col w-full lg:w-1/2">
                 <label className="w-fit cursor-pointer" htmlFor="email">
                   Email Address:
                 </label>
@@ -110,8 +110,8 @@ const SignUp = () => {
                 </div>
               </div>
             </div>
-            <div className="flex space-x-6 w-full">
-              <div className="flex flex-col w-1/2">
+            <div className="flex flex-col lg:flex-row lg:space-x-6 space-y-4 lg:space-y-0 w-full">
+              <div className="flex flex-col w-full lg:w-1/2">
                 <label className="w-fit cursor-pointer" htmlFor="setPassword">
                   Set Password
                 </label>
@@ -124,7 +124,7 @@ const SignUp = () => {
                     name="password"
                     id="setPassword"
                     required
-                    placeholder="Password must contain atleast 8 characters"
+                    placeholder="Should contain atleast 8 characters"
                   />
                   <span className="absolute right-2 px-2">
                     <FaEye
@@ -134,7 +134,7 @@ const SignUp = () => {
                   </span>
                 </div>
               </div>
-              <div className="flex flex-col w-1/2">
+              <div className="flex flex-col w-full lg:w-1/2">
                 <label
                   className="w-fit cursor-pointer"
                   htmlFor="confirmPassword"
@@ -175,7 +175,7 @@ const SignUp = () => {
             <div className="flex justify-center w-full">
               <button
                 type="submit"
-                className="flex items-center justify-between shadow-sm shadow-red-900 px-4 py-3 bg-red-700 text-white rounded-md font-medium w-1/3"
+                className="flex items-center justify-between shadow-sm shadow-red-900 px-4 py-3 bg-red-700 text-white rounded-md font-medium lg:w-1/3"
               >
                 Create Account
                 <FaArrowRight
