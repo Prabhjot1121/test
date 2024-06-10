@@ -26,7 +26,7 @@ app.get("/", (req, res) => {
 
 // adding routes
 app.use("/api/auth", require("./routes/auth"));
-app.use("/api/notify", require("./routes/notify"));
+// app.use("/api/notify", require("./routes/notify"));
 app.use("/api/activity", require("./routes/activity"));
 
 app.use(errorHandler);
